@@ -4,6 +4,8 @@ import { notFound } from "next/navigation";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import "../globals.css";
 
 const fraunces = Fraunces({
@@ -65,8 +67,12 @@ export default async function LocaleLayout({
       lang={locale}
       className={`${fraunces.variable} ${dmSans.variable} ${ptSerif.variable} ${ptSans.variable} antialiased`}
     >
-      <body className="min-h-screen">
-        <NextIntlClientProvider>{children}</NextIntlClientProvider>
+      <body className="flex min-h-screen flex-col">
+        <NextIntlClientProvider>
+          <Header />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </NextIntlClientProvider>
       </body>
     </html>
   );

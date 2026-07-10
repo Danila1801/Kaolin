@@ -33,10 +33,21 @@
   --font-display: var(--font-fraunces), var(--font-pt-serif), Georgia, serif;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background: var(--color-cream);
   color: var(--color-ink);
   font-family: var(--font-sans);
   font-size: 1.125rem; /* 18px body per design system */
   line-height: 1.6;
+}
+
+/* Honor OS-level reduce-motion for anchor jumps too, not just JS animations. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }

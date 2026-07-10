@@ -2,5 +2,29 @@
   "hero": {
     "title": "AI care își câștigă locul în afacerea ta.",
     "subtitle": "Construim site-uri web, apoi le învățăm să gândească — chatboți, asistenți pentru documente și automatizări, create de cei doi oameni cu care vorbești cu adevărat."
+  },
+  "nav": {
+    "services": "ce facem",
+    "work": "vezi cum funcționează",
+    "process": "cum lucrăm",
+    "pricing": "prețuri",
+    "contact": "contact"
+  },
+  "sections": {
+    "trust": "un studio tată–fiu. amsterdam × chișinău. vorbești cu cel care îl construiește.",
+    "services": "ce facem",
+    "work": "vezi cum funcționează",
+    "process": "cum lucrăm",
+    "proof": "cine suntem",
+    "pricing": "prețuri",
+    "contact": "contact",
+    "placeholder": "— în curând —"
+  },
+  "footer": {
+    "tagline": "site-uri care gândesc. create de doi oameni, nu o agenție.",
+    "email": "hello@kaolin.studio",
+    "kvk": "KVK — înregistrare în curs",
+    "location": "Amsterdam × Chișinău",
+    "rights": "© 2026 Kaolin. Toate drepturile rezervate."
   }
 }

@@ -2,5 +2,29 @@
   "hero": {
     "title": "AI that earns its place in your business.",
     "subtitle": "We build websites, then we make them think — chatbots, document assistants, and automation, built by the two people you actually talk to."
+  },
+  "nav": {
+    "services": "what we do",
+    "work": "see it for real",
+    "process": "how we work",
+    "pricing": "pricing",
+    "contact": "contact"
+  },
+  "sections": {
+    "trust": "a father–son studio. amsterdam × chișinău. you talk to the person who builds it.",
+    "services": "what we do",
+    "work": "see it for real",
+    "process": "how we work",
+    "proof": "who we are",
+    "pricing": "pricing",
+    "contact": "contact",
+    "placeholder": "— coming next —"
+  },
+  "footer": {
+    "tagline": "websites that think. built by two people, not an agency.",
+    "email": "hello@kaolin.studio",
+    "kvk": "KVK — registration in progress",
+    "location": "Amsterdam × Chișinău",
+    "rights": "© 2026 Kaolin. All rights reserved."
   }
 }

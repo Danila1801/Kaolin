@@ -2,5 +2,29 @@
   "hero": {
     "title": "AI die zijn plek in uw bedrijf verdient.",
     "subtitle": "Wij bouwen websites en laten ze vervolgens denken — chatbots, documentassistenten en automatisering, gemaakt door de twee mensen die u écht spreekt."
+  },
+  "nav": {
+    "services": "wat we doen",
+    "work": "zie het werken",
+    "process": "hoe we werken",
+    "pricing": "prijzen",
+    "contact": "contact"
+  },
+  "sections": {
+    "trust": "een vader-zoon studio. amsterdam × chișinău. u spreekt met wie het bouwt.",
+    "services": "wat we doen",
+    "work": "zie het werken",
+    "process": "hoe we werken",
+    "proof": "wie we zijn",
+    "pricing": "prijzen",
+    "contact": "contact",
+    "placeholder": "— volgt binnenkort —"
+  },
+  "footer": {
+    "tagline": "websites die denken. gemaakt door twee mensen, geen bureau.",
+    "email": "hello@kaolin.studio",
+    "kvk": "KVK — registratie loopt",
+    "location": "Amsterdam × Chișinău",
+    "rights": "© 2026 Kaolin. Alle rechten voorbehouden."
   }
 }
