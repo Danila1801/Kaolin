@@ -10,15 +10,63 @@
     "pricing": "pricing",
     "contact": "contact"
   },
-  "sections": {
-    "trust": "a father–son studio. amsterdam × chișinău. you talk to the person who builds it.",
-    "services": "what we do",
-    "work": "see it for real",
-    "process": "how we work",
-    "proof": "who we are",
-    "pricing": "pricing",
-    "contact": "contact",
-    "placeholder": "— coming next —"
+  "trust": {
+    "line": "a father–son studio. amsterdam × chișinău. you talk to the person who builds it."
+  },
+  "services": {
+    "title": "what we do",
+    "intro": "a website gets you online. what we build on top of it makes the website work — answering questions, reading your documents, predicting what's next, and doing the repetitive parts for you.",
+    "items": [
+      { "name": "websites", "body": "fast, multilingual, and built to last — the front door to everything else." },
+      { "name": "chatbots & llm integration", "body": "assistants that answer in your customer's language, grounded in what your business actually knows — not generic guesses." },
+      { "name": "document assistants", "body": "point one at your contracts, manuals, and reports, then just ask. every answer comes with its source." },
+      { "name": "ml & predictive analytics", "body": "forecasting, scoring, and classification on your own data — built only where the numbers earn their keep." },
+      { "name": "ai automation", "body": "the repetitive work between your tools, handled quietly in the background so your people don't have to." }
+    ]
+  },
+  "work": {
+    "title": "see it for real",
+    "intro": "we'd rather show you than tell you. two sites we designed, built, and put live — no mock-ups, no invented numbers.",
+    "items": [
+      { "name": "Portativ SRL", "body": "a four-language site for an electrical-installations contractor — clean, fast, and easy for customers to navigate.", "cta": "visit the site", "href": "https://portativ-srl.vercel.app" },
+      { "name": "Nook", "body": "a calm web product for the working body — proof we care as much about feel and restraint as we do about code.", "cta": "visit the site", "href": "https://nook-liard.vercel.app" }
+    ],
+    "note": "and the assistant on this page? that's ours too — a live demo of exactly what we'd build into your site."
+  },
+  "process": {
+    "title": "how we work",
+    "intro": "no project managers, no salespeople, no handoffs. four steps — both of us, from first call to launch.",
+    "items": [
+      { "step": "01", "name": "a free call", "body": "we listen to what you actually need, and tell you honestly whether ai belongs in it yet." },
+      { "step": "02", "name": "a scoped plan", "body": "a clear plan with a fixed shape and an honest price range — before anyone commits." },
+      { "step": "03", "name": "we build, in the open", "body": "you follow progress on a real link as it happens, not a slide deck at the end." },
+      { "step": "04", "name": "launch & stay", "body": "we ship it, watch it run, and stay reachable. you always know who built it." }
+    ]
+  },
+  "proof": {
+    "title": "who we are",
+    "intro": "two people, two generations, one studio. the whole point is that you talk to us directly — no layers in between.",
+    "items": [
+      { "name": "Leonid", "role": "the software half", "body": "decades of hands-on software development — the kind of judgment that only comes from building real systems, year after year, and keeping them working." },
+      { "name": "Danila", "role": "the ai half", "body": "a third-year ai student in amsterdam, working day to day with the current generation of models — llms, rag, and automation — and how to make them behave in production." }
+    ]
+  },
+  "pricing": {
+    "title": "pricing",
+    "intro": "honest starting points, not a menu. where a project lands depends on scope — which we work out together, on a call, for free.",
+    "tiers": [
+      { "name": "website", "from": "from €1,500", "body": "a fast, multilingual site built to last. everything starts here.", "features": ["multilingual & mobile-first", "built for speed and seo", "yours to keep"] },
+      { "name": "website + ai assistant", "from": "from €4,500", "body": "a site with a live, cost-controlled assistant that answers your customers in their own language.", "features": ["everything in website", "a custom llm assistant", "rate-limited & budget-safe"] },
+      { "name": "custom ai", "from": "from €8,000", "body": "document assistants, predictive models, and automation — scoped to a real, measured use case.", "features": ["rag over your documents", "ml & predictive analytics", "automation across your tools"] }
+    ],
+    "footnote": "every project scoped after a free call."
+  },
+  "contact": {
+    "title": "contact",
+    "body": "tell us what you're trying to do. you'll hear back from one of the two people who'd actually build it — usually within a day.",
+    "cta": "book a free call",
+    "or": "or email us directly at",
+    "email": "hello@kaolin.studio"
   },
   "footer": {
     "tagline": "websites that think. built by two people, not an agency.",

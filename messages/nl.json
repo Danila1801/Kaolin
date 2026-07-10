@@ -5,20 +5,68 @@
   },
   "nav": {
     "services": "wat we doen",
-    "work": "zie het werken",
+    "work": "zie het in het echt",
     "process": "hoe we werken",
     "pricing": "prijzen",
     "contact": "contact"
   },
-  "sections": {
-    "trust": "een vader-zoon studio. amsterdam × chișinău. u spreekt met wie het bouwt.",
-    "services": "wat we doen",
-    "work": "zie het werken",
-    "process": "hoe we werken",
-    "proof": "wie we zijn",
-    "pricing": "prijzen",
-    "contact": "contact",
-    "placeholder": "— volgt binnenkort —"
+  "trust": {
+    "line": "een vader-zoon studio. amsterdam × chișinău. u spreekt met wie het bouwt."
+  },
+  "services": {
+    "title": "wat we doen",
+    "intro": "een website brengt u online. wat wij daar bovenop bouwen laat de website écht werken — vragen beantwoorden, uw documenten lezen, voorspellen wat er komt, en het repetitieve werk uit handen nemen.",
+    "items": [
+      { "name": "websites", "body": "snel, meertalig en gebouwd om te blijven — de voordeur naar al het andere." },
+      { "name": "chatbots & llm-integratie", "body": "assistenten die antwoorden in de taal van uw klant, gebaseerd op wat uw bedrijf echt weet — geen algemene gokjes." },
+      { "name": "documentassistenten", "body": "richt er een op uw contracten, handleidingen en rapporten, en stel gewoon uw vraag. elk antwoord komt met de bron." },
+      { "name": "ml & voorspellende analyse", "body": "voorspellen, scoren en classificeren op uw eigen data — alleen waar de cijfers het waard zijn." },
+      { "name": "ai-automatisering", "body": "het repetitieve werk tussen uw tools, rustig op de achtergrond afgehandeld zodat uw mensen dat niet hoeven." }
+    ]
+  },
+  "work": {
+    "title": "zie het in het echt",
+    "intro": "we laten het liever zien dan dat we het vertellen. twee sites die we hebben ontworpen, gebouwd en live gezet — geen mock-ups, geen verzonnen cijfers.",
+    "items": [
+      { "name": "Portativ SRL", "body": "een viertalige site voor een elektro-installatiebedrijf — helder, snel en makkelijk te navigeren voor klanten.", "cta": "bekijk de site", "href": "https://portativ-srl.vercel.app" },
+      { "name": "Nook", "body": "een rustig webproduct voor het werkende lichaam — het bewijs dat we net zoveel om gevoel en rust geven als om code.", "cta": "bekijk de site", "href": "https://nook-liard.vercel.app" }
+    ],
+    "note": "en de assistent op deze pagina? die is ook van ons — een live demo van precies wat we in uw site zouden bouwen."
+  },
+  "process": {
+    "title": "hoe we werken",
+    "intro": "geen projectmanagers, geen verkopers, geen overdrachten. vier stappen — samen, van eerste gesprek tot lancering.",
+    "items": [
+      { "step": "01", "name": "een gratis gesprek", "body": "we luisteren naar wat u echt nodig heeft, en zeggen eerlijk of ai daar al thuishoort." },
+      { "step": "02", "name": "een afgebakend plan", "body": "een helder plan met een vaste vorm en een eerlijke prijsrange — voordat iemand zich vastlegt." },
+      { "step": "03", "name": "we bouwen, in het zicht", "body": "u volgt de voortgang op een echte link terwijl het gebeurt, geen presentatie achteraf." },
+      { "step": "04", "name": "lanceren & blijven", "body": "we zetten het live, houden het in de gaten en blijven bereikbaar. u weet altijd wie het gebouwd heeft." }
+    ]
+  },
+  "proof": {
+    "title": "wie we zijn",
+    "intro": "twee mensen, twee generaties, één studio. het hele punt is dat u rechtstreeks met ons praat — geen lagen ertussen.",
+    "items": [
+      { "name": "Leonid", "role": "de software-helft", "body": "decennia praktische softwareontwikkeling — het soort oordeel dat alleen komt van jarenlang echte systemen bouwen en werkend houden." },
+      { "name": "Danila", "role": "de ai-helft", "body": "een derdejaars ai-student in amsterdam, dagelijks bezig met de huidige generatie modellen — llm's, rag en automatisering — en hoe je ze in productie laat werken." }
+    ]
+  },
+  "pricing": {
+    "title": "prijzen",
+    "intro": "eerlijke startpunten, geen menu. waar een project uitkomt hangt af van de scope — die we samen bepalen, in een gesprek, gratis.",
+    "tiers": [
+      { "name": "website", "from": "vanaf €1.500", "body": "een snelle, meertalige site gebouwd om te blijven. alles begint hier.", "features": ["meertalig & mobile-first", "gebouwd voor snelheid en seo", "van u, om te houden"] },
+      { "name": "website + ai-assistent", "from": "vanaf €4.500", "body": "een site met een live, kostengecontroleerde assistent die uw klanten in hun eigen taal te woord staat.", "features": ["alles uit website", "een eigen llm-assistent", "gelimiteerd & budgetveilig"] },
+      { "name": "custom ai", "from": "vanaf €8.000", "body": "documentassistenten, voorspellende modellen en automatisering — afgestemd op een echte, meetbare use case.", "features": ["rag over uw documenten", "ml & voorspellende analyse", "automatisering tussen uw tools"] }
+    ],
+    "footnote": "elk project wordt na een gratis gesprek afgebakend."
+  },
+  "contact": {
+    "title": "contact",
+    "body": "vertel ons wat u wilt bereiken. u krijgt antwoord van een van de twee mensen die het ook echt zouden bouwen — meestal binnen een dag.",
+    "cta": "plan een gratis gesprek",
+    "or": "of mail ons direct op",
+    "email": "hello@kaolin.studio"
   },
   "footer": {
     "tagline": "websites die denken. gemaakt door twee mensen, geen bureau.",

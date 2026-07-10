@@ -5,20 +5,68 @@
   },
   "nav": {
     "services": "ce facem",
-    "work": "vezi cum funcționează",
+    "work": "vezi cu ochii tăi",
     "process": "cum lucrăm",
     "pricing": "prețuri",
     "contact": "contact"
   },
-  "sections": {
-    "trust": "un studio tată–fiu. amsterdam × chișinău. vorbești cu cel care îl construiește.",
-    "services": "ce facem",
-    "work": "vezi cum funcționează",
-    "process": "cum lucrăm",
-    "proof": "cine suntem",
-    "pricing": "prețuri",
-    "contact": "contact",
-    "placeholder": "— în curând —"
+  "trust": {
+    "line": "un studio tată–fiu. amsterdam × chișinău. vorbești cu cel care îl construiește."
+  },
+  "services": {
+    "title": "ce facem",
+    "intro": "un site te aduce online. ceea ce construim peste el face site-ul să lucreze cu adevărat — răspunde la întrebări, îți citește documentele, anticipează ce urmează și preia partea repetitivă.",
+    "items": [
+      { "name": "site-uri web", "body": "rapide, multilingve și construite să dureze — poarta de intrare către tot restul." },
+      { "name": "chatboți & integrare llm", "body": "asistenți care răspund în limba clientului tău, bazați pe ce știe de fapt afacerea ta — nu presupuneri generice." },
+      { "name": "asistenți pentru documente", "body": "îndreaptă unul spre contractele, manualele și rapoartele tale și pur și simplu întreabă. fiecare răspuns vine cu sursa." },
+      { "name": "ml & analiză predictivă", "body": "predicție, scoring și clasificare pe datele tale — doar acolo unde cifrele merită." },
+      { "name": "automatizare ai", "body": "munca repetitivă dintre instrumentele tale, rezolvată discret în fundal, ca oamenii tăi să nu fie nevoiți." }
+    ]
+  },
+  "work": {
+    "title": "vezi cu ochii tăi",
+    "intro": "preferăm să-ți arătăm decât să-ți spunem. două site-uri pe care le-am proiectat, construit și pus online — fără machete, fără cifre inventate.",
+    "items": [
+      { "name": "Portativ SRL", "body": "un site în patru limbi pentru un contractor de instalații electrice — curat, rapid și ușor de navigat pentru clienți.", "cta": "vezi site-ul", "href": "https://portativ-srl.vercel.app" },
+      { "name": "Nook", "body": "un produs web calm pentru corpul care muncește — dovada că ne pasă de senzație și sobrietate la fel de mult ca de cod.", "cta": "vezi site-ul", "href": "https://nook-liard.vercel.app" }
+    ],
+    "note": "iar asistentul de pe această pagină? e tot al nostru — o demonstrație live a exact ceea ce am construi în site-ul tău."
+  },
+  "process": {
+    "title": "cum lucrăm",
+    "intro": "fără manageri de proiect, fără vânzători, fără predări. patru pași — amândoi, de la primul apel până la lansare.",
+    "items": [
+      { "step": "01", "name": "un apel gratuit", "body": "ascultăm de ce ai nevoie cu adevărat și îți spunem sincer dacă ai își are locul acolo deocamdată." },
+      { "step": "02", "name": "un plan clar", "body": "un plan clar, cu o formă fixă și un interval de preț onest — înainte să se angajeze cineva." },
+      { "step": "03", "name": "construim, la vedere", "body": "urmărești progresul pe un link real, pe măsură ce se întâmplă, nu o prezentare la final." },
+      { "step": "04", "name": "lansare & prezență", "body": "îl punem online, îl urmărim cum funcționează și rămânem la dispoziție. știi mereu cine l-a construit." }
+    ]
+  },
+  "proof": {
+    "title": "cine suntem",
+    "intro": "doi oameni, două generații, un studio. tot rostul e că vorbești direct cu noi — fără straturi între.",
+    "items": [
+      { "name": "Leonid", "role": "jumătatea de software", "body": "decenii de dezvoltare software practică — genul de judecată care vine doar din a construi sisteme reale, an după an, și a le menține funcționale." },
+      { "name": "Danila", "role": "jumătatea de ai", "body": "student în anul trei la ai în amsterdam, lucrând zi de zi cu generația actuală de modele — llm-uri, rag și automatizare — și cum să le faci să funcționeze în producție." }
+    ]
+  },
+  "pricing": {
+    "title": "prețuri",
+    "intro": "puncte de plecare oneste, nu un meniu. unde ajunge un proiect depinde de scop — pe care îl stabilim împreună, într-un apel, gratuit.",
+    "tiers": [
+      { "name": "site web", "from": "de la €1.500", "body": "un site rapid, multilingv, construit să dureze. totul începe aici.", "features": ["multilingv & mobile-first", "construit pentru viteză și seo", "al tău, să-l păstrezi"] },
+      { "name": "site + asistent ai", "from": "de la €4.500", "body": "un site cu un asistent live, cu costuri controlate, care răspunde clienților în limba lor.", "features": ["tot ce e în site web", "un asistent llm propriu", "limitat & sigur pentru buget"] },
+      { "name": "ai personalizat", "from": "de la €8.000", "body": "asistenți pentru documente, modele predictive și automatizare — croite pe un caz de utilizare real, măsurabil.", "features": ["rag peste documentele tale", "ml & analiză predictivă", "automatizare între instrumentele tale"] }
+    ],
+    "footnote": "fiecare proiect este definit după un apel gratuit."
+  },
+  "contact": {
+    "title": "contact",
+    "body": "spune-ne ce vrei să faci. vei primi răspuns de la unul dintre cei doi oameni care chiar l-ar construi — de obicei în aceeași zi.",
+    "cta": "programează un apel gratuit",
+    "or": "sau scrie-ne direct la",
+    "email": "hello@kaolin.studio"
   },
   "footer": {
     "tagline": "site-uri care gândesc. create de doi oameni, nu o agenție.",
