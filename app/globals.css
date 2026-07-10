@@ -1,0 +1,42 @@
+@import "tailwindcss";
+
+@theme {
+  /* Kaolin palette — warm editorial (locked, do not improvise new colors) */
+  --color-cream: #f5e9d6;
+  --color-ink: #2b211a;
+  --color-rust: #b4531f;
+  --color-muted: #7a6a58;
+  --color-card: #fbf4e8;
+
+  /* Type scale — 1.25 major third: 16 / 20 / 25 / 31 / 39 / 49 / 61 */
+  --text-base: 1rem;
+  --text-base--line-height: 1.6;
+  --text-lg: 1.25rem;
+  --text-lg--line-height: 1.5;
+  --text-xl: 1.5625rem;
+  --text-xl--line-height: 1.4;
+  --text-2xl: 1.9375rem;
+  --text-2xl--line-height: 1.25;
+  --text-3xl: 2.4375rem;
+  --text-3xl--line-height: 1.1;
+  --text-4xl: 3.0625rem;
+  --text-4xl--line-height: 1.05;
+  --text-5xl: 3.8125rem;
+  --text-5xl--line-height: 1.05;
+}
+
+@theme inline {
+  /* Font variables come from next/font in app/[locale]/layout.tsx.
+     PT Serif / PT Sans carry the Cyrillic glyphs Fraunces and DM Sans lack,
+     so Russian text falls through to them automatically. */
+  --font-sans: var(--font-dm-sans), var(--font-pt-sans), system-ui, sans-serif;
+  --font-display: var(--font-fraunces), var(--font-pt-serif), Georgia, serif;
+}
+
+body {
+  background: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: 1.125rem; /* 18px body per design system */
+  line-height: 1.6;
+}
