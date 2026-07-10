@@ -68,6 +68,17 @@
     "or": "or email us directly at",
     "email": "hello@kaolin.studio"
   },
+  "chat": {
+    "launcher": "ask kaolin",
+    "title": "ask kaolin",
+    "intro": "hi — ask me anything about what we build, how we work, or what it costs. i'm a live demo of the kind of assistant we'd put on your site.",
+    "placeholder": "type your question…",
+    "send": "send",
+    "close": "close",
+    "disclaimer": "a live demo · answers may be imperfect",
+    "error": "something went wrong. please try again in a moment.",
+    "rateLimited": "you're going a little fast — give it a minute, then try again."
+  },
   "footer": {
     "tagline": "websites that think. built by two people, not an agency.",
     "email": "hello@kaolin.studio",

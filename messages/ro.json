@@ -68,6 +68,17 @@
     "or": "sau scrie-ne direct la",
     "email": "hello@kaolin.studio"
   },
+  "chat": {
+    "launcher": "întreabă kaolin",
+    "title": "întreabă kaolin",
+    "intro": "salut — întreabă-mă orice despre ce construim, cum lucrăm sau cât costă. sunt o demonstrație live a tipului de asistent pe care l-am pune pe site-ul tău.",
+    "placeholder": "scrie întrebarea ta…",
+    "send": "trimite",
+    "close": "închide",
+    "disclaimer": "o demonstrație live · răspunsurile pot fi imperfecte",
+    "error": "ceva n-a mers. încearcă din nou într-o clipă.",
+    "rateLimited": "mergi puțin cam repede — așteaptă un minut și încearcă din nou."
+  },
   "footer": {
     "tagline": "site-uri care gândesc. create de doi oameni, nu o agenție.",
     "email": "hello@kaolin.studio",

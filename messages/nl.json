@@ -68,6 +68,17 @@
     "or": "of mail ons direct op",
     "email": "hello@kaolin.studio"
   },
+  "chat": {
+    "launcher": "vraag kaolin",
+    "title": "vraag kaolin",
+    "intro": "hoi — vraag me alles over wat we bouwen, hoe we werken of wat het kost. ik ben een live demo van het soort assistent dat we op uw site zouden zetten.",
+    "placeholder": "typ uw vraag…",
+    "send": "stuur",
+    "close": "sluiten",
+    "disclaimer": "een live demo · antwoorden kunnen imperfect zijn",
+    "error": "er ging iets mis. probeer het zo opnieuw.",
+    "rateLimited": "u gaat iets te snel — wacht even een minuut en probeer opnieuw."
+  },
   "footer": {
     "tagline": "websites die denken. gemaakt door twee mensen, geen bureau.",
     "email": "hello@kaolin.studio",

@@ -6,6 +6,8 @@ import { setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import ChatWidget from "@/components/chat/ChatWidget";
+import ChatErrorBoundary from "@/components/chat/ErrorBoundary";
 import "../globals.css";
 
 const fraunces = Fraunces({
@@ -72,6 +74,9 @@ export default async function LocaleLayout({
           <Header />
           <main className="flex-1">{children}</main>
           <Footer />
+          <ChatErrorBoundary>
+            <ChatWidget />
+          </ChatErrorBoundary>
         </NextIntlClientProvider>
       </body>
     </html>
