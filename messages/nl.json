@@ -92,6 +92,20 @@
     "error": "er ging iets mis. probeer het zo opnieuw.",
     "rateLimited": "u gaat iets te snel — wacht even een minuut en probeer opnieuw."
   },
+  "error": {
+    "notFound": {
+      "code": "404",
+      "title": "pagina niet gevonden",
+      "body": "de pagina die u zoekt bestaat niet, of is misschien verplaatst.",
+      "home": "terug naar home"
+    },
+    "generic": {
+      "title": "er ging iets mis",
+      "body": "er is aan onze kant een onverwachte fout opgetreden. probeer het zo opnieuw.",
+      "retry": "opnieuw proberen",
+      "home": "terug naar home"
+    }
+  },
   "legal": {
     "updated": "Laatst bijgewerkt: 11 juli 2026",
     "backHome": "← terug naar kaolin",

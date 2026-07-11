@@ -1,11 +1,15 @@
 @import "tailwindcss";
 
 @theme {
-  /* Kaolin palette — warm editorial (locked, do not improvise new colors) */
+  /* Kaolin palette — warm editorial (locked, do not improvise new colors).
+     Day-7 AA fix: rust and muted were nudged very slightly darker so text using
+     them clears WCAG AA (4.5:1) on the cream background. Originals #b4531f /
+     #7a6a58 measured 4.17 / 4.34 — below AA for normal-size text. New values
+     measure 4.71 / 4.97 and are visually near-identical. */
   --color-cream: #f5e9d6;
   --color-ink: #2b211a;
-  --color-rust: #b4531f;
-  --color-muted: #7a6a58;
+  --color-rust: #a84c1a;
+  --color-muted: #71614f;
   --color-card: #fbf4e8;
 
   /* Type scale — 1.25 major third: 16 / 20 / 25 / 31 / 39 / 49 / 61 */
@@ -50,4 +54,14 @@ body {
   html {
     scroll-behavior: auto;
   }
+}
+
+/* One consistent, visible keyboard focus ring across every interactive element
+   (WCAG 2.4.7). Uses :focus-visible so it shows for keyboard users without
+   ringing on mouse click. Components must NOT override this away with
+   outline-none unless they provide an equally visible replacement. */
+:where(a, button, input, textarea, select, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--color-rust);
+  outline-offset: 2px;
+  border-radius: 2px;
 }

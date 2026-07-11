@@ -11,6 +11,15 @@ const labels: Record<(typeof routing.locales)[number], string> = {
   ru: "RU",
 };
 
+// Full names for the accessible label, so a screen reader announces
+// "English", not "E N". The visible chip stays the two-letter code.
+const names: Record<(typeof routing.locales)[number], string> = {
+  en: "English",
+  nl: "Nederlands",
+  ro: "Română",
+  ru: "Русский",
+};
+
 export default function LanguageSwitcher() {
   const locale = useLocale();
   const pathname = usePathname();
@@ -22,6 +31,9 @@ export default function LanguageSwitcher() {
           key={l}
           href={pathname}
           locale={l}
+          hrefLang={l}
+          lang={l}
+          aria-label={`${labels[l]} — ${names[l]}`}
           aria-current={l === locale ? "true" : undefined}
           className={`rounded-full px-3 py-1.5 text-sm tracking-wide transition-colors ${
             l === locale ? "bg-ink text-cream" : "text-muted hover:text-ink"

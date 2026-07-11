@@ -92,6 +92,20 @@
     "error": "ceva n-a mers. încearcă din nou într-o clipă.",
     "rateLimited": "mergi puțin cam repede — așteaptă un minut și încearcă din nou."
   },
+  "error": {
+    "notFound": {
+      "code": "404",
+      "title": "pagina nu a fost găsită",
+      "body": "pagina pe care o cauți nu există sau este posibil să fi fost mutată.",
+      "home": "înapoi acasă"
+    },
+    "generic": {
+      "title": "ceva n-a mers bine",
+      "body": "a apărut o eroare neașteptată la noi. te rugăm să încerci din nou într-o clipă.",
+      "retry": "încearcă din nou",
+      "home": "înapoi acasă"
+    }
+  },
   "legal": {
     "updated": "Ultima actualizare: 11 iulie 2026",
     "backHome": "← înapoi la kaolin",

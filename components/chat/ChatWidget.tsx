@@ -21,6 +21,8 @@ export default function ChatWidget() {
 
   const scrollRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
+  const launcherRef = useRef<HTMLButtonElement>(null);
 
   const busy = status === "streaming";
 
@@ -29,14 +31,42 @@ export default function ChatWidget() {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight });
   }, [messages, status]);
 
-  // Focus the input when the panel opens; close on Escape.
+  // Close and return focus to the launcher, so a keyboard user isn't dumped at
+  // the top of the document when the dialog goes away.
+  function close() {
+    setOpen(false);
+    launcherRef.current?.focus();
+  }
+
+  // While open: focus the input, close on Escape, and trap Tab inside the panel
+  // so keyboard focus can't wander to the page behind the dialog and get lost.
   useEffect(() => {
-    if (open) inputRef.current?.focus();
+    if (!open) return;
+    inputRef.current?.focus();
+
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setOpen(false);
+      if (e.key === "Escape") {
+        close();
+        return;
+      }
+      if (e.key !== "Tab" || !panelRef.current) return;
+      const focusable = panelRef.current.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])',
+      );
+      if (focusable.length === 0) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open]);
 
   async function send() {
@@ -104,7 +134,10 @@ export default function ChatWidget() {
       {/* Launcher */}
       {!open && (
         <button
+          ref={launcherRef}
           onClick={() => setOpen(true)}
+          aria-haspopup="dialog"
+          aria-expanded={open}
           className="bg-ink text-cream fixed right-5 bottom-5 z-40 rounded-full px-5 py-3 text-sm font-medium shadow-lg transition-transform hover:-translate-y-0.5 motion-reduce:transition-none motion-reduce:hover:translate-y-0"
           aria-label={t("launcher")}
         >
@@ -115,17 +148,19 @@ export default function ChatWidget() {
       {/* Panel */}
       {open && (
         <div
+          ref={panelRef}
           role="dialog"
+          aria-modal="true"
           aria-label={t("title")}
           className="border-ink/10 bg-card fixed right-5 bottom-5 z-40 flex h-[min(70vh,560px)] w-[min(92vw,380px)] flex-col overflow-hidden rounded-2xl border shadow-xl"
         >
           <header className="border-ink/10 flex items-center justify-between border-b px-4 py-3">
             <div>
               <div className="font-display text-lg lowercase">{t("title")}</div>
-              <div className="text-muted/80 text-xs">{t("disclaimer")}</div>
+              <div className="text-muted text-xs">{t("disclaimer")}</div>
             </div>
             <button
-              onClick={() => setOpen(false)}
+              onClick={close}
               aria-label={t("close")}
               className="text-muted hover:text-ink -mr-1 rounded-full p-2 text-lg leading-none transition-colors"
             >
@@ -135,6 +170,9 @@ export default function ChatWidget() {
 
           <div
             ref={scrollRef}
+            role="log"
+            aria-live="polite"
+            aria-relevant="additions text"
             className="flex-1 space-y-4 overflow-y-auto px-4 py-4 text-base"
           >
             {messages.length === 0 && (
@@ -180,8 +218,9 @@ export default function ChatWidget() {
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={onKeyDown}
               rows={1}
+              aria-label={t("title")}
               placeholder={t("placeholder")}
-              className="text-ink placeholder:text-muted/70 max-h-28 flex-1 resize-none bg-transparent px-1 py-2 focus:outline-none"
+              className="text-ink placeholder:text-muted max-h-28 flex-1 resize-none bg-transparent px-1 py-2"
             />
             <button
               onClick={send}

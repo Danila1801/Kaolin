@@ -74,7 +74,7 @@ export default function ContactForm() {
               name="name"
               required
               autoComplete="name"
-              className="border-ink/15 bg-card focus:border-rust w-full rounded-xl border px-4 py-3 outline-none transition-colors"
+              className="border-ink/15 bg-card focus:border-rust w-full rounded-xl border px-4 py-3 transition-colors"
             />
           </label>
 
@@ -85,7 +85,7 @@ export default function ContactForm() {
               name="email"
               required
               autoComplete="email"
-              className="border-ink/15 bg-card focus:border-rust w-full rounded-xl border px-4 py-3 outline-none transition-colors"
+              className="border-ink/15 bg-card focus:border-rust w-full rounded-xl border px-4 py-3 transition-colors"
             />
           </label>
 
@@ -95,7 +95,7 @@ export default function ContactForm() {
               name="message"
               required
               rows={5}
-              className="border-ink/15 bg-card focus:border-rust w-full resize-y rounded-xl border px-4 py-3 outline-none transition-colors"
+              className="border-ink/15 bg-card focus:border-rust w-full resize-y rounded-xl border px-4 py-3 transition-colors"
             />
           </label>
 

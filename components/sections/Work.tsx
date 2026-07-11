@@ -80,7 +80,7 @@ export default async function Work() {
       </div>
 
       <Reveal delay={0.1}>
-        <p className="text-muted/90 mt-8 max-w-[60ch] text-base italic">
+        <p className="text-muted mt-8 max-w-[60ch] text-base italic">
           {t("note")}
         </p>
       </Reveal>

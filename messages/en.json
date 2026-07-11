@@ -92,6 +92,20 @@
     "error": "something went wrong. please try again in a moment.",
     "rateLimited": "you're going a little fast — give it a minute, then try again."
   },
+  "error": {
+    "notFound": {
+      "code": "404",
+      "title": "page not found",
+      "body": "the page you're looking for doesn't exist, or it may have moved.",
+      "home": "back to home"
+    },
+    "generic": {
+      "title": "something went wrong",
+      "body": "an unexpected error occurred on our end. please try again in a moment.",
+      "retry": "try again",
+      "home": "back to home"
+    }
+  },
   "legal": {
     "updated": "Last updated: 11 July 2026",
     "backHome": "← back to kaolin",
