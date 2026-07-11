@@ -1,4 +1,8 @@
 {
+  "meta": {
+    "title": "kaolin — studio de implementare ai",
+    "description": "un studio tată–fiu care construiește site-uri și apoi le învață să gândească — chatboți, asistenți pentru documente și automatizare. vorbești direct cu cei doi oameni care le construiesc. amsterdam × chișinău."
+  },
   "hero": {
     "title": "AI care își câștigă locul în afacerea ta.",
     "subtitle": "Construim site-uri web, apoi le învățăm să gândească — chatboți, asistenți pentru documente și automatizări, create de cei doi oameni cu care vorbești cu adevărat."
@@ -65,7 +69,15 @@
   "contact": {
     "title": "contact",
     "body": "spune-ne ce vrei să faci. vei primi răspuns de la unul dintre cei doi oameni care chiar l-ar construi — de obicei în aceeași zi.",
-    "cta": "programează un apel gratuit",
+    "form": {
+      "name": "numele tău",
+      "email": "e-mailul tău",
+      "message": "ce vrei să faci?",
+      "send": "trimite mesajul",
+      "sending": "se trimite…",
+      "success": "mulțumim — am primit mesajul. vei primi răspuns de la unul dintre noi, de obicei în aceeași zi.",
+      "error": "ceva n-a mers la trimitere. scrie-ne direct la hello@kaolin.studio."
+    },
     "or": "sau scrie-ne direct la",
     "email": "hello@kaolin.studio"
   },
@@ -80,11 +92,56 @@
     "error": "ceva n-a mers. încearcă din nou într-o clipă.",
     "rateLimited": "mergi puțin cam repede — așteaptă un minut și încearcă din nou."
   },
+  "legal": {
+    "updated": "Ultima actualizare: 11 iulie 2026",
+    "backHome": "← înapoi la kaolin",
+    "privacy": {
+      "title": "politica de confidențialitate",
+      "intro": "Această politică explică ce date cu caracter personal colectează kaolin.studio, de ce, și ce drepturi ai conform GDPR (în Țările de Jos, AVG). Colectăm datele la minimul de care are nevoie cu adevărat acest site.",
+      "sections": [
+        { "h": "Cine este responsabil", "p": ["Kaolin este un studio format din două persoane (Amsterdam și Chișinău) și este operatorul de date pentru acest site. Ne poți contacta la hello@kaolin.studio.", "Numărul de la Camera de Comerț (KVK) și adresa înregistrată vor fi adăugate aici de îndată ce studioul este înregistrat oficial."] },
+        { "h": "Ce colectăm", "p": ["Formularul de contact: când ne scrii, primim numele, adresa de e-mail și mesajul pe care le completezi. Acestea sunt livrate prin furnizorul nostru de formulare, Formspree.", "Asistentul AI: mesajele pe care le scrii în asistentul de pe pagină sunt trimise furnizorului nostru AI pentru a genera un răspuns. Te rugăm să nu introduci date personale sensibile — este o demonstrație, nu un canal securizat.", "Date automate: pentru a preveni abuzul asupra asistentului, adresa ta IP este folosită scurt pentru a aplica limite. Folosim și statistici agregate, prietenoase cu confidențialitatea, care nu creează un profil despre tine."] },
+        { "h": "De ce avem dreptul (temeiul legal)", "p": ["Prelucrăm datele tale de contact pentru a răspunde la solicitare și pentru a face demersuri la cererea ta înainte de orice acord — acesta este interesul nostru legitim și, unde e cazul, necesitatea precontractuală (art. 6(1)(b) și (f) GDPR).", "Limitarea traficului și securitatea de bază se sprijină pe interesul nostru legitim de a proteja site-ul (art. 6(1)(f)). Statisticile agregate au același temei și nu plasează cookie-uri de urmărire."] },
+        { "h": "Cine îți mai prelucrează datele", "p": ["Ne bazăm pe câțiva procesatori aleși cu grijă: Formspree (livrarea formularului de contact), Vercel (găzduire și statistici fără cookie-uri), Upstash (contoare temporare pentru limite) și Groq (modelul AI pentru asistent).", "Unii dintre acești furnizori sunt situați în afara Spațiului Economic European. Acolo unde este cazul, transferurile sunt acoperite de garanții adecvate, precum Clauzele Contractuale Standard ale Comisiei Europene."] },
+        { "h": "Cât timp le păstrăm", "p": ["Păstrăm mesajele de contact doar atât cât este necesar pentru a rezolva solicitarea ta și eventualele urmări, apoi le ștergem. Conversațiile cu asistentul nu sunt stocate de noi pe termen lung, iar datele pentru limite expiră automat în decurs de o zi."] },
+        { "h": "Drepturile tale", "p": ["Conform GDPR/AVG, ne poți cere accesul, corectarea, ștergerea sau restricționarea datelor tale, te poți opune prelucrării sau le poți primi într-o formă portabilă. Pentru oricare dintre acestea, scrie la hello@kaolin.studio și vom răspunde în termenul legal.", "Ai de asemenea dreptul să depui o plângere la Autoritatea pentru Protecția Datelor din Țările de Jos (Autoriteit Persoonsgegevens) dacă ești nemulțumit de modul în care îți gestionăm datele."] },
+        { "h": "Copii", "p": ["Acest site se adresează afacerilor și nu este destinat copiilor sub 16 ani. Nu colectăm cu bună știință datele lor."] },
+        { "h": "Modificări", "p": ["Putem actualiza această politică pe măsură ce studioul crește sau legea se schimbă. Data din partea de sus indică versiunea curentă."] }
+      ]
+    },
+    "terms": {
+      "title": "termeni de utilizare",
+      "intro": "Acești termeni reglementează utilizarea kaolin.studio. Prin folosirea site-ului îi accepți. Acesta este site-ul nostru de prezentare; orice lucru efectiv la un proiect este acoperit de un acord scris separat.",
+      "sections": [
+        { "h": "Despre acest site", "p": ["kaolin.studio este un site informativ pentru Kaolin, un studio tată–fiu de implementare AI. Nimic de aici nu este o ofertă obligatorie; scopul, prețul și condițiile unui proiect se convin separat, în scris."] },
+        { "h": "Asistentul AI", "p": ["Asistentul de pe pagină este o demonstrație live, alimentată de un model de limbaj al unei terțe părți. Răspunsurile sale sunt generate automat și pot fi incomplete sau greșite. Tratează-le ca ilustrative, nu ca sfat profesional, juridic, financiar sau tehnic.", "Te rugăm să nu trimiți informații confidențiale sau date personale sensibile prin asistent și să nu te bazezi pe el pentru decizii fără a confirma direct cu noi."] },
+        { "h": "Proprietate intelectuală", "p": ["Textul, designul și codul acestui site aparțin Kaolin, cu excepția cazului în care se menționează altfel. Îl poți vizualiza și poți distribui linkuri către el, dar nu poți copia sau reutiliza conținutul în scopuri comerciale proprii fără permisiune."] },
+        { "h": "Fără garanții", "p": ["Site-ul este oferit \"ca atare\", fără garanții de niciun fel. Lucrăm să îl păstrăm corect și disponibil, dar nu putem garanta că va fi întotdeauna fără erori sau neîntrerupt."] },
+        { "h": "Răspundere", "p": ["În măsura permisă de lege, Kaolin nu răspunde pentru nicio pierdere indirectă sau consecutivă rezultată din utilizarea acestui site sau din bazarea pe asistent. Nimic din acești termeni nu limitează răspunderea care nu poate fi limitată conform legii olandeze."] },
+        { "h": "Linkuri externe", "p": ["Acolo unde punem linkuri către alte site-uri — inclusiv demonstrațiile pe care le-am construit — nu suntem responsabili pentru conținutul lor sau pentru propriile practici de confidențialitate."] },
+        { "h": "Legea aplicabilă", "p": ["Acești termeni sunt guvernați de legea olandeză. Litigiile intră sub jurisdicția instanței competente din Țările de Jos."] },
+        { "h": "Contact", "p": ["Întrebări despre acești termeni? Scrie la hello@kaolin.studio. Numărul KVK și adresa înregistrată vor fi adăugate aici de îndată ce studioul este înregistrat oficial."] }
+      ]
+    },
+    "cookies": {
+      "title": "cookie-uri & transparență ai",
+      "intro": "Încercăm să rulăm acest site cu cât mai puțină urmărire posibilă. Această pagină explică puținele elemente de stocare pe care le folosim și, la fel de important, cum funcționează asistentul AI.",
+      "sections": [
+        { "h": "Abordarea noastră privind cookie-urile", "p": ["Nu folosim cookie-uri de publicitate sau de urmărire între site-uri și nu vindem date. Site-ul funcționează fără să fii nevoit să accepți un zid de urmăritoare."] },
+        { "h": "Ce se stochează de fapt", "p": ["O preferință funcțională: când alegi o limbă, acea alegere poate fi reținută (printr-un cookie NEXT_LOCALE) astfel încât site-ul să se deschidă în limba potrivită data viitoare. Este strict funcțională și nu conține niciun profil personal.", "Statistici: folosim statisticile prietenoase cu confidențialitatea de la Vercel, care măsoară vizualizările de pagină în mod agregat, fără cookie-uri și fără a identifica vizitatori individuali."] },
+        { "h": "Gestionarea stocării", "p": ["Poți șterge sau bloca cookie-urile oricând din setările browserului. Blocarea cookie-ului de limbă înseamnă doar că site-ul nu va reține preferința ta de limbă între vizite."] },
+        { "h": "Cum funcționează asistentul AI", "p": ["Asistentul este alimentat de un model de limbaj mare al unei terțe părți (servit de Groq). Când îi trimiți un mesaj, acesta este transmis furnizorului pentru a genera un răspuns, apoi este transmis înapoi pe ecranul tău.", "Ca toate modelele de acest fel, poate \"halucina\" — să afirme cu convingere ceva ce este inexact. Este o demonstrație a ceea ce construim, nu o sursă autoritară."] },
+        { "h": "Ce nu este asistentul", "p": ["Nu oferă sfaturi profesionale, medicale, juridice sau financiare și nu poate lua angajamente în numele nostru. Pentru orice contează, o persoană reală de la Kaolin o va confirma — ne poți contacta oricând la hello@kaolin.studio."] },
+        { "h": "Datele tale în asistent", "p": ["Trimite doar informații pe care ești confortabil să le împărtășești. Nu folosim conversațiile tale pentru a antrena modele și nu le stocăm pe termen lung. Vezi politica noastră de confidențialitate pentru imaginea completă."] }
+      ]
+    }
+  },
   "footer": {
     "tagline": "site-uri care gândesc. create de doi oameni, nu o agenție.",
     "email": "hello@kaolin.studio",
     "kvk": "KVK — înregistrare în curs",
     "location": "Amsterdam × Chișinău",
-    "rights": "© 2026 Kaolin. Toate drepturile rezervate."
+    "rights": "© 2026 Kaolin. Toate drepturile rezervate.",
+    "legal": { "privacy": "confidențialitate", "terms": "termeni", "cookies": "cookie-uri & ai" }
   }
 }

@@ -1,10 +1,11 @@
 import { getTranslations } from "next-intl/server";
 import Section from "@/components/Section";
 import Reveal from "@/components/Reveal";
+import ContactForm from "@/components/sections/ContactForm";
 
-// "contact" — the closing call. A real form arrives on Day 6; for now the CTA
-// and the direct address are both mailto links, which is honest and works
-// today. The email is a placeholder domain until one is bought.
+// "contact" — the closing call. A real Formspree-backed form (client component)
+// with the direct email kept as an honest fallback. The email is a placeholder
+// domain until one is bought.
 export default async function Contact() {
   const t = await getTranslations("contact");
   const email = t("email");
@@ -19,24 +20,18 @@ export default async function Contact() {
           <p className="text-muted mt-6 text-xl">{t("body")}</p>
         </Reveal>
 
-        <Reveal delay={0.06}>
-          <div className="mt-8 flex flex-wrap items-center gap-x-4 gap-y-3">
+        <ContactForm />
+
+        <Reveal delay={0.1}>
+          <p className="text-muted mt-6 text-base">
+            {t("or")}{" "}
             <a
               href={`mailto:${email}`}
-              className="bg-rust hover:bg-rust/90 rounded-full px-6 py-3 text-base font-medium text-cream transition-colors"
+              className="text-ink underline decoration-ink/30 underline-offset-4 hover:decoration-ink"
             >
-              {t("cta")}
+              {email}
             </a>
-            <span className="text-muted text-base">
-              {t("or")}{" "}
-              <a
-                href={`mailto:${email}`}
-                className="text-ink underline decoration-ink/30 underline-offset-4 hover:decoration-ink"
-              >
-                {email}
-              </a>
-            </span>
-          </div>
+          </p>
         </Reveal>
       </div>
     </Section>

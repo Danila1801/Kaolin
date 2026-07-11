@@ -1,4 +1,5 @@
 import { getTranslations } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
 import LanguageSwitcher from "./LanguageSwitcher";
 
 // Site footer. The KVK number and email are deliberate placeholders until the
@@ -32,7 +33,23 @@ export default async function Footer() {
           <LanguageSwitcher />
         </div>
 
-        <p className="text-muted/80 mt-12 text-sm">{t("rights")}</p>
+        <div className="border-ink/10 mt-12 flex flex-col gap-4 border-t pt-8 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-muted/80 text-sm">{t("rights")}</p>
+          <nav
+            aria-label="Legal"
+            className="text-muted flex flex-wrap gap-x-6 gap-y-2 text-sm"
+          >
+            <Link href="/privacy" className="hover:text-ink transition-colors">
+              {t("legal.privacy")}
+            </Link>
+            <Link href="/terms" className="hover:text-ink transition-colors">
+              {t("legal.terms")}
+            </Link>
+            <Link href="/cookies" className="hover:text-ink transition-colors">
+              {t("legal.cookies")}
+            </Link>
+          </nav>
+        </div>
       </div>
     </footer>
   );

@@ -1,4 +1,8 @@
 {
+  "meta": {
+    "title": "kaolin — ai implementation studio",
+    "description": "a father–son studio that builds websites, then makes them think — chatbots, document assistants, and automation. you talk to the two people who build it. amsterdam × chișinău."
+  },
   "hero": {
     "title": "AI that earns its place in your business.",
     "subtitle": "We build websites, then we make them think — chatbots, document assistants, and automation, built by the two people you actually talk to."
@@ -65,7 +69,15 @@
   "contact": {
     "title": "contact",
     "body": "tell us what you're trying to do. you'll hear back from one of the two people who'd actually build it — usually within a day.",
-    "cta": "book a free call",
+    "form": {
+      "name": "your name",
+      "email": "your email",
+      "message": "what are you trying to do?",
+      "send": "send message",
+      "sending": "sending…",
+      "success": "thanks — we've got it. you'll hear back from one of us, usually within a day.",
+      "error": "something went wrong sending that. please email us directly at hello@kaolin.studio."
+    },
     "or": "or email us directly at",
     "email": "hello@kaolin.studio"
   },
@@ -80,11 +92,56 @@
     "error": "something went wrong. please try again in a moment.",
     "rateLimited": "you're going a little fast — give it a minute, then try again."
   },
+  "legal": {
+    "updated": "Last updated: 11 July 2026",
+    "backHome": "← back to kaolin",
+    "privacy": {
+      "title": "privacy policy",
+      "intro": "This policy explains what personal data kaolin.studio collects, why, and what rights you have under the GDPR (in the Netherlands, the AVG). We keep data collection to the minimum this site actually needs.",
+      "sections": [
+        { "h": "Who is responsible", "p": ["Kaolin is a two-person studio (Amsterdam and Chișinău) and is the data controller for this website. You can reach us at hello@kaolin.studio.", "Our Chamber of Commerce (KVK) number and registered address will be added here once the studio is formally registered."] },
+        { "h": "What we collect", "p": ["Contact form: when you write to us, we receive the name, email address, and message you submit. These are delivered through our forms provider, Formspree.", "AI assistant: the messages you type into the on-page assistant are sent to our AI provider to generate a reply. Please don't enter sensitive personal data — it's a demo, not a secure channel.", "Automatic data: to keep the assistant from being abused, your IP address is used briefly to enforce rate limits. We also use privacy-friendly, aggregated analytics that don't build a profile of you."] },
+        { "h": "Why we're allowed to (legal basis)", "p": ["We handle your contact details to respond to your enquiry and to take steps at your request before any agreement — that is our legitimate interest and, where relevant, pre-contractual necessity (Art. 6(1)(b) and (f) GDPR).", "Rate-limiting and basic security rest on our legitimate interest in protecting the site (Art. 6(1)(f)). Aggregated analytics rest on the same basis and set no tracking cookies."] },
+        { "h": "Who else processes your data", "p": ["We rely on a few carefully chosen processors: Formspree (contact-form delivery), Vercel (hosting and cookieless analytics), Upstash (temporary rate-limit counters), and Groq (AI model inference for the assistant).", "Some of these providers are based outside the European Economic Area. Where that is the case, transfers are covered by appropriate safeguards such as the European Commission's Standard Contractual Clauses."] },
+        { "h": "How long we keep it", "p": ["We keep contact messages only as long as needed to handle your request and any follow-up, then delete them. Assistant conversations are not stored by us for the long term, and rate-limit data expires automatically within a day."] },
+        { "h": "Your rights", "p": ["Under the GDPR/AVG you can ask us to access, correct, delete, or restrict your data, object to processing, or receive it in a portable form. To exercise any of these, email hello@kaolin.studio and we will respond within the legal time limit.", "You also have the right to lodge a complaint with the Dutch Data Protection Authority (Autoriteit Persoonsgegevens) if you are unhappy with how we handle your data."] },
+        { "h": "Children", "p": ["This site is aimed at businesses and is not directed at children under 16. We do not knowingly collect their data."] },
+        { "h": "Changes", "p": ["We may update this policy as the studio grows or the law changes. The date at the top shows the current version."] }
+      ]
+    },
+    "terms": {
+      "title": "terms of use",
+      "intro": "These terms govern your use of kaolin.studio. By using the site you accept them. This is our marketing website; any actual project work is covered by a separate written agreement.",
+      "sections": [
+        { "h": "About this site", "p": ["kaolin.studio is an informational website for Kaolin, a father–son AI-implementation studio. Nothing here is a binding offer; the scope, price, and terms of any project are agreed separately, in writing."] },
+        { "h": "The AI assistant", "p": ["The on-page assistant is a live demo powered by a third-party language model. Its answers are generated automatically and can be incomplete or wrong. Treat them as illustrative, not as professional, legal, financial, or technical advice.", "Please don't submit confidential or sensitive personal information through the assistant, and don't rely on it for decisions without confirming with us directly."] },
+        { "h": "Intellectual property", "p": ["The text, design, and code of this site belong to Kaolin unless stated otherwise. You may view it and share links to it, but not copy or reuse its content for your own commercial purposes without permission."] },
+        { "h": "No warranties", "p": ["The site is provided \"as is\", without warranties of any kind. We work to keep it accurate and available, but we can't guarantee it will always be error-free or uninterrupted."] },
+        { "h": "Liability", "p": ["To the extent permitted by law, Kaolin is not liable for any indirect or consequential loss arising from your use of this site or reliance on the assistant. Nothing in these terms limits liability that cannot be limited under Dutch law."] },
+        { "h": "External links", "p": ["Where we link to other sites — including the demos we've built — we are not responsible for their content or their own privacy practices."] },
+        { "h": "Governing law", "p": ["These terms are governed by Dutch law. Any disputes fall under the jurisdiction of the competent court in the Netherlands."] },
+        { "h": "Contact", "p": ["Questions about these terms? Email hello@kaolin.studio. Our KVK number and registered address will be added here once the studio is formally registered."] }
+      ]
+    },
+    "cookies": {
+      "title": "cookies & ai transparency",
+      "intro": "We try to run this site with as little tracking as possible. This page explains the few bits of storage we use and, just as importantly, how the AI assistant works.",
+      "sections": [
+        { "h": "Our approach to cookies", "p": ["We don't use advertising or cross-site tracking cookies, and we don't sell data. The site works without you having to accept a wall of trackers."] },
+        { "h": "What is actually stored", "p": ["A functional preference: when you choose a language, that choice may be remembered (via a NEXT_LOCALE cookie) so the site opens in the right language next time. It is strictly functional and holds no personal profile.", "Analytics: we use Vercel's privacy-friendly analytics, which measure page views in aggregate, without cookies and without identifying individual visitors."] },
+        { "h": "Managing storage", "p": ["You can clear or block cookies at any time in your browser settings. Blocking the language cookie only means the site won't remember your language preference between visits."] },
+        { "h": "How the AI assistant works", "p": ["The assistant is powered by a third-party large language model (served by Groq). When you send it a message, that message is transmitted to the provider to generate a reply, then streamed back to your screen.", "Like all such models, it can \"hallucinate\" — state something confidently that is inaccurate. It is a demonstration of what we build, not an authoritative source."] },
+        { "h": "What the assistant is not", "p": ["It does not give professional, medical, legal, or financial advice, and it can't make commitments on our behalf. For anything that matters, a real person at Kaolin will confirm it — you can always reach us at hello@kaolin.studio."] },
+        { "h": "Your data in the assistant", "p": ["Only send information you're comfortable sharing. We don't use your conversations to train models, and we don't store them long-term. See our privacy policy for the full picture."] }
+      ]
+    }
+  },
   "footer": {
     "tagline": "websites that think. built by two people, not an agency.",
     "email": "hello@kaolin.studio",
     "kvk": "KVK — registration in progress",
     "location": "Amsterdam × Chișinău",
-    "rights": "© 2026 Kaolin. All rights reserved."
+    "rights": "© 2026 Kaolin. All rights reserved.",
+    "legal": { "privacy": "privacy", "terms": "terms", "cookies": "cookies & ai" }
   }
 }

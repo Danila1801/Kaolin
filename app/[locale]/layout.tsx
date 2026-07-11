@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import { DM_Sans, Fraunces, PT_Sans, PT_Serif } from "next/font/google";
 import { notFound } from "next/navigation";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
-import { setRequestLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
+import { Analytics } from "@vercel/analytics/next";
 import { routing } from "@/i18n/routing";
+import { OG_LOCALE, SITE_URL, localeAlternates } from "@/lib/site";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ChatWidget from "@/components/chat/ChatWidget";
@@ -45,10 +47,67 @@ export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
-export const metadata: Metadata = {
-  title: "kaolin — AI implementation studio",
+// Per-locale metadata: localized title/description, canonical for this locale,
+// and hreflang alternates covering all four languages + x-default. `%s · kaolin`
+// lets child pages (legal) set just their own name.
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "meta" });
+
+  return {
+    metadataBase: new URL(SITE_URL),
+    title: { default: t("title"), template: "%s · kaolin" },
+    description: t("description"),
+    alternates: {
+      canonical: `${SITE_URL}/${locale}`,
+      languages: localeAlternates(),
+    },
+    openGraph: {
+      type: "website",
+      siteName: "kaolin",
+      url: `${SITE_URL}/${locale}`,
+      title: t("title"),
+      description: t("description"),
+      locale: OG_LOCALE[locale] ?? "en_US",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: t("title"),
+      description: t("description"),
+    },
+  };
+}
+
+// Organization schema for rich results. Deliberately conservative: it publishes
+// only what's true today (the two people, what we do, where we work).
+// [PENDING — confirm before launch] No legal registration number (KVK),
+// registered address, or VAT ID is published here yet — the studio isn't
+// registered. Add them once confirmed; do not invent a number. This mirrors the
+// [PENDING DAD REVIEW] handling of Leonid's bio in Proof.tsx.
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Kaolin",
+  url: SITE_URL,
   description:
-    "Websites that think. A father–son studio building sites, chatbots, document assistants, and automation.",
+    "A father–son AI-implementation studio building websites, chatbots, document assistants, and automation.",
+  email: "hello@kaolin.studio",
+  founder: [
+    { "@type": "Person", name: "Leonid" },
+    { "@type": "Person", name: "Danila" },
+  ],
+  areaServed: ["NL", "MD", "EU"],
+  knowsAbout: [
+    "Web development",
+    "Large language models",
+    "Retrieval-augmented generation",
+    "Machine learning",
+    "Business automation",
+  ],
 };
 
 export default async function LocaleLayout({
@@ -70,6 +129,10 @@ export default async function LocaleLayout({
       className={`${fraunces.variable} ${dmSans.variable} ${ptSerif.variable} ${ptSans.variable} antialiased`}
     >
       <body className="flex min-h-screen flex-col">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
         <NextIntlClientProvider>
           <Header />
           <main className="flex-1">{children}</main>
@@ -78,6 +141,7 @@ export default async function LocaleLayout({
             <ChatWidget />
           </ChatErrorBoundary>
         </NextIntlClientProvider>
+        <Analytics />
       </body>
     </html>
   );
