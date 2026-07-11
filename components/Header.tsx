@@ -1,11 +1,12 @@
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import LanguageSwitcher from "./LanguageSwitcher";
+import MobileMenu from "./MobileMenu";
 
 // Sticky top bar. It's a server component: the nav labels are translated at
-// request time and there's no interactivity here except the (client)
-// LanguageSwitcher, so nothing needs to ship to the browser but that widget.
-// The wordmark uses the locale-aware Link so "/" resolves to "/en", "/ru", etc.
+// request time. On desktop it shows the inline nav + language switcher; below
+// the md breakpoint both are hidden and the (client) MobileMenu hamburger takes
+// over. The wordmark uses the locale-aware Link so "/" resolves to "/en", etc.
 // The section links are plain in-page anchors (#services) — they scroll within
 // the current locale's page, no routing involved.
 export default async function Header() {
@@ -29,22 +30,24 @@ export default async function Header() {
           kaolin
         </Link>
 
-        <nav
-          aria-label="Primary"
-          className="hidden items-center gap-6 md:flex"
-        >
-          {items.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className="text-muted hover:text-ink text-sm transition-colors"
-            >
-              {item.label}
-            </a>
-          ))}
-        </nav>
+        {/* Desktop: inline nav + language switcher */}
+        <div className="hidden items-center gap-6 md:flex">
+          <nav aria-label={t("primary")} className="flex items-center gap-6">
+            {items.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                className="text-muted hover:text-ink text-sm transition-colors"
+              >
+                {item.label}
+              </a>
+            ))}
+          </nav>
+          <LanguageSwitcher />
+        </div>
 
-        <LanguageSwitcher />
+        {/* Mobile: hamburger menu */}
+        <MobileMenu />
       </div>
     </header>
   );

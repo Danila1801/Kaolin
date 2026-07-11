@@ -12,7 +12,12 @@
     "work": "zie het in het echt",
     "process": "hoe we werken",
     "pricing": "prijzen",
-    "contact": "contact"
+    "contact": "contact",
+    "primary": "Hoofdmenu",
+    "menu": "Menu",
+    "openMenu": "Menu openen",
+    "closeMenu": "Menu sluiten",
+    "language": "Taal"
   },
   "trust": {
     "line": "een vader-zoon studio. amsterdam × chișinău. u spreekt met wie het bouwt."
@@ -156,6 +161,6 @@
     "kvk": "KVK — registratie loopt",
     "location": "Amsterdam × Chișinău",
     "rights": "© 2026 Kaolin. Alle rechten voorbehouden.",
-    "legal": { "privacy": "privacy", "terms": "voorwaarden", "cookies": "cookies & ai" }
+    "legal": { "label": "Juridisch", "privacy": "privacy", "terms": "voorwaarden", "cookies": "cookies & ai" }
   }
 }

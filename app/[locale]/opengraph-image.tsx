@@ -44,11 +44,11 @@ export default function OpengraphImage() {
           >
             ai that earns its place in your business.
           </div>
-          <div style={{ fontSize: 30, color: "#7A6A58" }}>
+          <div style={{ fontSize: 30, color: "#71614f" }}>
             websites that think · amsterdam × chisinau
           </div>
         </div>
-        <div style={{ height: 8, width: 140, background: "#B4531F" }} />
+        <div style={{ height: 8, width: 140, background: "#a84c1a" }} />
       </div>
     ),
     { ...size },

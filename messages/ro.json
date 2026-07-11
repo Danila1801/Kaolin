@@ -12,7 +12,12 @@
     "work": "vezi cu ochii tăi",
     "process": "cum lucrăm",
     "pricing": "prețuri",
-    "contact": "contact"
+    "contact": "contact",
+    "primary": "Meniu principal",
+    "menu": "Meniu",
+    "openMenu": "Deschide meniul",
+    "closeMenu": "Închide meniul",
+    "language": "Limbă"
   },
   "trust": {
     "line": "un studio tată–fiu. amsterdam × chișinău. vorbești cu cel care îl construiește."
@@ -156,6 +161,6 @@
     "kvk": "KVK — înregistrare în curs",
     "location": "Amsterdam × Chișinău",
     "rights": "© 2026 Kaolin. Toate drepturile rezervate.",
-    "legal": { "privacy": "confidențialitate", "terms": "termeni", "cookies": "cookie-uri & ai" }
+    "legal": { "label": "Legal", "privacy": "confidențialitate", "terms": "termeni", "cookies": "cookie-uri & ai" }
   }
 }

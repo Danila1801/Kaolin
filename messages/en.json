@@ -12,7 +12,12 @@
     "work": "see it for real",
     "process": "how we work",
     "pricing": "pricing",
-    "contact": "contact"
+    "contact": "contact",
+    "primary": "Primary",
+    "menu": "Menu",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "language": "Language"
   },
   "trust": {
     "line": "a father–son studio. amsterdam × chișinău. you talk to the person who builds it."
@@ -156,6 +161,6 @@
     "kvk": "KVK — registration in progress",
     "location": "Amsterdam × Chișinău",
     "rights": "© 2026 Kaolin. All rights reserved.",
-    "legal": { "privacy": "privacy", "terms": "terms", "cookies": "cookies & ai" }
+    "legal": { "label": "Legal", "privacy": "privacy", "terms": "terms", "cookies": "cookies & ai" }
   }
 }

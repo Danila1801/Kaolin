@@ -36,7 +36,7 @@ export default async function Footer() {
         <div className="border-ink/10 mt-12 flex flex-col gap-4 border-t pt-8 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-muted text-sm">{t("rights")}</p>
           <nav
-            aria-label="Legal"
+            aria-label={t("legal.label")}
             className="text-muted flex flex-wrap gap-x-6 gap-y-2 text-sm"
           >
             <Link href="/privacy" className="hover:text-ink transition-colors">

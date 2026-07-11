@@ -21,7 +21,9 @@ gimmicky motion. The two-person team is the trust asset.
 Fonts: headings Fraunces (variable serif), body DM Sans; mono JetBrains Mono for
 AI/code accents. Fraunces and DM Sans have no Cyrillic — PT Serif / PT Sans are
 chained as fallbacks for /ru (already wired in globals.css + app/[locale]/layout.tsx).
-Palette: bg #F5E9D6, ink #2B211A, accent rust #B4531F, muted #7A6A58, card #FBF4E8.
+Palette: bg #F5E9D6, ink #2B211A, accent rust #a84c1a, muted #71614f, card #FBF4E8.
+(Rust and muted were nudged slightly darker on Day 7 — from #B4531F / #7A6A58 —
+so text using them clears WCAG AA 4.5:1 on cream; use these AA-passing values.)
 Type scale (1.25): 16/20/25/31/39/49/61; body 18px/1.6; headline tracking -0.02em at
 40px+. Spacing (4px base): 4/8/12/16/24/32/48/64/96/128; sections 96-128px desktop.
 Motion: 300-600ms ease-out reveals, once only, respect prefers-reduced-motion.
