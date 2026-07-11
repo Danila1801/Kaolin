@@ -26,8 +26,9 @@
   },
   "work": {
     "title": "vezi cu ochii tăi",
-    "intro": "preferăm să-ți arătăm decât să-ți spunem. două site-uri pe care le-am proiectat, construit și pus online — fără machete, fără cifre inventate.",
+    "intro": "preferăm să-ți arătăm decât să-ți spunem. muncă reală pe care am proiectat-o și construit-o — plus o clinică demo unde poți vorbi cu genul de asistent ai pe care l-am adăuga pe propriul tău site.",
     "items": [
+      { "name": "Riverbend Physiotherapy", "tag": "asistent ai live", "body": "un site demo de clinică pe care l-am construit ca să arătăm ai-ul în acțiune — un asistent de preluare prietenos care te întreabă despre problema ta, îți sugerează un tratament și îți explică prima vizită, chiar pe pagină. vorbește cu el.", "cta": "deschide demoul live", "href": "https://kaolin-demo-clinic.vercel.app" },
       { "name": "Portativ SRL", "body": "un site în patru limbi pentru un contractor de instalații electrice — curat, rapid și ușor de navigat pentru clienți.", "cta": "vezi site-ul", "href": "https://portativ-srl.vercel.app" },
       { "name": "Nook", "body": "un produs web calm pentru corpul care muncește — dovada că ne pasă de senzație și sobrietate la fel de mult ca de cod.", "cta": "vezi site-ul", "href": "https://nook-liard.vercel.app" }
     ],

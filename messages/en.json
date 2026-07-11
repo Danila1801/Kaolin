@@ -26,8 +26,9 @@
   },
   "work": {
     "title": "see it for real",
-    "intro": "we'd rather show you than tell you. two sites we designed, built, and put live — no mock-ups, no invented numbers.",
+    "intro": "we'd rather show you than tell you. real work we've designed and built — and a demo clinic where you can talk to the kind of ai assistant we'd add to your own site.",
     "items": [
+      { "name": "Riverbend Physiotherapy", "tag": "live ai assistant", "body": "a demo clinic site we built to show the ai in action — a friendly intake assistant that asks about your problem, suggests a treatment, and explains a first visit, right there on the page. go ahead and talk to it.", "cta": "open the live demo", "href": "https://kaolin-demo-clinic.vercel.app" },
       { "name": "Portativ SRL", "body": "a four-language site for an electrical-installations contractor — clean, fast, and easy for customers to navigate.", "cta": "visit the site", "href": "https://portativ-srl.vercel.app" },
       { "name": "Nook", "body": "a calm web product for the working body — proof we care as much about feel and restraint as we do about code.", "cta": "visit the site", "href": "https://nook-liard.vercel.app" }
     ],
