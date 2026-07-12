@@ -1,40 +1,36 @@
 @import "tailwindcss";
 
 @theme {
-  /* Kaolin palette — warm editorial (locked, do not improvise new colors).
-     Day-7 AA fix: rust and muted were nudged very slightly darker so text using
-     them clears WCAG AA (4.5:1) on the cream background. Originals #b4531f /
-     #7a6a58 measured 4.17 / 4.34 — below AA for normal-size text. New values
-     measure 4.71 / 4.97 and are visually near-identical. */
-  --color-cream: #f5e9d6;
-  --color-ink: #2b211a;
-  --color-rust: #a84c1a;
-  --color-muted: #71614f;
-  --color-card: #fbf4e8;
+  --color-cream: #f7f6f0;
+  --color-ink: #19352d;
+  --color-moss: #64764a;
+  --color-sand: #d8ccb6;
+  --color-rust: #a0523b;
+  --color-muted: #53615b;
+  --color-card: #fcfbf7;
 
-  /* Type scale — 1.25 major third: 16 / 20 / 25 / 31 / 39 / 49 / 61 */
   --text-base: 1rem;
   --text-base--line-height: 1.6;
-  --text-lg: 1.25rem;
+  --text-lg: 1.1875rem;
   --text-lg--line-height: 1.5;
-  --text-xl: 1.5625rem;
-  --text-xl--line-height: 1.4;
-  --text-2xl: 1.9375rem;
-  --text-2xl--line-height: 1.25;
-  --text-3xl: 2.4375rem;
+  --text-xl: 1.4375rem;
+  --text-xl--line-height: 1.45;
+  --text-2xl: 1.875rem;
+  --text-2xl--line-height: 1.2;
+  --text-3xl: 2.5rem;
   --text-3xl--line-height: 1.1;
-  --text-4xl: 3.0625rem;
-  --text-4xl--line-height: 1.05;
-  --text-5xl: 3.8125rem;
-  --text-5xl--line-height: 1.05;
+  --text-4xl: 3.25rem;
+  --text-4xl--line-height: 1.04;
 }
 
 @theme inline {
-  /* Font variables come from next/font in app/[locale]/layout.tsx.
-     PT Serif / PT Sans carry the Cyrillic glyphs Fraunces and DM Sans lack,
-     so Russian text falls through to them automatically. */
   --font-sans: var(--font-dm-sans), var(--font-pt-sans), system-ui, sans-serif;
   --font-display: var(--font-fraunces), var(--font-pt-serif), Georgia, serif;
+}
+
+:root {
+  --rule: color-mix(in srgb, var(--color-ink) 14%, transparent);
+  --rule-light: color-mix(in srgb, var(--color-cream) 22%, transparent);
 }
 
 html {
@@ -42,26 +38,234 @@ html {
 }
 
 body {
-  background: var(--color-cream);
+  background:
+    radial-gradient(circle at 15% 0%, rgb(216 204 182 / 28%), transparent 31rem),
+    var(--color-cream);
   color: var(--color-ink);
   font-family: var(--font-sans);
-  font-size: 1.125rem; /* 18px body per design system */
+  font-size: 1.0625rem;
   line-height: 1.6;
+  text-rendering: optimizeLegibility;
 }
 
-/* Honor OS-level reduce-motion for anchor jumps too, not just JS animations. */
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
+::selection {
+  background: var(--color-moss);
+  color: var(--color-cream);
+}
+
+:where(a, button, input, textarea, select, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--color-rust);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.hero-shell {
+  isolation: isolate;
+  overflow: hidden;
+  position: relative;
+  background:
+    linear-gradient(90deg, rgb(25 53 45 / 5%) 1px, transparent 1px),
+    linear-gradient(rgb(25 53 45 / 5%) 1px, transparent 1px),
+    radial-gradient(circle at 70% 43%, rgb(216 204 182 / 60%), transparent 23rem),
+    var(--color-cream);
+  background-size: 96px 96px, 96px 96px, auto, auto;
+}
+
+.hero-sun {
+  position: absolute;
+  z-index: -1;
+  width: clamp(17rem, 28vw, 28rem);
+  aspect-ratio: 1;
+  top: 11%;
+  right: 8%;
+  border-radius: 50%;
+  background: rgb(216 204 182 / 58%);
+}
+
+.hero-field {
+  z-index: 0;
+  width: min(68rem, 76vw);
+  height: auto;
+}
+
+.hero-field-back {
+  right: -7rem;
+  bottom: -2.5rem;
+  opacity: 0.25;
+}
+
+.hero-field-front {
+  right: -12rem;
+  bottom: -5rem;
+  opacity: 0.18;
+}
+
+.botanical-stems,
+.botanical-leaves {
+  transform-box: fill-box;
+  transform-origin: bottom center;
+  animation: botanical-breathe 8s ease-in-out infinite alternate;
+}
+
+.botanical-leaves {
+  animation-delay: -3s;
+}
+
+.botanical-seeds {
+  animation: botanical-drift 10s ease-in-out infinite alternate;
+}
+
+.hero-kicker,
+.hero-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  color: var(--color-muted);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.hero-kicker-dot {
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  background: var(--color-moss);
+}
+
+.hero-title {
+  max-width: 10.5ch;
+  font-size: clamp(3.65rem, 7.4vw, 7.85rem);
+  font-variation-settings: "opsz" 96;
+  letter-spacing: -0.065em;
+  line-height: 0.89;
+  text-wrap: balance;
+}
+
+.hero-copy {
+  max-width: 42rem;
+  margin-top: clamp(1.75rem, 3vw, 2.6rem);
+  color: var(--color-muted);
+  font-size: clamp(1.08rem, 1.6vw, 1.34rem);
+  line-height: 1.5;
+}
+
+.hero-meta {
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--rule);
+}
+
+.button-primary,
+.button-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.88rem;
+  font-weight: 650;
+  line-height: 1;
+  transition: background-color 180ms ease, color 180ms ease, transform 180ms ease;
+}
+
+.button-primary {
+  padding: 1rem 1.25rem;
+  background: var(--color-ink);
+  color: var(--color-cream);
+}
+
+.button-primary:hover {
+  background: var(--color-moss);
+  transform: translateY(-2px);
+}
+
+.button-secondary {
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid var(--color-ink);
+  color: var(--color-ink);
+}
+
+.button-secondary:hover {
+  color: var(--color-rust);
+  border-color: var(--color-rust);
+}
+
+.section-marker {
+  color: var(--color-rust);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.section-title {
+  max-width: 17ch;
+  color: var(--color-ink);
+  font-size: clamp(2.55rem, 5vw, 5.35rem);
+  font-variation-settings: "opsz" 72;
+  letter-spacing: -0.055em;
+  line-height: 0.94;
+}
+
+.section-intro {
+  max-width: 42rem;
+  margin-top: 1.5rem;
+  color: var(--color-muted);
+  font-size: clamp(1.05rem, 1.5vw, 1.25rem);
+  line-height: 1.55;
+}
+
+.site-header {
+  border-bottom: 1px solid transparent;
+  background: rgb(247 246 240 / 72%);
+  backdrop-filter: blur(16px);
+}
+
+.site-header:hover,
+.site-header:focus-within {
+  border-color: var(--rule);
+}
+
+@keyframes botanical-breathe {
+  to { transform: rotate(1.5deg) translateX(5px); }
+}
+
+@keyframes botanical-drift {
+  to { transform: translate(10px, -7px); }
+}
+
+@media (max-width: 640px) {
+  .hero-shell {
+    background-size: 64px 64px, 64px 64px, auto, auto;
+  }
+
+  .hero-field {
+    width: 51rem;
+  }
+
+  .hero-field-back {
+    right: -22rem;
+    bottom: -1rem;
+  }
+
+  .hero-field-front {
+    right: -29rem;
+  }
+
+  .hero-meta {
+    align-items: flex-start;
+    flex-direction: column;
   }
 }
 
-/* One consistent, visible keyboard focus ring across every interactive element
-   (WCAG 2.4.7). Uses :focus-visible so it shows for keyboard users without
-   ringing on mouse click. Components must NOT override this away with
-   outline-none unless they provide an equally visible replacement. */
-:where(a, button, input, textarea, select, summary, [tabindex]):focus-visible {
-  outline: 2px solid var(--color-rust);
-  outline-offset: 2px;
-  border-radius: 2px;
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }

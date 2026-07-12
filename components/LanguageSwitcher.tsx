@@ -20,7 +20,7 @@ const names: Record<(typeof routing.locales)[number], string> = {
   ru: "Русский",
 };
 
-export default function LanguageSwitcher() {
+export default function LanguageSwitcher({ inverse = false }: { inverse?: boolean }) {
   const locale = useLocale();
   const pathname = usePathname();
   const t = useTranslations("nav");
@@ -37,7 +37,13 @@ export default function LanguageSwitcher() {
           aria-label={`${labels[l]} — ${names[l]}`}
           aria-current={l === locale ? "true" : undefined}
           className={`rounded-full px-3 py-1.5 text-sm tracking-wide transition-colors ${
-            l === locale ? "bg-ink text-cream" : "text-muted hover:text-ink"
+            l === locale
+              ? inverse
+                ? "bg-cream text-ink"
+                : "bg-ink text-cream"
+              : inverse
+                ? "text-cream/60 hover:text-cream"
+                : "text-muted hover:text-ink"
           }`}
         >
           {labels[l]}

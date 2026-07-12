@@ -12,22 +12,20 @@ export default async function Process() {
 
   return (
     <Section id="process">
-      <Reveal>
-        <h2 className="font-display text-2xl tracking-[-0.02em] lowercase sm:text-3xl">
-          {t("title")}
-        </h2>
-        <p className="text-muted mt-6 max-w-[65ch] text-xl">{t("intro")}</p>
+      <Reveal className="grid gap-8 lg:grid-cols-[1fr_1.3fr] lg:items-end">
+        <h2 className="font-display section-title lowercase">{t("title")}</h2>
+        <p className="section-intro lg:mb-1">{t("intro")}</p>
       </Reveal>
 
-      <div className="mt-12 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mt-16 grid grid-cols-1 border-t border-ink/15 sm:mt-20 sm:grid-cols-2 lg:grid-cols-4">
         {items.map((item, i) => (
           <Reveal key={item.step} delay={i * 0.06}>
-            <div>
-              <div className="font-display text-rust text-3xl">{item.step}</div>
-              <h3 className="font-display mt-3 text-xl lowercase">
+            <div className="min-h-64 border-b border-ink/15 py-7 sm:border-r sm:px-7 sm:py-9 lg:min-h-72 lg:px-8">
+              <div className="text-[0.72rem] font-bold tracking-[0.15em] text-rust">{item.step}</div>
+              <h3 className="font-display mt-9 text-2xl leading-[1.02] tracking-[-0.045em] lowercase">
                 {item.name}
               </h3>
-              <p className="text-muted mt-2 text-base">{item.body}</p>
+              <p className="mt-4 text-base text-muted">{item.body}</p>
             </div>
           </Reveal>
         ))}

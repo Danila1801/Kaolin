@@ -21,23 +21,23 @@ export default async function Header() {
   ];
 
   return (
-    <header className="sticky top-0 z-50 border-b border-ink/10 bg-cream/90 backdrop-blur-sm">
-      <div className="mx-auto flex w-full max-w-[1200px] items-center justify-between gap-6 px-6 py-4 sm:px-12">
+    <header className="site-header sticky top-0 z-50 transition-colors">
+      <div className="mx-auto flex w-full max-w-[1320px] items-center justify-between gap-6 px-6 py-4 sm:px-10 lg:px-12">
         <Link
           href="/"
-          className="font-display text-xl font-semibold lowercase tracking-tight"
+          className="font-display text-[1.45rem] font-semibold lowercase tracking-[-0.06em]"
         >
           kaolin
         </Link>
 
         {/* Desktop: inline nav + language switcher */}
-        <div className="hidden items-center gap-6 md:flex">
-          <nav aria-label={t("primary")} className="flex items-center gap-6">
+        <div className="hidden items-center gap-7 md:flex">
+          <nav aria-label={t("primary")} className="flex items-center gap-7">
             {items.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
-                className="text-muted hover:text-ink text-sm transition-colors"
+                className="text-muted hover:text-rust text-[0.82rem] font-medium transition-colors"
               >
                 {item.label}
               </a>

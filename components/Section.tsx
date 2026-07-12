@@ -17,7 +17,7 @@ export default function Section({
     <section
       id={id}
       // scroll-mt keeps anchored sections clear of the sticky header.
-      className={`mx-auto w-full max-w-[1200px] scroll-mt-24 px-6 py-16 sm:px-12 sm:py-24 lg:py-32 ${className}`}
+      className={`mx-auto w-full max-w-[1320px] scroll-mt-24 px-6 py-20 sm:px-10 sm:py-28 lg:px-12 lg:py-36 ${className}`}
     >
       {children}
     </section>

@@ -21,12 +21,15 @@ export default async function Work() {
   const [featured, ...rest] = items;
 
   return (
-    <Section id="work">
-      <Reveal>
-        <h2 className="font-display text-2xl tracking-[-0.02em] lowercase sm:text-3xl">
+    <div className="relative overflow-hidden bg-ink text-cream">
+      <div aria-hidden="true" className="absolute -right-32 -top-40 h-[32rem] w-[32rem] rounded-full border border-sand/20" />
+      <div aria-hidden="true" className="absolute -right-12 -top-20 h-[18rem] w-[18rem] rounded-full bg-moss/30" />
+      <Section id="work" className="relative z-10">
+      <Reveal className="grid gap-8 lg:grid-cols-[1fr_1.3fr] lg:items-end">
+        <h2 className="font-display max-w-[14ch] text-[clamp(2.7rem,5vw,5.35rem)] leading-[0.94] tracking-[-0.055em] lowercase">
           {t("title")}
         </h2>
-        <p className="text-muted mt-6 max-w-[65ch] text-xl">{t("intro")}</p>
+        <p className="max-w-[42rem] text-lg leading-relaxed text-cream/70 lg:mb-1">{t("intro")}</p>
       </Reveal>
 
       {featured && (
@@ -35,19 +38,19 @@ export default async function Work() {
             href={featured.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="group border-rust/30 bg-card hover:border-rust/60 mt-12 flex flex-col rounded-2xl border p-8 transition-colors sm:p-10"
+            className="group mt-14 flex flex-col border border-sand/35 bg-cream p-7 text-ink transition-colors hover:bg-sand/95 sm:mt-20 sm:p-11"
           >
             {featured.tag && (
-              <span className="text-rust border-rust/30 bg-rust/5 inline-flex w-fit items-center gap-2 rounded-full border px-3 py-1 text-xs font-medium uppercase tracking-[0.12em]">
-                <span className="bg-rust h-1.5 w-1.5 rounded-full" />
+              <span className="inline-flex w-fit items-center gap-2 border border-rust/30 px-3 py-1 text-xs font-bold uppercase tracking-[0.12em] text-rust">
+                <span className="h-1.5 w-1.5 rounded-full bg-rust" />
                 {featured.tag}
               </span>
             )}
-            <h3 className="font-display mt-4 text-2xl lowercase sm:text-3xl">
+            <h3 className="font-display mt-5 max-w-[17ch] text-3xl leading-[0.98] tracking-[-0.045em] lowercase sm:text-5xl">
               {featured.name}
             </h3>
-            <p className="text-muted mt-3 max-w-[60ch] text-lg">{featured.body}</p>
-            <span className="text-rust mt-6 inline-flex items-center gap-1 text-sm font-medium">
+            <p className="mt-5 max-w-[55ch] text-muted">{featured.body}</p>
+            <span className="mt-9 inline-flex items-center gap-2 text-sm font-bold text-rust">
               {featured.cta}
               <span className="transition-transform group-hover:translate-x-1">
                 →
@@ -57,18 +60,18 @@ export default async function Work() {
         </Reveal>
       )}
 
-      <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2">
+      <div className="mt-5 grid grid-cols-1 gap-5 md:grid-cols-2">
         {rest.map((item, i) => (
           <Reveal key={item.name} delay={i * 0.08}>
             <a
               href={item.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="group border-ink/10 bg-card hover:border-rust/40 flex h-full flex-col rounded-2xl border p-8 transition-colors"
+              className="group flex h-full flex-col border border-cream/20 p-7 transition-colors hover:border-sand hover:bg-cream/5 sm:p-9"
             >
-              <h3 className="font-display text-2xl lowercase">{item.name}</h3>
-              <p className="text-muted mt-3 flex-1">{item.body}</p>
-              <span className="text-rust mt-6 inline-flex items-center gap-1 text-sm font-medium">
+              <h3 className="font-display text-3xl leading-none tracking-[-0.045em] lowercase">{item.name}</h3>
+              <p className="mt-4 flex-1 text-cream/70">{item.body}</p>
+              <span className="mt-8 inline-flex items-center gap-2 text-sm font-bold text-sand">
                 {item.cta}
                 <span className="transition-transform group-hover:translate-x-1">
                   →
@@ -80,10 +83,11 @@ export default async function Work() {
       </div>
 
       <Reveal delay={0.1}>
-        <p className="text-muted mt-8 max-w-[60ch] text-base italic">
+        <p className="mt-9 max-w-[60ch] border-t border-cream/20 pt-5 text-sm italic text-cream/65">
           {t("note")}
         </p>
       </Reveal>
-    </Section>
+      </Section>
+    </div>
   );
 }

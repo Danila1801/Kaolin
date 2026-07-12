@@ -14,36 +14,34 @@ export default async function Pricing() {
 
   return (
     <Section id="pricing">
-      <Reveal>
-        <h2 className="font-display text-2xl tracking-[-0.02em] lowercase sm:text-3xl">
-          {t("title")}
-        </h2>
-        <p className="text-muted mt-6 max-w-[65ch] text-xl">{t("intro")}</p>
+      <Reveal className="grid gap-8 lg:grid-cols-[1fr_1.3fr] lg:items-end">
+        <h2 className="font-display section-title lowercase">{t("title")}</h2>
+        <p className="section-intro lg:mb-1">{t("intro")}</p>
       </Reveal>
 
-      <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
+      <div className="mt-16 grid grid-cols-1 border-t border-ink/15 md:mt-20 md:grid-cols-3">
         {tiers.map((tier, i) => {
           const featured = i === 1;
           return (
             <Reveal key={tier.name} delay={i * 0.06}>
               <div
-                className={`flex h-full flex-col rounded-2xl border p-8 ${
+                className={`flex h-full min-h-[29rem] flex-col border-b border-ink/15 px-0 py-9 md:border-r md:px-8 md:py-10 ${
                   featured
-                    ? "border-rust/50 ring-rust/20 bg-card ring-1"
-                    : "border-ink/10"
+                    ? "bg-sand/35"
+                    : ""
                 }`}
               >
-                <h3 className="font-display text-xl lowercase">{tier.name}</h3>
-                <div className="font-display text-ink mt-3 text-3xl">
+                <h3 className="font-display text-2xl leading-none tracking-[-0.045em] lowercase">{tier.name}</h3>
+                <div className="font-display mt-8 text-4xl leading-none tracking-[-0.055em] text-ink">
                   {tier.from}
                 </div>
-                <p className="text-muted mt-4 text-base">{tier.body}</p>
-                <ul className="mt-6 flex flex-col gap-3 text-base">
+                <p className="mt-6 text-base text-muted">{tier.body}</p>
+                <ul className="mt-8 flex flex-col gap-3 text-sm">
                   {tier.features.map((feature) => (
                     <li key={feature} className="flex items-start gap-2.5">
                       <span
                         aria-hidden
-                        className="text-rust mt-0.5 leading-none"
+                        className="mt-0.5 leading-none text-rust"
                       >
                         ✓
                       </span>
@@ -58,7 +56,7 @@ export default async function Pricing() {
       </div>
 
       <Reveal>
-        <p className="text-muted mt-8 text-base">{t("footnote")}</p>
+        <p className="mt-8 text-sm text-muted">{t("footnote")}</p>
       </Reveal>
     </Section>
   );

@@ -18,23 +18,24 @@ export default async function Proof() {
 
   return (
     <Section id="proof">
-      <Reveal>
-        <h2 className="font-display text-2xl tracking-[-0.02em] lowercase sm:text-3xl">
-          {t("title")}
-        </h2>
-        <p className="text-muted mt-6 max-w-[65ch] text-xl">{t("intro")}</p>
+      <Reveal className="grid gap-8 lg:grid-cols-[1fr_1.3fr] lg:items-end">
+        <h2 className="font-display section-title lowercase">{t("title")}</h2>
+        <p className="section-intro lg:mb-1">{t("intro")}</p>
       </Reveal>
 
-      <div className="mt-12 grid grid-cols-1 gap-10 md:grid-cols-2">
+      <div className="mt-16 grid grid-cols-1 gap-px overflow-hidden bg-ink/15 md:mt-20 md:grid-cols-2">
         {items.map((person, i) => (
           <Reveal key={person.name} delay={i * 0.08}>
-            <div className="border-ink/10 border-t pt-6">
-              <h3 className="font-display text-2xl">{person.name}</h3>
-              <div className="text-rust mt-1 text-xs uppercase tracking-[0.14em]">
+            <article className="h-full bg-cream p-7 sm:p-10">
+              <span className="text-[0.72rem] font-bold tracking-[0.15em] text-rust">
+                0{i + 1}
+              </span>
+              <h3 className="font-display mt-12 text-4xl leading-none tracking-[-0.055em] sm:text-5xl">{person.name}</h3>
+              <div className="mt-3 text-xs font-bold uppercase tracking-[0.14em] text-moss">
                 {person.role}
               </div>
-              <p className="text-muted mt-4">{person.body}</p>
-            </div>
+              <p className="mt-8 max-w-[38ch] text-muted">{person.body}</p>
+            </article>
           </Reveal>
         ))}
       </div>

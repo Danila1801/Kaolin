@@ -43,7 +43,7 @@ export default function ContactForm() {
       <Reveal>
         <p
           role="status"
-          className="border-rust/30 bg-card mt-8 max-w-[55ch] rounded-2xl border p-6 text-lg"
+          className="mt-8 max-w-[55ch] border border-sand/60 bg-card p-6 text-lg text-ink"
         >
           {t("form.success")}
         </p>
@@ -53,7 +53,7 @@ export default function ContactForm() {
 
   return (
     <Reveal delay={0.06}>
-      <form onSubmit={onSubmit} className="mt-8 max-w-[55ch]">
+      <form onSubmit={onSubmit} className="max-w-[55ch]">
         {/* Honeypot: hidden from people, tempting to bots. Formspree drops any
             submission where `_gotcha` is filled. aria-hidden + tabIndex keep it
             away from screen readers and keyboard users. */}
@@ -68,34 +68,34 @@ export default function ContactForm() {
 
         <div className="flex flex-col gap-4">
           <label className="flex flex-col gap-2">
-            <span className="text-sm font-medium">{t("form.name")}</span>
+            <span className="text-sm font-medium text-cream">{t("form.name")}</span>
             <input
               type="text"
               name="name"
               required
               autoComplete="name"
-              className="border-ink/15 bg-card focus:border-rust w-full rounded-xl border px-4 py-3 transition-colors"
+              className="w-full border border-cream/35 bg-cream px-4 py-3 text-ink transition-colors placeholder:text-muted focus:border-sand"
             />
           </label>
 
           <label className="flex flex-col gap-2">
-            <span className="text-sm font-medium">{t("form.email")}</span>
+            <span className="text-sm font-medium text-cream">{t("form.email")}</span>
             <input
               type="email"
               name="email"
               required
               autoComplete="email"
-              className="border-ink/15 bg-card focus:border-rust w-full rounded-xl border px-4 py-3 transition-colors"
+              className="w-full border border-cream/35 bg-cream px-4 py-3 text-ink transition-colors placeholder:text-muted focus:border-sand"
             />
           </label>
 
           <label className="flex flex-col gap-2">
-            <span className="text-sm font-medium">{t("form.message")}</span>
+            <span className="text-sm font-medium text-cream">{t("form.message")}</span>
             <textarea
               name="message"
               required
               rows={5}
-              className="border-ink/15 bg-card focus:border-rust w-full resize-y rounded-xl border px-4 py-3 transition-colors"
+              className="w-full resize-y border border-cream/35 bg-cream px-4 py-3 text-ink transition-colors placeholder:text-muted focus:border-sand"
             />
           </label>
 
@@ -103,12 +103,12 @@ export default function ContactForm() {
             <button
               type="submit"
               disabled={status === "submitting"}
-              className="bg-rust hover:bg-rust/90 rounded-full px-6 py-3 text-base font-medium text-cream transition-colors disabled:opacity-60"
+              className="bg-sand px-6 py-3 text-base font-semibold text-ink transition-colors hover:bg-cream disabled:opacity-60"
             >
               {status === "submitting" ? t("form.sending") : t("form.send")}
             </button>
             {status === "error" && (
-              <span role="alert" className="text-rust text-sm">
+              <span role="alert" className="text-sm text-sand">
                 {t("form.error")}
               </span>
             )}
