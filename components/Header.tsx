@@ -27,11 +27,14 @@ export default async function Header() {
           href="/"
           className="blend-diff flex items-center gap-2 font-display text-[1.45rem] font-semibold lowercase tracking-[-0.06em] text-white"
         >
-          {/* Grass-blade mark; currentColor so it self-inverts with the text. */}
-          <svg width="18" height="18" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+          {/* The wind-sprout mark — a grass blade unfurling into a spirit
+              coil; currentColor so it self-inverts with the text. */}
+          <svg width="20" height="20" viewBox="0 0 32 32" fill="none" aria-hidden="true">
             <path
-              d="M12 29 C 12.4 19.5 15 11 22.5 3.5 C 18.2 12 16.4 20.5 16.4 29 Z"
-              fill="currentColor"
+              d="M5.5 26.5 C 11.5 26.2 17.5 24.8 21.4 21.4 C 25.6 17.7 26.3 11.8 22.6 9 C 19.2 6.4 14.2 7.6 12.6 11.3 C 11.2 14.6 13.2 18.3 16.8 18.5 C 19.2 18.6 20.9 16.7 20.4 14.5"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
             />
           </svg>
           kaolin
