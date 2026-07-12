@@ -25,8 +25,15 @@ export default async function Header() {
       <div className="mx-auto flex w-full max-w-[1320px] items-center justify-between gap-6 px-6 py-4 sm:px-10 lg:px-12">
         <Link
           href="/"
-          className="blend-diff font-display text-[1.45rem] font-semibold lowercase tracking-[-0.06em] text-white"
+          className="blend-diff flex items-center gap-2 font-display text-[1.45rem] font-semibold lowercase tracking-[-0.06em] text-white"
         >
+          {/* Grass-blade mark; currentColor so it self-inverts with the text. */}
+          <svg width="18" height="18" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+            <path
+              d="M12 29 C 12.4 19.5 15 11 22.5 3.5 C 18.2 12 16.4 20.5 16.4 29 Z"
+              fill="currentColor"
+            />
+          </svg>
           kaolin
         </Link>
 

@@ -8,7 +8,7 @@ export default async function Contact() {
   const email = t("email");
 
   return (
-    <div className="bg-moss text-cream">
+    <div className="bg-forest text-cream">
       <Section id="contact">
         <div className="grid gap-12 lg:grid-cols-[0.92fr_1.08fr] lg:gap-20">
           <Reveal className="max-w-[34rem]">

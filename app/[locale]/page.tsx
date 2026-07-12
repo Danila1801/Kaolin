@@ -24,7 +24,9 @@ export default async function HomePage({
           Decorative only — every word stays legible without it. */}
       <BotanicalScene wind={1.6} density="standard" grain="on" />
 
-      <div className="relative z-10">
+      {/* overflow-x-clip: decorative bleeds (.section-veil) must never create
+          horizontal scroll on mobile */}
+      <div className="relative z-10 overflow-x-clip">
         <section id="top" className="hero-shell scroll-mt-24">
           <Section className="flex min-h-[min(760px,calc(100svh-72px))] flex-col justify-between py-16 sm:py-20 lg:py-24">
             <div className="hero-kicker">
