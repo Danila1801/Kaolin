@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { DM_Sans, Fraunces, PT_Sans, PT_Serif } from "next/font/google";
+import { Bricolage_Grotesque, Inter, PT_Sans } from "next/font/google";
 import { notFound } from "next/navigation";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
@@ -12,29 +12,22 @@ import ChatWidget from "@/components/chat/ChatWidget";
 import ChatErrorBoundary from "@/components/chat/ErrorBoundary";
 import "../globals.css";
 
-const fraunces = Fraunces({
+const bricolage = Bricolage_Grotesque({
   subsets: ["latin", "latin-ext"],
   axes: ["opsz"],
-  variable: "--font-fraunces",
+  variable: "--font-bricolage",
   display: "swap",
 });
 
-const dmSans = DM_Sans({
-  subsets: ["latin", "latin-ext"],
-  variable: "--font-dm-sans",
+// Inter ships Cyrillic itself, so /ru body text never needs a fallback.
+const inter = Inter({
+  subsets: ["latin", "latin-ext", "cyrillic"],
+  variable: "--font-inter",
   display: "swap",
 });
 
-// Cyrillic fallbacks for /ru — Fraunces and DM Sans don't ship Cyrillic glyphs.
-// preload: false keeps them off the critical path for the Latin locales.
-const ptSerif = PT_Serif({
-  weight: ["400", "700"],
-  subsets: ["cyrillic"],
-  variable: "--font-pt-serif",
-  display: "swap",
-  preload: false,
-});
-
+// Cyrillic fallback for /ru display type — Bricolage Grotesque has no
+// Cyrillic. preload: false keeps it off the critical path for Latin locales.
 const ptSans = PT_Sans({
   weight: ["400", "700"],
   subsets: ["cyrillic"],
@@ -126,7 +119,7 @@ export default async function LocaleLayout({
   return (
     <html
       lang={locale}
-      className={`${fraunces.variable} ${dmSans.variable} ${ptSerif.variable} ${ptSans.variable} antialiased`}
+      className={`${bricolage.variable} ${inter.variable} ${ptSans.variable} antialiased`}
     >
       <body className="flex min-h-screen flex-col">
         <script

@@ -1,13 +1,18 @@
 @import "tailwindcss";
 
 @theme {
-  --color-cream: #f7f6f0;
-  --color-ink: #19352d;
-  --color-moss: #64764a;
-  --color-sand: #d8ccb6;
-  --color-rust: #a0523b;
-  --color-muted: #53615b;
-  --color-card: #fcfbf7;
+  /* Kaolin botanical palette — from the approved field prototype:
+     ivory ground, near-black ink, sage + forest greens, dry-grass sand.
+     NOTE: --color-rust is a legacy token name kept so existing text-rust /
+     bg-rust classes retheme without a rename sweep — it now points at sage. */
+  --color-cream: #f9f6f0;
+  --color-ink: #191b17;
+  --color-moss: #6c7844;
+  --color-sand: #cfc4a6;
+  --color-forest: #3f4e49;
+  --color-rust: #6c7844;
+  --color-muted: #63665a;
+  --color-card: #fffdf8;
 
   --text-base: 1rem;
   --text-base--line-height: 1.6;
@@ -24,13 +29,16 @@
 }
 
 @theme inline {
-  --font-sans: var(--font-dm-sans), var(--font-pt-sans), system-ui, sans-serif;
-  --font-display: var(--font-fraunces), var(--font-pt-serif), Georgia, serif;
+  /* Font variables come from next/font in app/[locale]/layout.tsx.
+     Bricolage Grotesque has no Cyrillic, so /ru display text falls through to
+     PT Sans; Inter ships Cyrillic itself, so body text never falls back. */
+  --font-sans: var(--font-inter), var(--font-pt-sans), system-ui, sans-serif;
+  --font-display: var(--font-bricolage), var(--font-pt-sans), system-ui, sans-serif;
 }
 
 :root {
   --rule: color-mix(in srgb, var(--color-ink) 14%, transparent);
-  --rule-light: color-mix(in srgb, var(--color-cream) 22%, transparent);
+  --rule-light: color-mix(in srgb, var(--color-cream) 20%, transparent);
 }
 
 html {
@@ -38,9 +46,9 @@ html {
 }
 
 body {
-  background:
-    radial-gradient(circle at 15% 0%, rgb(216 204 182 / 28%), transparent 31rem),
-    var(--color-cream);
+  /* Solid ivory: on the home page the fixed WebGL field paints over this;
+     legal/error pages (no scene) sit directly on it. */
+  background: var(--color-cream);
   color: var(--color-ink);
   font-family: var(--font-sans);
   font-size: 1.0625rem;
@@ -54,65 +62,28 @@ body {
 }
 
 :where(a, button, input, textarea, select, summary, [tabindex]):focus-visible {
-  outline: 2px solid var(--color-rust);
+  outline: 2px solid var(--color-moss);
   outline-offset: 3px;
   border-radius: 2px;
 }
 
+/* ---------- hero ---------- */
+
 .hero-shell {
-  isolation: isolate;
-  overflow: hidden;
   position: relative;
-  background:
-    linear-gradient(90deg, rgb(25 53 45 / 5%) 1px, transparent 1px),
-    linear-gradient(rgb(25 53 45 / 5%) 1px, transparent 1px),
-    radial-gradient(circle at 70% 43%, rgb(216 204 182 / 60%), transparent 23rem),
-    var(--color-cream);
-  background-size: 96px 96px, 96px 96px, auto, auto;
 }
 
-.hero-sun {
-  position: absolute;
-  z-index: -1;
-  width: clamp(17rem, 28vw, 28rem);
-  aspect-ratio: 1;
-  top: 11%;
-  right: 8%;
-  border-radius: 50%;
-  background: rgb(216 204 182 / 58%);
-}
-
-.hero-field {
-  z-index: 0;
-  width: min(68rem, 76vw);
-  height: auto;
-}
-
-.hero-field-back {
-  right: -7rem;
-  bottom: -2.5rem;
-  opacity: 0.25;
-}
-
-.hero-field-front {
-  right: -12rem;
-  bottom: -5rem;
-  opacity: 0.18;
-}
-
-.botanical-stems,
-.botanical-leaves {
-  transform-box: fill-box;
-  transform-origin: bottom center;
-  animation: botanical-breathe 8s ease-in-out infinite alternate;
-}
-
-.botanical-leaves {
-  animation-delay: -3s;
-}
-
-.botanical-seeds {
-  animation: botanical-drift 10s ease-in-out infinite alternate;
+/* Ivory veil behind the hero copy. The field already clears a corridor where
+   the type sits (lib/botanical-scene.js), this is the second half of the
+   legibility contract: text never fights a blade for contrast. */
+.hero-veil {
+  position: relative;
+  background: radial-gradient(
+    64% 60% at 36% 42%,
+    rgb(249 246 240 / 0.94) 0%,
+    rgb(249 246 240 / 0.62) 54%,
+    rgb(249 246 240 / 0) 78%
+  );
 }
 
 .hero-kicker,
@@ -136,20 +107,26 @@ body {
 }
 
 .hero-title {
-  max-width: 10.5ch;
-  font-size: clamp(3.65rem, 7.4vw, 7.85rem);
+  max-width: 12ch;
+  font-size: clamp(3.4rem, 7.2vw, 7.6rem);
+  font-weight: 400;
   font-variation-settings: "opsz" 96;
-  letter-spacing: -0.065em;
-  line-height: 0.89;
+  letter-spacing: -0.03em;
+  line-height: 0.96;
   text-wrap: balance;
 }
 
+.hero-title em {
+  font-style: normal;
+  color: var(--color-moss);
+}
+
 .hero-copy {
-  max-width: 42rem;
+  max-width: 40rem;
   margin-top: clamp(1.75rem, 3vw, 2.6rem);
   color: var(--color-muted);
-  font-size: clamp(1.08rem, 1.6vw, 1.34rem);
-  line-height: 1.5;
+  font-size: clamp(1.08rem, 1.6vw, 1.3rem);
+  line-height: 1.55;
 }
 
 .hero-meta {
@@ -159,6 +136,8 @@ body {
   border-top: 1px solid var(--rule);
 }
 
+/* ---------- buttons ---------- */
+
 .button-primary,
 .button-secondary {
   display: inline-flex;
@@ -167,17 +146,19 @@ body {
   font-size: 0.88rem;
   font-weight: 650;
   line-height: 1;
+  white-space: nowrap;
   transition: background-color 180ms ease, color 180ms ease, transform 180ms ease;
 }
 
 .button-primary {
-  padding: 1rem 1.25rem;
-  background: var(--color-ink);
+  padding: 1.05rem 1.9rem;
+  border-radius: 999px;
+  background: var(--color-forest);
   color: var(--color-cream);
 }
 
 .button-primary:hover {
-  background: var(--color-moss);
+  background: #2e3b36;
   transform: translateY(-2px);
 }
 
@@ -188,12 +169,35 @@ body {
 }
 
 .button-secondary:hover {
-  color: var(--color-rust);
-  border-color: var(--color-rust);
+  color: var(--color-moss);
+  border-color: var(--color-moss);
+}
+
+/* ---------- section primitives ---------- */
+
+/* Soft ivory mist behind light-zone section content. The field stays visible
+   above/below and at the viewport edges, but copy never fights a blade for
+   contrast — same legibility contract as .hero-veil, section-shaped. */
+.section-veil {
+  position: relative;
+}
+
+.section-veil::before {
+  content: "";
+  position: absolute;
+  inset: 0 -10vw;
+  z-index: -1;
+  background: linear-gradient(
+    180deg,
+    rgb(249 246 240 / 0) 0%,
+    rgb(249 246 240 / 0.88) 8%,
+    rgb(249 246 240 / 0.88) 92%,
+    rgb(249 246 240 / 0) 100%
+  );
 }
 
 .section-marker {
-  color: var(--color-rust);
+  color: var(--color-moss);
   font-size: 0.7rem;
   font-weight: 700;
   letter-spacing: 0.16em;
@@ -203,10 +207,11 @@ body {
 .section-title {
   max-width: 17ch;
   color: var(--color-ink);
-  font-size: clamp(2.55rem, 5vw, 5.35rem);
+  font-size: clamp(2.55rem, 5vw, 5rem);
+  font-weight: 500;
   font-variation-settings: "opsz" 72;
-  letter-spacing: -0.055em;
-  line-height: 0.94;
+  letter-spacing: -0.02em;
+  line-height: 1.02;
 }
 
 .section-intro {
@@ -217,52 +222,54 @@ body {
   line-height: 1.55;
 }
 
+/* ---------- header ---------- */
+
+/* Transparent bar; the wordmark/nav invert themselves against whatever the
+   field shows beneath (ivory day → near-white text over the dark act). */
 .site-header {
-  border-bottom: 1px solid transparent;
-  background: rgb(247 246 240 / 72%);
-  backdrop-filter: blur(16px);
+  background: transparent;
 }
 
-.site-header:hover,
-.site-header:focus-within {
-  border-color: var(--rule);
+.blend-diff {
+  mix-blend-mode: difference;
 }
 
-@keyframes botanical-breathe {
-  to { transform: rotate(1.5deg) translateX(5px); }
+/* ---------- the dark act ---------- */
+
+/* Wrapper for work → process → proof. The WebGL scene watches
+   [data-scene-dark] and turns the field to night behind it; sections inside
+   stay transparent and switch to ivory type. */
+.dark-act {
+  color: var(--color-cream);
 }
 
-@keyframes botanical-drift {
-  to { transform: translate(10px, -7px); }
+[data-scene-dark] .section-title {
+  color: var(--color-cream);
 }
 
-@media (max-width: 640px) {
-  .hero-shell {
-    background-size: 64px 64px, 64px 64px, auto, auto;
-  }
+[data-scene-dark] .section-intro {
+  color: rgb(249 246 240 / 0.66);
+}
 
-  .hero-field {
-    width: 51rem;
-  }
+[data-scene-dark] .section-marker {
+  color: var(--color-sand);
+}
 
-  .hero-field-back {
-    right: -22rem;
-    bottom: -1rem;
-  }
-
-  .hero-field-front {
-    right: -29rem;
-  }
-
-  .hero-meta {
-    align-items: flex-start;
-    flex-direction: column;
+/* No JS at all → no canvas to darken the field, so paint the act itself.
+   (With JS but no WebGL, lib/botanical-scene.js paints this wrapper inline.) */
+@media (scripting: none) {
+  .dark-act {
+    background: #0a0b09;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  *, *::before, *::after {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;

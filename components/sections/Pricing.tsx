@@ -13,7 +13,7 @@ export default async function Pricing() {
   const tiers = t.raw("tiers") as Tier[];
 
   return (
-    <Section id="pricing">
+    <Section id="pricing" className="section-veil">
       <Reveal className="grid gap-8 lg:grid-cols-[1fr_1.3fr] lg:items-end">
         <h2 className="font-display section-title lowercase">{t("title")}</h2>
         <p className="section-intro lg:mb-1">{t("intro")}</p>

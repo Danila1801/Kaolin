@@ -4,11 +4,11 @@ import LanguageSwitcher from "./LanguageSwitcher";
 import MobileMenu from "./MobileMenu";
 
 // Sticky top bar. It's a server component: the nav labels are translated at
-// request time. On desktop it shows the inline nav + language switcher; below
-// the md breakpoint both are hidden and the (client) MobileMenu hamburger takes
-// over. The wordmark uses the locale-aware Link so "/" resolves to "/en", etc.
-// The section links are plain in-page anchors (#services) — they scroll within
-// the current locale's page, no routing involved.
+// request time. The bar itself is transparent; the wordmark and nav render in
+// white behind mix-blend-mode: difference, so they self-invert against the
+// field — near-black over the ivory daylight, near-white over the dark act.
+// The MobileMenu panel intentionally stays OUTSIDE any blended element (a
+// blended ancestor would invert the whole cream panel).
 export default async function Header() {
   const t = await getTranslations("nav");
 
@@ -21,29 +21,31 @@ export default async function Header() {
   ];
 
   return (
-    <header className="site-header sticky top-0 z-50 transition-colors">
+    <header className="site-header sticky top-0 z-50">
       <div className="mx-auto flex w-full max-w-[1320px] items-center justify-between gap-6 px-6 py-4 sm:px-10 lg:px-12">
         <Link
           href="/"
-          className="font-display text-[1.45rem] font-semibold lowercase tracking-[-0.06em]"
+          className="blend-diff font-display text-[1.45rem] font-semibold lowercase tracking-[-0.06em] text-white"
         >
           kaolin
         </Link>
 
         {/* Desktop: inline nav + language switcher */}
         <div className="hidden items-center gap-7 md:flex">
-          <nav aria-label={t("primary")} className="flex items-center gap-7">
+          <nav aria-label={t("primary")} className="blend-diff flex items-center gap-7">
             {items.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
-                className="text-muted hover:text-rust text-[0.82rem] font-medium transition-colors"
+                className="text-[0.82rem] font-medium text-white/70 transition-colors hover:text-white"
               >
                 {item.label}
               </a>
             ))}
           </nav>
-          <LanguageSwitcher />
+          <div className="blend-diff">
+            <LanguageSwitcher variant="blend" />
+          </div>
         </div>
 
         {/* Mobile: hamburger menu */}

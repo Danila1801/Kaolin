@@ -20,10 +20,25 @@ const names: Record<(typeof routing.locales)[number], string> = {
   ru: "Русский",
 };
 
-export default function LanguageSwitcher({ inverse = false }: { inverse?: boolean }) {
+// Three contexts: "light" on cream surfaces (mobile menu), "inverse" on the
+// ink footer, and "blend" inside the header's mix-blend-mode: difference
+// wrapper — white-based so it self-inverts cleanly against the field.
+type Variant = "light" | "inverse" | "blend";
+
+const styles: Record<Variant, { active: string; idle: string }> = {
+  light: { active: "bg-ink text-cream", idle: "text-muted hover:text-ink" },
+  inverse: { active: "bg-cream text-ink", idle: "text-cream/60 hover:text-cream" },
+  blend: {
+    active: "text-white underline decoration-1 underline-offset-4",
+    idle: "text-white/55 hover:text-white",
+  },
+};
+
+export default function LanguageSwitcher({ variant = "light" }: { variant?: Variant }) {
   const locale = useLocale();
   const pathname = usePathname();
   const t = useTranslations("nav");
+  const s = styles[variant];
 
   return (
     <nav aria-label={t("language")} className="flex items-center gap-1">
@@ -37,13 +52,7 @@ export default function LanguageSwitcher({ inverse = false }: { inverse?: boolea
           aria-label={`${labels[l]} — ${names[l]}`}
           aria-current={l === locale ? "true" : undefined}
           className={`rounded-full px-3 py-1.5 text-sm tracking-wide transition-colors ${
-            l === locale
-              ? inverse
-                ? "bg-cream text-ink"
-                : "bg-ink text-cream"
-              : inverse
-                ? "text-cream/60 hover:text-cream"
-                : "text-muted hover:text-ink"
+            l === locale ? s.active : s.idle
           }`}
         >
           {labels[l]}

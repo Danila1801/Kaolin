@@ -12,7 +12,7 @@ export default async function Services() {
   const items = t.raw("items") as ServiceItem[];
 
   return (
-    <Section id="services">
+    <Section id="services" className="section-veil">
       <Reveal className="grid gap-8 lg:grid-cols-[1fr_1.3fr] lg:items-end">
         <h2 className="font-display section-title lowercase">{t("title")}</h2>
         <p className="section-intro lg:mb-1">{t("intro")}</p>

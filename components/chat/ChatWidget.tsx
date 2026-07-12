@@ -138,7 +138,7 @@ export default function ChatWidget() {
           onClick={() => setOpen(true)}
           aria-haspopup="dialog"
           aria-expanded={open}
-          className="bg-ink text-cream fixed right-5 bottom-5 z-40 rounded-full px-5 py-3 text-sm font-medium shadow-lg transition-transform hover:-translate-y-0.5 motion-reduce:transition-none motion-reduce:hover:translate-y-0"
+          className="blend-diff fixed right-5 bottom-5 z-40 rounded-full border border-white/85 px-5 py-3 text-sm font-medium whitespace-nowrap text-white transition-[background-color,color,transform] hover:-translate-y-0.5 hover:bg-white hover:text-black motion-reduce:transition-none motion-reduce:hover:translate-y-0"
           aria-label={t("launcher")}
         >
           {t("launcher")}
@@ -225,7 +225,7 @@ export default function ChatWidget() {
             <button
               onClick={send}
               disabled={busy || input.trim().length === 0}
-              className="bg-rust hover:bg-rust/90 rounded-full px-4 py-2 text-sm font-medium text-cream transition-colors disabled:cursor-not-allowed disabled:opacity-40"
+              className="bg-forest hover:bg-forest/90 rounded-full px-4 py-2 text-sm font-medium text-cream transition-colors disabled:cursor-not-allowed disabled:opacity-40"
             >
               {t("send")}
             </button>

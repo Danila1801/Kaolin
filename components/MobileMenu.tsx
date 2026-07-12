@@ -75,7 +75,7 @@ export default function MobileMenu() {
         aria-expanded={open}
         aria-haspopup="dialog"
         aria-label={open ? t("closeMenu") : t("openMenu")}
-        className="text-ink -mr-2 inline-flex h-10 w-10 items-center justify-center rounded-full"
+        className="blend-diff -mr-2 inline-flex h-10 w-10 items-center justify-center rounded-full text-white"
       >
         <svg
           width="22"

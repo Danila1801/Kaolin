@@ -30,7 +30,7 @@ export default async function Footer() {
             <span>{t("location")}</span>
           </div>
 
-          <LanguageSwitcher inverse />
+          <LanguageSwitcher variant="inverse" />
         </div>
 
         <div className="mt-12 flex flex-col gap-4 border-t border-cream/20 pt-8 sm:flex-row sm:items-center sm:justify-between">

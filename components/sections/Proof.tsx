@@ -23,18 +23,18 @@ export default async function Proof() {
         <p className="section-intro lg:mb-1">{t("intro")}</p>
       </Reveal>
 
-      <div className="mt-16 grid grid-cols-1 gap-px overflow-hidden bg-ink/15 md:mt-20 md:grid-cols-2">
+      <div className="mt-16 grid grid-cols-1 gap-12 md:mt-20 md:grid-cols-2 md:gap-16">
         {items.map((person, i) => (
           <Reveal key={person.name} delay={i * 0.08}>
-            <article className="h-full bg-cream p-7 sm:p-10">
-              <span className="text-[0.72rem] font-bold tracking-[0.15em] text-rust">
+            <article className="h-full border-t border-cream/20 pt-8">
+              <span className="text-[0.72rem] font-bold tracking-[0.15em] text-sand">
                 0{i + 1}
               </span>
-              <h3 className="font-display mt-12 text-4xl leading-none tracking-[-0.055em] sm:text-5xl">{person.name}</h3>
-              <div className="mt-3 text-xs font-bold uppercase tracking-[0.14em] text-moss">
+              <h3 className="font-display mt-10 text-4xl leading-none tracking-[-0.045em] sm:text-5xl">{person.name}</h3>
+              <div className="mt-3 text-xs font-bold uppercase tracking-[0.14em] text-sand">
                 {person.role}
               </div>
-              <p className="mt-8 max-w-[38ch] text-muted">{person.body}</p>
+              <p className="mt-8 max-w-[42ch] text-cream/70">{person.body}</p>
             </article>
           </Reveal>
         ))}

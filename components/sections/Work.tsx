@@ -21,10 +21,10 @@ export default async function Work() {
   const [featured, ...rest] = items;
 
   return (
-    <div className="relative overflow-hidden bg-ink text-cream">
-      <div aria-hidden="true" className="absolute -right-32 -top-40 h-[32rem] w-[32rem] rounded-full border border-sand/20" />
-      <div aria-hidden="true" className="absolute -right-12 -top-20 h-[18rem] w-[18rem] rounded-full bg-moss/30" />
-      <Section id="work" className="relative z-10">
+    // Sits inside the page's [data-scene-dark] act: the field itself goes to
+    // night behind it, so the wrapper stays transparent — ivory type only.
+    <div className="text-cream">
+      <Section id="work">
       <Reveal className="grid gap-8 lg:grid-cols-[1fr_1.3fr] lg:items-end">
         <h2 className="font-display max-w-[14ch] text-[clamp(2.7rem,5vw,5.35rem)] leading-[0.94] tracking-[-0.055em] lowercase">
           {t("title")}
