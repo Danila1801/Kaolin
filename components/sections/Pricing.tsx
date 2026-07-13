@@ -35,7 +35,7 @@ export default async function Pricing() {
                 <div className="font-display mt-8 text-4xl leading-none tracking-[-0.055em] text-ink">
                   {tier.from}
                 </div>
-                <p className="mt-6 text-base text-muted">{tier.body}</p>
+                <p className="mt-6 text-base text-muted lg:text-lg">{tier.body}</p>
                 <ul className="mt-8 flex flex-col gap-3 text-sm">
                   {tier.features.map((feature) => (
                     <li key={feature} className="flex items-start gap-2.5">

@@ -88,6 +88,7 @@
   },
   "chat": {
     "launcher": "vraag kaolin",
+    "hint": "probeer mij",
     "title": "vraag kaolin",
     "intro": "hoi — vraag me alles over wat we bouwen, hoe we werken of wat het kost. ik ben een live demo van het soort assistent dat we op uw site zouden zetten.",
     "placeholder": "typ uw vraag…",

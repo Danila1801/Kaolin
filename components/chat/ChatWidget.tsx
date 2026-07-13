@@ -18,6 +18,11 @@ export default function ChatWidget() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [status, setStatus] = useState<Status>("idle");
+  // First-visit attention cue: a one-time "try me" bubble + pulse ring. Shown
+  // once per browser (localStorage), and never when the user prefers reduced
+  // motion carries the pulse.
+  const [hint, setHint] = useState(false);
+  const [reduced, setReduced] = useState(false);
 
   const scrollRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
@@ -36,6 +41,40 @@ export default function ChatWidget() {
   function close() {
     setOpen(false);
     launcherRef.current?.focus();
+  }
+
+  // Surface the first-visit cue a beat after load, then retire it on its own so
+  // it never lingers. Skipped entirely for return visitors.
+  useEffect(() => {
+    setReduced(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+    let seen = false;
+    try {
+      seen = !!localStorage.getItem("kaolin.chatHintSeen");
+    } catch {
+      /* storage blocked — just show the cue this once */
+    }
+    if (seen) return;
+    const show = window.setTimeout(() => setHint(true), 1200);
+    const hide = window.setTimeout(() => setHint(false), 8500);
+    return () => {
+      window.clearTimeout(show);
+      window.clearTimeout(hide);
+    };
+  }, []);
+
+  // Retire the cue for good on the first real interaction with the launcher.
+  function retireHint() {
+    setHint(false);
+    try {
+      localStorage.setItem("kaolin.chatHintSeen", "1");
+    } catch {
+      /* storage blocked — nothing to persist */
+    }
+  }
+
+  function openChat() {
+    retireHint();
+    setOpen(true);
   }
 
   // While open: focus the input, close on Escape, and trap Tab inside the panel
@@ -131,18 +170,50 @@ export default function ChatWidget() {
 
   return (
     <>
-      {/* Launcher */}
+      {/* Launcher — a present, on-brand emerald pill (the assistant is the whole
+          differentiator, so it shouldn't hide). A first-visit cue nudges toward it. */}
       {!open && (
-        <button
-          ref={launcherRef}
-          onClick={() => setOpen(true)}
-          aria-haspopup="dialog"
-          aria-expanded={open}
-          className="blend-diff fixed right-5 bottom-5 z-40 rounded-full border border-white/85 px-5 py-3 text-sm font-medium whitespace-nowrap text-white transition-[background-color,color,transform] hover:-translate-y-0.5 hover:bg-white hover:text-black motion-reduce:transition-none motion-reduce:hover:translate-y-0"
-          aria-label={t("launcher")}
-        >
-          {t("launcher")}
-        </button>
+        <div className="fixed right-5 bottom-5 z-40 flex items-center gap-2.5">
+          {hint && (
+            <span
+              role="status"
+              className="chat-hint-bubble bg-card text-ink ring-ink/10 pointer-events-none rounded-full px-3.5 py-2 text-sm font-medium whitespace-nowrap shadow-md ring-1 select-none"
+            >
+              {t("hint")}
+            </span>
+          )}
+          <span className="relative inline-flex">
+            {hint && !reduced && (
+              <span
+                aria-hidden="true"
+                className="chat-launcher-ping pointer-events-none absolute inset-0 rounded-full"
+              />
+            )}
+            <button
+              ref={launcherRef}
+              onClick={openChat}
+              onMouseEnter={retireHint}
+              aria-haspopup="dialog"
+              aria-expanded={open}
+              aria-label={t("launcher")}
+              className="bg-forest text-cream ring-cream/25 hover:bg-pine relative inline-flex items-center gap-2.5 rounded-full px-6 py-3.5 text-[0.98rem] font-semibold whitespace-nowrap shadow-lg ring-1 transition-[transform,background-color] hover:-translate-y-0.5 motion-reduce:transition-none motion-reduce:hover:translate-y-0"
+            >
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 24 24"
+                className="h-[1.15rem] w-[1.15rem]"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.9"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 9 9 0 0 1-4-.9L3 20l1.4-4.2a8.38 8.38 0 0 1-.9-4A8.5 8.5 0 0 1 12 3a8.38 8.38 0 0 1 9 8.5z" />
+              </svg>
+              {t("launcher")}
+            </button>
+          </span>
+        </div>
       )}
 
       {/* Panel */}

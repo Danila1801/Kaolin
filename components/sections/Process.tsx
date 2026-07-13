@@ -25,7 +25,7 @@ export default async function Process() {
               <h3 className="font-display mt-9 text-2xl leading-[1.02] tracking-[-0.045em] lowercase">
                 {item.name}
               </h3>
-              <p className="mt-4 text-base text-cream/70">{item.body}</p>
+              <p className="mt-4 text-base text-cream/70 lg:text-lg">{item.body}</p>
             </div>
           </Reveal>
         ))}

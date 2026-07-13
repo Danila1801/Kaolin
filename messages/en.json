@@ -88,6 +88,7 @@
   },
   "chat": {
     "launcher": "ask kaolin",
+    "hint": "try me",
     "title": "ask kaolin",
     "intro": "hi — ask me anything about what we build, how we work, or what it costs. i'm a live demo of the kind of assistant we'd put on your site.",
     "placeholder": "type your question…",

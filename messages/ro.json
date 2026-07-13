@@ -88,6 +88,7 @@
   },
   "chat": {
     "launcher": "întreabă kaolin",
+    "hint": "încearcă-mă",
     "title": "întreabă kaolin",
     "intro": "salut — întreabă-mă orice despre ce construim, cum lucrăm sau cât costă. sunt o demonstrație live a tipului de asistent pe care l-am pune pe site-ul tău.",
     "placeholder": "scrie întrebarea ta…",
