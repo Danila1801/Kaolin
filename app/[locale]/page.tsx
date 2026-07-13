@@ -1,6 +1,6 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import Section from "@/components/Section";
-import BotanicalScene from "@/components/BotanicalScene";
+import BotanicalCanvas from "@/components/scene/BotanicalCanvas";
 import TrustStrip from "@/components/sections/TrustStrip";
 import Services from "@/components/sections/Services";
 import Work from "@/components/sections/Work";
@@ -22,7 +22,7 @@ export default async function HomePage({
       {/* The living field: fixed behind everything, scroll drives the camera
           deeper, and it turns to night behind the [data-scene-dark] act below.
           Decorative only — every word stays legible without it. */}
-      <BotanicalScene wind={1.6} density="standard" grain="on" />
+      <BotanicalCanvas wind={1.6} density="standard" grain="on" />
 
       {/* overflow-x-clip: decorative bleeds (.section-veil) must never create
           horizontal scroll on mobile */}
