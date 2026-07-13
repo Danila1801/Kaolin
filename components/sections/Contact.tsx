@@ -9,7 +9,9 @@ export default async function Contact() {
 
   return (
     <div className="bg-forest text-cream">
-      <Section id="contact">
+      {/* Trimmed bottom padding so the pine footer follows directly instead of a
+          long green void. (Longhand pb-* overrides Section's py-* bottom.) */}
+      <Section id="contact" className="pb-8 sm:pb-10 lg:pb-12">
         <div className="grid gap-12 lg:grid-cols-[0.92fr_1.08fr] lg:gap-20">
           <Reveal className="max-w-[34rem]">
             <span aria-hidden="true" className="text-[0.7rem] font-bold uppercase tracking-[0.16em] text-sand">

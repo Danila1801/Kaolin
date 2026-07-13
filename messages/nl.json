@@ -35,7 +35,7 @@
   },
   "work": {
     "title": "zie het in het echt",
-    "intro": "we laten het liever zien dan dat we het vertellen. echt werk dat we hebben ontworpen en gebouwd — plus een demokliniek waar u kunt praten met het soort ai-assistent dat we aan uw eigen site zouden toevoegen.",
+    "intro": "echt werk dat we hebben ontworpen en gebouwd — plus een demokliniek waar u kunt praten met het soort ai-assistent dat we aan uw eigen site zouden toevoegen.",
     "items": [
       { "name": "Riverbend Physiotherapy", "tag": "live ai-assistent", "body": "een demo-site voor een kliniek die we bouwden om de ai in actie te tonen — een vriendelijke intake-assistent die naar uw klacht vraagt, een behandeling voorstelt en uitlegt wat een eerste bezoek inhoudt, direct op de pagina. praat er gerust mee.", "cta": "open de live demo", "href": "https://kaolin-demo-clinic.vercel.app" },
       { "name": "Portativ SRL", "body": "een viertalige site voor een elektro-installatiebedrijf — helder, snel en makkelijk te navigeren voor klanten.", "cta": "bekijk de site", "href": "https://portativ-srl.vercel.app" },
@@ -55,7 +55,7 @@
   },
   "proof": {
     "title": "wie we zijn",
-    "intro": "twee mensen, twee generaties, één studio. het hele punt is dat u rechtstreeks met ons praat — geen lagen ertussen.",
+    "intro": "het hele punt is dat u rechtstreeks met ons praat — geen lagen ertussen.",
     "items": [
       { "name": "Leonid", "role": "de software-helft", "body": "decennia praktische softwareontwikkeling — het soort oordeel dat alleen komt van jarenlang echte systemen bouwen en werkend houden." },
       { "name": "Danila", "role": "de ai-helft", "body": "een derdejaars ai-student in amsterdam, dagelijks bezig met de huidige generatie modellen — llm's, rag en automatisering — en hoe je ze in productie laat werken." }
@@ -157,7 +157,7 @@
     }
   },
   "footer": {
-    "tagline": "websites die denken. gemaakt door twee mensen, geen bureau.",
+    "tagline": "websites die denken. gemaakt door twee mensen.",
     "email": "hello@kaolin.studio",
     "kvk": "KVK — registratie loopt",
     "location": "Amsterdam × Chișinău",

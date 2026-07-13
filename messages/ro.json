@@ -35,7 +35,7 @@
   },
   "work": {
     "title": "vezi cu ochii tăi",
-    "intro": "preferăm să-ți arătăm decât să-ți spunem. muncă reală pe care am proiectat-o și construit-o — plus o clinică demo unde poți vorbi cu genul de asistent ai pe care l-am adăuga pe propriul tău site.",
+    "intro": "muncă reală pe care am proiectat-o și construit-o — plus o clinică demo unde poți vorbi cu genul de asistent ai pe care l-am adăuga pe propriul tău site.",
     "items": [
       { "name": "Riverbend Physiotherapy", "tag": "asistent ai live", "body": "un site demo de clinică pe care l-am construit ca să arătăm ai-ul în acțiune — un asistent de preluare prietenos care te întreabă despre problema ta, îți sugerează un tratament și îți explică prima vizită, chiar pe pagină. vorbește cu el.", "cta": "deschide demoul live", "href": "https://kaolin-demo-clinic.vercel.app" },
       { "name": "Portativ SRL", "body": "un site în patru limbi pentru un contractor de instalații electrice — curat, rapid și ușor de navigat pentru clienți.", "cta": "vezi site-ul", "href": "https://portativ-srl.vercel.app" },
@@ -55,7 +55,7 @@
   },
   "proof": {
     "title": "cine suntem",
-    "intro": "doi oameni, două generații, un studio. tot rostul e că vorbești direct cu noi — fără straturi între.",
+    "intro": "tot rostul e că vorbești direct cu noi — fără straturi între.",
     "items": [
       { "name": "Leonid", "role": "jumătatea de software", "body": "decenii de dezvoltare software practică — genul de judecată care vine doar din a construi sisteme reale, an după an, și a le menține funcționale." },
       { "name": "Danila", "role": "jumătatea de ai", "body": "student în anul trei la ai în amsterdam, lucrând zi de zi cu generația actuală de modele — llm-uri, rag și automatizare — și cum să le faci să funcționeze în producție." }
@@ -157,7 +157,7 @@
     }
   },
   "footer": {
-    "tagline": "site-uri care gândesc. create de doi oameni, nu o agenție.",
+    "tagline": "site-uri care gândesc. create de doi oameni.",
     "email": "hello@kaolin.studio",
     "kvk": "KVK — înregistrare în curs",
     "location": "Amsterdam × Chișinău",

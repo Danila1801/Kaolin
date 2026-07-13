@@ -9,7 +9,11 @@ export default async function Footer() {
   const t = await getTranslations("footer");
 
   return (
-    <footer className="bg-pine text-cream">
+    // relative z-10: the home page's botanical scene is position:fixed z-0, which
+    // otherwise paints over this static footer (the ivory field bled across the
+    // pine block). Lifting the footer into the same stacking layer as the page
+    // content keeps it a solid, opaque pine panel. Harmless on the legal pages.
+    <footer className="relative z-10 bg-pine text-cream">
       <div className="mx-auto w-full max-w-[1320px] px-6 py-14 sm:px-10 sm:py-18 lg:px-12">
         <div className="flex flex-col gap-12 md:flex-row md:justify-between">
           <div>
@@ -26,10 +30,10 @@ export default async function Footer() {
                 kaolin
               </span>
             </div>
-            <p className="mt-4 max-w-[30ch] text-cream/65">{t("tagline")}</p>
+            <p className="mt-4 max-w-[30ch] text-cream/80">{t("tagline")}</p>
           </div>
 
-          <div className="flex flex-col gap-2 text-sm text-cream/65">
+          <div className="flex flex-col gap-2 text-sm text-cream/80">
             <a
               href={`mailto:${t("email")}`}
               className="w-fit text-cream hover:text-sand transition-colors"
@@ -43,11 +47,11 @@ export default async function Footer() {
           <LanguageSwitcher variant="inverse" />
         </div>
 
-        <div className="mt-12 flex flex-col gap-4 border-t border-cream/20 pt-8 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-sm text-cream/55">{t("rights")}</p>
+        <div className="mt-12 flex flex-col gap-4 border-t border-cream/25 pt-8 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-sm text-cream/70">{t("rights")}</p>
           <nav
             aria-label={t("legal.label")}
-            className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-cream/65"
+            className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-cream/80"
           >
             <Link href="/privacy" className="hover:text-sand transition-colors">
               {t("legal.privacy")}
