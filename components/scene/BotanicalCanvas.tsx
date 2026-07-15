@@ -86,7 +86,7 @@ export default function BotanicalCanvas({
       className="pointer-events-none fixed inset-0 z-0 will-change-transform [transform:translateZ(0)]"
       style={
         supported === false
-          ? { background: "linear-gradient(180deg,#FAF8F3 0%,#F9F6F0 55%,#F1ECDF 100%)" }
+          ? { background: "linear-gradient(180deg,#DEE6EA 0%,#F7EBCD 55%,#F1ECDF 100%)" }
           : undefined
       }
     >

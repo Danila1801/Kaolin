@@ -57,16 +57,20 @@ export default async function HomePage({
 
         <TrustStrip />
         <Services />
+        {/* Sunset phase: bright amber sky behind Services + Work. Dark ink copy
+            stays legible on the warm sky — no hard scrims (Stage 3 follows). */}
+        <Work />
 
-        {/* The dark act: the field behind these three turns to night — grass
-            silhouettes, sand-lit tips — then returns to daylight for pricing. */}
+        {/* The dark act: the field behind Process + Proof turns to night —
+            grass silhouettes, sand-lit tips, the sun is now a moon. */}
         <div data-scene-dark="true" className="dark-act">
-          <Work />
           <Process />
           <Proof />
         </div>
 
+        {/* Pre-dawn twilight: light dusky sky, dark ink copy passes AA. */}
         <Pricing />
+        {/* Sunrise: hopeful warm dawn — "book an appointment" lands at daybreak. */}
         <Contact />
       </div>
     </>

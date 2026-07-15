@@ -91,7 +91,9 @@ void main(){
 export const BG_VERT = /* glsl */ `
 precision highp float;
 in vec2 position;
+out vec2 vUv;
 void main(){
+  vUv = position * 0.5 + 0.5;          // 0..1 across the fullscreen triangle
   gl_Position = vec4(position, 0.999, 1.0);
 }
 `;
@@ -102,6 +104,12 @@ precision highp float;
 uniform vec2 uRes;
 uniform float uDark, uGrain, uTime;
 uniform vec3 uBg, uSand, uForest, uFog;
+// sky cycle
+uniform vec3 uSkyTop, uSkyHorizon, uSunColor;
+uniform vec2 uSunPos;       // disc centre in uv (0 = bottom, 1 = top)
+uniform float uSunRadius;   // disc radius in uv
+uniform float uSunGlow;     // gaussian glow sigma
+uniform float uMoon;        // 0 = sun, 1 = moon
 out vec4 frag;
 
 float hash12(vec2 p){vec3 p3=fract(vec3(p.xyx)*.1031);p3+=dot(p3,p3.yzx+33.33);return fract((p3.x+p3.y)*p3.z);}
@@ -111,16 +119,41 @@ float vnoise(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);
 
 void main(){
   vec2 uv = gl_FragCoord.xy / uRes;
-  vec3 c = uBg;
-  c += uSand * 0.05 * smoothstep(0.78, 0.40, uv.y) * (1.0 - uDark);  // warm haze at the horizon, daylight
-  c += uForest * 0.14 * smoothstep(0.62, 0.02, uv.y) * uDark;        // low forest luminescence at night
-  // drifting fog: two octaves of value noise in a horizon band. Warm sage in
-  // daylight, a faint forest-green breath at night. Slow, always legible.
+  // Correct vertical aspect so the disc stays circular on non-square canvases.
+  float aspect = uRes.x / max(uRes.y, 1.0);
+  vec2 suv = vec2((uv.x - 0.5) * aspect + 0.5, uv.y);
+  vec2 ssun = vec2((uSunPos.x - 0.5) * aspect + 0.5, uSunPos.y);
+  float sd = distance(suv, ssun);
+
+  // vertical gradient sky (horizon colour at the bottom, top colour above)
+  vec3 sky = mix(uSkyHorizon, uSkyTop, smoothstep(0.0, 1.0, uv.y));
+
+  // soft sun/moon glow (gaussian), then the disc itself
+  float glow = exp(-(sd * sd) / (2.0 * uSunGlow * uSunGlow));
+  float disc = 1.0 - smoothstep(uSunRadius * 0.92, uSunRadius, sd);
+  vec3 body = uSunColor;
+  // moon: cooler, with a faint clipped terminator (subtle crater shading)
+  body = mix(body, body * 0.9 + vec3(0.02), uMoon);
+  sky += glow * uSunColor * (0.55 + 0.45 * uMoon);
+  sky = mix(sky, body, disc * (1.0 - uMoon * 0.0));
+  // moon dark side — clip a soft shadow so it reads as a moon, not a bulb
+  float phase = mix(0.0, 0.55, uMoon);
+  float sh = smoothstep(uSunRadius * (1.0 - phase), uSunRadius * (1.0 + phase), sd);
+  sky = mix(sky, mix(body, uSkyTop * 0.6, 0.7), disc * uMoon * (1.0 - sh));
+
+  vec3 c = sky;
+
+  // warm haze at the horizon, daylight only
+  c += uSand * 0.05 * smoothstep(0.78, 0.40, uv.y) * (1.0 - uDark);
+  // low forest luminescence at night
+  c += uForest * 0.14 * smoothstep(0.62, 0.02, uv.y) * uDark;
+  // drifting fog band, warm sage by day / faint forest-green at night
   float fbm = vnoise(vec2(uv.x*3.0 + uTime*0.030, uv.y*7.0 - uTime*0.011));
   fbm = fbm*0.62 + 0.38*vnoise(vec2(uv.x*7.5 - uTime*0.018, uv.y*14.0 + uTime*0.007));
   float band = smoothstep(0.28, 0.54, uv.y) * smoothstep(0.99, 0.62, uv.y);
   c = mix(c, uFog, band * fbm * 0.60 * (1.0 - uDark));
   c += uForest * band * fbm * 0.12 * uDark;
+
   float d = distance(uv, vec2(0.5, 0.44));
   c *= 1.0 - 0.09 * smoothstep(0.35, 0.95, d);
   c += (hash12(gl_FragCoord.xy) - 0.5) * 0.014 * uGrain;

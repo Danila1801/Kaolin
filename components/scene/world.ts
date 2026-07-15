@@ -19,6 +19,7 @@ import {
   SAND,
   SPAN,
   TRAVEL,
+  sampleSky,
   type Density,
 } from "./palette";
 import {
@@ -69,6 +70,14 @@ function createUniforms(grain: 0 | 1) {
     uForest: { value: new THREE.Vector3(...FOREST) },
     uSand: { value: new THREE.Vector3(...SAND) },
     uFog: { value: new THREE.Vector3(...FOG) },
+    // sky cycle (Stage 2)
+    uSkyTop: { value: new THREE.Vector3(0.87, 0.9, 0.92) },
+    uSkyHorizon: { value: new THREE.Vector3(0.97, 0.92, 0.78) },
+    uSunColor: { value: new THREE.Vector3(1.0, 0.96, 0.82) },
+    uSunPos: { value: new THREE.Vector2(0.72, 0.74) },
+    uSunRadius: { value: 0.13 },
+    uSunGlow: { value: 0.16 },
+    uMoon: { value: 0 },
   };
 }
 type Uniforms = ReturnType<typeof createUniforms>;
@@ -94,6 +103,13 @@ function buildBackground(u: Uniforms) {
       uSand: u.uSand,
       uForest: u.uForest,
       uFog: u.uFog,
+      uSkyTop: u.uSkyTop,
+      uSkyHorizon: u.uSkyHorizon,
+      uSunColor: u.uSunColor,
+      uSunPos: u.uSunPos,
+      uSunRadius: u.uSunRadius,
+      uSunGlow: u.uSunGlow,
+      uMoon: u.uMoon,
     },
     depthTest: false,
     depthWrite: false,
@@ -368,6 +384,22 @@ export function createWorld({ density, grain, initialDprLevel }: WorldOptions) {
     u.uCamZ.value = camZ;
     u.uMouse.value.set(m.wx, m.wz, m.s);
     u.uDark.value = st.dark;
+
+    // Stage 2 — sky cycle. Scroll progress p drives a continuous day → sunset
+    // → night → sunrise sky; the sun becomes a moon at night. The dark act
+    // still owns night (uDark fades to 1 there) so the grass silhouettes and
+    // the deep sky agree; over the light phases we use the sampled sky alone.
+    const sky = sampleSky(p);
+    u.uSkyTop.value.set(sky.top[0], sky.top[1], sky.top[2]);
+    u.uSkyHorizon.value.set(sky.horizon[0], sky.horizon[1], sky.horizon[2]);
+    u.uSunColor.value.set(sky.sunColor[0], sky.sunColor[1], sky.sunColor[2]);
+    u.uSunPos.value.set(sky.sun[0], sky.sun[1]);
+    u.uSunRadius.value = sky.sunRadius;
+    u.uSunGlow.value = sky.sunGlow;
+    u.uMoon.value = sky.moon;
+
+    // Background colour the blades fade into: the current sky horizon, blended
+    // toward night by the dark act so silhouettes stay coherent.
     u.uBg.value.set(
       IVORY[0] + (NIGHT[0] - IVORY[0]) * st.dark,
       IVORY[1] + (NIGHT[1] - IVORY[1]) * st.dark,
