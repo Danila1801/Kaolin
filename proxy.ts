@@ -7,6 +7,7 @@ import { routing } from "./i18n/routing";
 export default createMiddleware(routing);
 
 export const config = {
-  // Skip API routes, Next internals, Vercel internals, and static files.
-  matcher: "/((?!api|trpc|_next|_vercel|.*\\..*).*)",
+  // Skip API routes, Next internals, Vercel internals, static files,
+  // and the TinaCMS admin route (it's a top-level, locale-less path).
+  matcher: "/((?!api|trpc|_next|_vercel|admin|.*\\..*).*)",
 };
