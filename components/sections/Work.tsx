@@ -43,7 +43,7 @@ export default async function Work() {
             className="group mt-14 flex flex-col bg-card p-7 text-ink shadow-[0_1px_28px_rgba(25,27,23,0.07)] transition-shadow hover:shadow-[0_4px_36px_rgba(25,27,23,0.12)] sm:mt-20 sm:p-11"
           >
             {featured.tag && (
-              <span className="inline-flex w-fit items-center gap-2 border border-rust/30 px-3 py-1 text-xs font-bold uppercase tracking-[0.12em] text-rust">
+              <span className="inline-flex w-fit items-center gap-2 text-[0.78rem] font-bold uppercase tracking-[0.14em] text-rust">
                 <span className="h-1.5 w-1.5 rounded-full bg-rust" />
                 {featured.tag}
               </span>
@@ -87,7 +87,7 @@ export default async function Work() {
       </div>
 
       <Reveal delay={0.1}>
-        <p className="mt-9 max-w-[60ch] border-t border-ink/15 pt-5 text-sm italic text-muted">
+        <p className="mt-10 max-w-[60ch] text-base italic text-muted">
           {t("note")}
         </p>
       </Reveal>
