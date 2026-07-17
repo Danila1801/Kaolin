@@ -118,6 +118,7 @@
     "backHome": "← back to kaolin",
     "privacy": {
       "title": "privacy policy",
+      "meta": { "title": "privacy policy", "description": "what personal data we collect, why, and your rights under the GDPR." },
       "intro": "This policy explains what personal data kaolin.studio collects, why, and what rights you have under the GDPR (in the Netherlands, the AVG). We keep data collection to the minimum this site actually needs.",
       "sections": [
         { "h": "Who is responsible", "p": ["Kaolin is a two-person studio (Amsterdam and Chișinău) and is the data controller for this website. You can reach us at hello@kaolin.studio.", "Our Chamber of Commerce (KVK) number and registered address will be added here once the studio is formally registered."] },
@@ -132,6 +133,7 @@
     },
     "terms": {
       "title": "terms of use",
+      "meta": { "title": "terms of use", "description": "the rules for using the kaolin.studio website and its ai demo." },
       "intro": "These terms govern your use of kaolin.studio. By using the site you accept them. This is our marketing website; any actual project work is covered by a separate written agreement.",
       "sections": [
         { "h": "About this site", "p": ["kaolin.studio is an informational website for Kaolin, a father and son AI-implementation studio. Nothing here is a binding offer; the scope, price, and terms of any project are agreed separately, in writing."] },
@@ -146,6 +148,7 @@
     },
     "cookies": {
       "title": "cookies & ai transparency",
+      "meta": { "title": "cookies & ai transparency", "description": "what we store, and how the ai assistant on the site works." },
       "intro": "We try to run this site with as little tracking as possible. This page explains the few bits of storage we use and, just as importantly, how the AI assistant works.",
       "sections": [
         { "h": "Our approach to cookies", "p": ["We don't use advertising or cross-site tracking cookies, and we don't sell data. The site works without you having to accept a wall of trackers."] },

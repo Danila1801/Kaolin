@@ -118,6 +118,7 @@
     "backHome": "← înapoi la kaolin",
     "privacy": {
       "title": "politica de confidențialitate",
+      "meta": { "title": "politica de confidențialitate", "description": "ce date personale colectăm, de ce, și drepturile tale conform GDPR." },
       "intro": "Această politică explică ce date cu caracter personal colectează kaolin.studio, de ce, și ce drepturi ai conform GDPR (în Țările de Jos, AVG). Colectăm datele la minimul de care are nevoie cu adevărat acest site.",
       "sections": [
         { "h": "Cine este responsabil", "p": ["Kaolin este un studio format din două persoane (Amsterdam și Chișinău) și este operatorul de date pentru acest site. Ne poți contacta la hello@kaolin.studio.", "Numărul de la Camera de Comerț (KVK) și adresa înregistrată vor fi adăugate aici de îndată ce studioul este înregistrat oficial."] },
@@ -132,6 +133,7 @@
     },
     "terms": {
       "title": "termeni de utilizare",
+      "meta": { "title": "termeni de utilizare", "description": "regulile pentru folosirea site-ului kaolin.studio și a demoului ai." },
       "intro": "Acești termeni reglementează utilizarea kaolin.studio. Prin folosirea site-ului îi accepți. Acesta este site-ul nostru de prezentare; orice lucru efectiv la un proiect este acoperit de un acord scris separat.",
       "sections": [
         { "h": "Despre acest site", "p": ["kaolin.studio este un site informativ pentru Kaolin, un studio tată și fiu de implementare AI. Nimic de aici nu este o ofertă obligatorie; scopul, prețul și condițiile unui proiect se convin separat, în scris."] },
@@ -146,6 +148,7 @@
     },
     "cookies": {
       "title": "cookie-uri & transparență ai",
+      "meta": { "title": "cookie-uri & transparență ai", "description": "ce stocăm și cum funcționează asistentul ai de pe site." },
       "intro": "Încercăm să rulăm acest site cu cât mai puțină urmărire posibilă. Această pagină explică puținele elemente de stocare pe care le folosim și, la fel de important, cum funcționează asistentul AI.",
       "sections": [
         { "h": "Abordarea noastră privind cookie-urile", "p": ["Nu folosim cookie-uri de publicitate sau de urmărire între site-uri și nu vindem date. Site-ul funcționează fără să fii nevoit să accepți un zid de urmăritoare."] },
