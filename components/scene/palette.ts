@@ -46,8 +46,8 @@ export interface SkyStop {
 }
 
 export const SKY_STOPS: SkyStop[] = [
-  // morning — soft warm, pale-gold horizon
-  { p: 0.0, top: [0.87, 0.9, 0.92], horizon: [0.97, 0.92, 0.78],
+  // morning — soft warm ivory sky (no cool-blue cast), pale-gold horizon
+  { p: 0.0, top: [0.93, 0.91, 0.86], horizon: [0.98, 0.93, 0.79],
     sun: [0.72, 0.74], sunColor: [1.0, 0.96, 0.82], sunRadius: 0.13, sunGlow: 0.16, moon: 0 },
   // sunset — warm cream sky, low amber sun over services/work
   { p: 0.38, top: [0.95, 0.86, 0.74], horizon: [0.99, 0.78, 0.55],
