@@ -88,7 +88,7 @@ const organizationJsonLd = {
   name: "Kaolin",
   url: SITE_URL,
   description:
-    "A father–son AI-implementation studio building websites, chatbots, document assistants, and automation.",
+    "A father and son AI implementation studio building websites, chatbots, document assistants, and automation.",
   email: "hello@kaolin.studio",
   founder: [
     { "@type": "Person", name: "Leonid" },

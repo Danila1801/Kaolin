@@ -49,7 +49,7 @@ export default function LanguageSwitcher({ variant = "light" }: { variant?: Vari
           locale={l}
           hrefLang={l}
           lang={l}
-          aria-label={`${labels[l]} — ${names[l]}`}
+          aria-label={`${labels[l]}, ${names[l]}`}
           aria-current={l === locale ? "true" : undefined}
           className={`rounded-full px-3 py-1.5 text-sm tracking-wide transition-colors ${
             l === locale ? s.active : s.idle

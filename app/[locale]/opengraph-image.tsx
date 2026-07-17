@@ -6,7 +6,7 @@ import { ImageResponse } from "next/og";
 // across locales and stays in the Latin range on purpose: ImageResponse's
 // built-in font carries no Cyrillic or ș/ț, so this keeps every locale legible
 // rather than rendering tofu. The design leans on the brand palette.
-export const alt = "kaolin — ai implementation studio";
+export const alt = "kaolin, ai implementation studio";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
