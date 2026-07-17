@@ -118,6 +118,7 @@
     "backHome": "← terug naar kaolin",
     "privacy": {
       "title": "privacyverklaring",
+      "meta": { "title": "privacyverklaring", "description": "welke persoonsgegevens we verzamelen, waarom, en uw rechten onder de AVG." },
       "intro": "Deze verklaring legt uit welke persoonsgegevens kaolin.studio verzamelt, waarom, en welke rechten u heeft onder de AVG (de Nederlandse uitvoering van de GDPR). We verzamelen niet meer gegevens dan deze site echt nodig heeft.",
       "sections": [
         { "h": "Wie is verantwoordelijk", "p": ["Kaolin is een studio van twee personen (Amsterdam en Chișinău) en is de verwerkingsverantwoordelijke voor deze website. U kunt ons bereiken op hello@kaolin.studio.", "Ons KVK-nummer en ons gevestigde adres worden hier toegevoegd zodra de studio formeel is ingeschreven."] },
@@ -132,6 +133,7 @@
     },
     "terms": {
       "title": "gebruiksvoorwaarden",
+      "meta": { "title": "gebruiksvoorwaarden", "description": "de regels voor het gebruik van de kaolin.studio website en de ai-demo." },
       "intro": "Deze voorwaarden gelden voor uw gebruik van kaolin.studio. Door de site te gebruiken accepteert u ze. Dit is onze marketingwebsite; echt projectwerk valt onder een aparte schriftelijke overeenkomst.",
       "sections": [
         { "h": "Over deze site", "p": ["kaolin.studio is een informatieve website voor Kaolin, een vader-zoonstudio voor AI-implementatie. Niets hier is een bindend aanbod; de scope, prijs en voorwaarden van een project worden apart en schriftelijk afgesproken."] },
@@ -146,6 +148,7 @@
     },
     "cookies": {
       "title": "cookies & ai-transparantie",
+      "meta": { "title": "cookies & ai-transparantie", "description": "wat we opslaan en hoe de ai-assistent op de site werkt." },
       "intro": "We proberen deze site met zo min mogelijk tracking te draaien. Deze pagina legt uit welke kleine stukjes opslag we gebruiken en, net zo belangrijk, hoe de AI-assistent werkt.",
       "sections": [
         { "h": "Onze aanpak van cookies", "p": ["We gebruiken geen advertentie- of cross-site trackingcookies, en we verkopen geen gegevens. De site werkt zonder dat u een muur van trackers hoeft te accepteren."] },

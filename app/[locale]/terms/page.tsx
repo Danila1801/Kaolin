@@ -21,8 +21,8 @@ export async function generateMetadata({
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "legal" });
   return {
-    title: t("terms.title"),
-    description: t("terms.intro"),
+    title: t("terms.meta.title"),
+    description: t("terms.meta.description"),
     alternates: {
       canonical: `${SITE_URL}/${locale}${PATH}`,
       languages: localeAlternates(PATH),
@@ -30,8 +30,8 @@ export async function generateMetadata({
     openGraph: {
       type: "article",
       url: `${SITE_URL}/${locale}${PATH}`,
-      title: t("terms.title"),
-      description: t("terms.intro"),
+      title: t("terms.meta.title"),
+      description: t("terms.meta.description"),
       locale: OG_LOCALE[locale] ?? "en_US",
     },
   };

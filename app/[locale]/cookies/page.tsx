@@ -21,8 +21,8 @@ export async function generateMetadata({
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "legal" });
   return {
-    title: t("cookies.title"),
-    description: t("cookies.intro"),
+    title: t("cookies.meta.title"),
+    description: t("cookies.meta.description"),
     alternates: {
       canonical: `${SITE_URL}/${locale}${PATH}`,
       languages: localeAlternates(PATH),
@@ -30,8 +30,8 @@ export async function generateMetadata({
     openGraph: {
       type: "article",
       url: `${SITE_URL}/${locale}${PATH}`,
-      title: t("cookies.title"),
-      description: t("cookies.intro"),
+      title: t("cookies.meta.title"),
+      description: t("cookies.meta.description"),
       locale: OG_LOCALE[locale] ?? "en_US",
     },
   };
