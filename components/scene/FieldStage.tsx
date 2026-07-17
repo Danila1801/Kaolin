@@ -19,6 +19,18 @@ export default function FieldStage({ wind, density, grain, reduced, dprLevel }: 
   const scene = useThree((s) => s.scene);
   const invalidate = useThree((s) => s.invalidate);
   const worldRef = useRef<World | null>(null);
+  const activated = useRef(false);
+
+  // The dark act carries a solid dark backdrop by default so its ivory type is
+  // legible before this field exists. Once the field has ticked a real frame we
+  // flag <html>, which clears that backdrop to transparent (the night grass then
+  // shows through). Removed on unmount so the act falls back to the safe dark.
+  useEffect(() => {
+    return () => {
+      activated.current = false;
+      delete document.documentElement.dataset.fieldActive;
+    };
+  }, []);
 
   useEffect(() => {
     const world = createWorld({
@@ -66,6 +78,12 @@ export default function FieldStage({ wind, density, grain, reduced, dprLevel }: 
 
   useFrame((rs, delta) => {
     worldRef.current?.tick(rs, delta, wind, reduced);
+    // First real frame: reveal the field behind the dark act (see the effect
+    // above and .dark-act in globals.css).
+    if (!activated.current) {
+      activated.current = true;
+      document.documentElement.dataset.fieldActive = "";
+    }
   });
 
   return null;

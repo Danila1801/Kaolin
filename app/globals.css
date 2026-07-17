@@ -258,11 +258,22 @@ body {
 
 /* ---------- the dark act ---------- */
 
-/* Wrapper for work → process → proof. The WebGL scene watches
+/* Wrapper for the night act (process → proof). The WebGL scene watches
    [data-scene-dark] and turns the field to night behind it; sections inside
-   stay transparent and switch to ivory type. */
+   stay transparent and switch to ivory type.
+   The dark backdrop is the DEFAULT, not something the field paints, so the
+   ivory type is legible from the first frame — before the three.js chunk has
+   loaded, with JS off, or with no WebGL. Only once the field confirms it's
+   drawing (html[data-field-active], set on its first tick) does the wrapper
+   clear to transparent so the night grass shows through. Without this default
+   the act flashed cream-on-ivory — invisible — during scene load. */
 .dark-act {
   color: var(--color-cream);
+  background-color: #07100d;
+}
+
+html[data-field-active] .dark-act {
+  background-color: transparent;
 }
 
 [data-scene-dark] .section-title {
@@ -275,14 +286,6 @@ body {
 
 [data-scene-dark] .section-marker {
   color: var(--color-sand);
-}
-
-/* No JS at all → no canvas to darken the field, so paint the act itself.
-   (With JS but no WebGL, lib/botanical-scene.js paints this wrapper inline.) */
-@media (scripting: none) {
-  .dark-act {
-    background: #07100d;
-  }
 }
 
 /* ---------- chat launcher ---------- */

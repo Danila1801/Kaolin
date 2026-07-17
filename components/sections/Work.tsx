@@ -15,21 +15,23 @@ type WorkItem = {
 // AI-integration capability leads the section. The remaining real, deployed
 // sites follow in a two-up grid. External links open in a new tab with
 // rel="noopener" so a demo can't script back to this window.
+//
+// Light-zone section: it sits in the sunset phase (bright amber sky), NOT in the
+// [data-scene-dark] act, so its type is dark ink on a .section-veil — the same
+// legibility contract as Services/Pricing. (It once carried ivory type for a
+// dark background; that left it washed out over the warm sky. Fixed.)
 export default async function Work() {
   const t = await getTranslations("work");
   const items = t.raw("items") as WorkItem[];
   const [featured, ...rest] = items;
 
   return (
-    // Sits inside the page's [data-scene-dark] act: the field itself goes to
-    // night behind it, so the wrapper stays transparent — ivory type only.
-    <div className="text-cream">
-      <Section id="work">
+    <Section id="work" className="section-veil">
       <Reveal className="grid gap-8 lg:grid-cols-[1fr_1.3fr] lg:items-end">
         <h2 className="font-display max-w-[14ch] text-[clamp(2.7rem,5vw,5.35rem)] leading-[0.94] tracking-[-0.055em] lowercase">
           {t("title")}
         </h2>
-        <p className="max-w-[42rem] text-lg leading-relaxed text-cream/70 lg:mb-1">{t("intro")}</p>
+        <p className="section-intro max-w-[42rem] lg:mb-1">{t("intro")}</p>
       </Reveal>
 
       {featured && (
@@ -38,7 +40,7 @@ export default async function Work() {
             href={featured.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="group mt-14 flex flex-col border border-sand/35 bg-cream p-7 text-ink transition-colors hover:bg-sand/95 sm:mt-20 sm:p-11"
+            className="group mt-14 flex flex-col border border-sand/40 bg-cream p-7 text-ink transition-colors hover:bg-sand/95 sm:mt-20 sm:p-11"
           >
             {featured.tag && (
               <span className="inline-flex w-fit items-center gap-2 border border-rust/30 px-3 py-1 text-xs font-bold uppercase tracking-[0.12em] text-rust">
@@ -67,11 +69,11 @@ export default async function Work() {
               href={item.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex h-full flex-col border border-cream/20 p-7 transition-colors hover:border-sand hover:bg-cream/5 sm:p-9"
+              className="group flex h-full flex-col border border-ink/12 bg-card/60 p-7 text-ink transition-colors hover:border-forest/40 hover:bg-card sm:p-9"
             >
               <h3 className="font-display text-3xl leading-none tracking-[-0.045em] lowercase">{item.name}</h3>
-              <p className="mt-4 flex-1 text-cream/70">{item.body}</p>
-              <span className="mt-8 inline-flex items-center gap-2 text-sm font-bold text-sand">
+              <p className="mt-4 flex-1 text-muted">{item.body}</p>
+              <span className="mt-8 inline-flex items-center gap-2 text-sm font-bold text-rust">
                 {item.cta}
                 <span className="transition-transform group-hover:translate-x-1">
                   →
@@ -83,11 +85,10 @@ export default async function Work() {
       </div>
 
       <Reveal delay={0.1}>
-        <p className="mt-9 max-w-[60ch] border-t border-cream/20 pt-5 text-sm italic text-cream/65">
+        <p className="mt-9 max-w-[60ch] border-t border-ink/15 pt-5 text-sm italic text-muted">
           {t("note")}
         </p>
       </Reveal>
-      </Section>
-    </div>
+    </Section>
   );
 }
