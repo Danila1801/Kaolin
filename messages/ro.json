@@ -109,7 +109,7 @@
     "generic": {
       "title": "ceva n-a mers bine",
       "body": "a apărut o eroare neașteptată la noi. te rugăm să încerci din nou într-o clipă.",
-      "retry": "încearcă din nou",
+      "retry": "reîncearcă",
       "home": "înapoi acasă"
     }
   },
