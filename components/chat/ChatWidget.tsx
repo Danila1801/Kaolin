@@ -196,12 +196,12 @@ export default function ChatWidget() {
               aria-haspopup="dialog"
               aria-expanded={open}
               aria-label={t("launcher")}
-              className="bg-forest text-cream ring-cream/25 hover:bg-pine relative inline-flex items-center gap-2.5 rounded-full px-6 py-3.5 text-[0.98rem] font-semibold whitespace-nowrap shadow-lg ring-1 transition-[transform,background-color] hover:-translate-y-0.5 motion-reduce:transition-none motion-reduce:hover:translate-y-0"
+              className="bg-forest text-cream ring-cream/25 hover:bg-pine relative inline-flex items-center gap-3 rounded-full px-7 py-4 text-[1.12rem] font-semibold whitespace-nowrap shadow-lg ring-1 transition-[transform,background-color] hover:-translate-y-0.5 motion-reduce:transition-none motion-reduce:hover:translate-y-0"
             >
               <svg
                 aria-hidden="true"
                 viewBox="0 0 24 24"
-                className="h-[1.15rem] w-[1.15rem]"
+                className="h-[1.4rem] w-[1.4rem]"
                 fill="none"
                 stroke="currentColor"
                 strokeWidth="1.9"
@@ -223,17 +223,17 @@ export default function ChatWidget() {
           role="dialog"
           aria-modal="true"
           aria-label={t("title")}
-          className="border-ink/10 bg-card fixed right-5 bottom-5 z-40 flex h-[min(70vh,560px)] w-[min(92vw,380px)] flex-col overflow-hidden rounded-2xl border shadow-xl"
+          className="border-ink/10 bg-card fixed right-5 bottom-5 z-40 flex h-[min(80vh,680px)] w-[min(94vw,440px)] flex-col overflow-hidden rounded-2xl border shadow-xl"
         >
-          <header className="border-ink/10 flex items-center justify-between border-b px-4 py-3">
+          <header className="border-ink/10 flex items-center justify-between border-b px-5 py-4">
             <div>
-              <div className="font-display text-lg lowercase">{t("title")}</div>
-              <div className="text-muted text-xs">{t("disclaimer")}</div>
+              <div className="font-display text-xl lowercase">{t("title")}</div>
+              <div className="text-muted text-sm">{t("disclaimer")}</div>
             </div>
             <button
               onClick={close}
               aria-label={t("close")}
-              className="text-muted hover:text-ink -mr-1 rounded-full p-2 text-lg leading-none transition-colors"
+              className="text-muted hover:text-ink -mr-1 rounded-full p-2 text-2xl leading-none transition-colors"
             >
               ×
             </button>
@@ -244,7 +244,7 @@ export default function ChatWidget() {
             role="log"
             aria-live="polite"
             aria-relevant="additions text"
-            className="flex-1 space-y-4 overflow-y-auto px-4 py-4 text-base"
+            className="flex-1 space-y-4 overflow-y-auto px-5 py-5 text-lg"
           >
             {messages.length === 0 && (
               <p className="text-muted">{t("intro")}</p>
@@ -282,7 +282,7 @@ export default function ChatWidget() {
             )}
           </div>
 
-          <div className="border-ink/10 flex items-end gap-2 border-t px-3 py-3">
+          <div className="border-ink/10 flex items-end gap-2 border-t px-4 py-4">
             <textarea
               ref={inputRef}
               value={input}
@@ -291,12 +291,12 @@ export default function ChatWidget() {
               rows={1}
               aria-label={t("title")}
               placeholder={t("placeholder")}
-              className="text-ink placeholder:text-muted max-h-28 flex-1 resize-none bg-transparent px-1 py-2"
+              className="text-ink placeholder:text-muted max-h-32 flex-1 resize-none bg-transparent px-1 py-2 text-lg"
             />
             <button
               onClick={send}
               disabled={busy || input.trim().length === 0}
-              className="bg-forest hover:bg-forest/90 rounded-full px-4 py-2 text-sm font-medium text-cream transition-colors disabled:cursor-not-allowed disabled:opacity-40"
+              className="bg-forest hover:bg-forest/90 rounded-full px-5 py-2.5 text-base font-medium text-cream transition-colors disabled:cursor-not-allowed disabled:opacity-40"
             >
               {t("send")}
             </button>

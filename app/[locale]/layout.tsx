@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Bricolage_Grotesque, Onest, PT_Sans } from "next/font/google";
+import { Bricolage_Grotesque, Montserrat, PT_Sans } from "next/font/google";
 import { notFound } from "next/navigation";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
@@ -19,11 +19,11 @@ const bricolage = Bricolage_Grotesque({
   display: "swap",
 });
 
-// Onest ships Cyrillic itself, so /ru body text never needs a fallback.
-// (Deliberately not Inter — the body face should feel chosen, not defaulted.)
-const onest = Onest({
+// Montserrat is the body face (owner's pick). It ships Cyrillic, so /ru body
+// text never needs a fallback.
+const montserrat = Montserrat({
   subsets: ["latin", "latin-ext", "cyrillic"],
-  variable: "--font-onest",
+  variable: "--font-montserrat",
   display: "swap",
 });
 
@@ -121,7 +121,7 @@ export default async function LocaleLayout({
   return (
     <html
       lang={locale}
-      className={`${bricolage.variable} ${onest.variable} ${ptSans.variable} antialiased`}
+      className={`${bricolage.variable} ${montserrat.variable} ${ptSans.variable} antialiased`}
     >
       <body className="flex min-h-screen flex-col">
         <script
