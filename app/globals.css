@@ -91,12 +91,15 @@ body {
    legibility contract: text never fights a blade for contrast. */
 .hero-veil {
   position: relative;
+  /* A soft wash, not a panel: low peak and a long falloff so no rectangle edge
+     is visible. Biased left, where the type sits, and fading out toward the
+     sun on the right. */
   background: radial-gradient(
-    108% 100% at 30% 42%,
-    rgb(249 246 240 / 0.96) 0%,
-    rgb(249 246 240 / 0.88) 48%,
-    rgb(249 246 240 / 0.5) 76%,
-    rgb(249 246 240 / 0) 100%
+    125% 135% at 26% 46%,
+    rgb(249 246 240 / 0.84) 0%,
+    rgb(249 246 240 / 0.68) 42%,
+    rgb(249 246 240 / 0.3) 68%,
+    rgb(249 246 240 / 0) 92%
   );
 }
 

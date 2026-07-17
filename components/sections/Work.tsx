@@ -40,7 +40,7 @@ export default async function Work() {
             href={featured.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="group mt-14 flex flex-col border border-sand/40 bg-cream p-7 text-ink transition-colors hover:bg-sand/95 sm:mt-20 sm:p-11"
+            className="group mt-14 flex flex-col bg-card p-7 text-ink shadow-[0_1px_28px_rgba(25,27,23,0.07)] transition-shadow hover:shadow-[0_4px_36px_rgba(25,27,23,0.12)] sm:mt-20 sm:p-11"
           >
             {featured.tag && (
               <span className="inline-flex w-fit items-center gap-2 border border-rust/30 px-3 py-1 text-xs font-bold uppercase tracking-[0.12em] text-rust">
@@ -69,11 +69,13 @@ export default async function Work() {
               href={item.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex h-full flex-col border border-ink/12 bg-card/60 p-7 text-ink transition-colors hover:border-forest/40 hover:bg-card sm:p-9"
+              className="group flex h-full flex-col p-7 text-ink transition-colors sm:px-0 sm:py-2"
             >
-              <h3 className="font-display text-3xl leading-none tracking-[-0.045em] lowercase">{item.name}</h3>
-              <p className="mt-4 flex-1 text-muted">{item.body}</p>
-              <span className="mt-8 inline-flex items-center gap-2 text-sm font-bold text-rust">
+              <h3 className="font-display text-3xl leading-none tracking-[-0.045em] lowercase transition-colors group-hover:text-rust">
+                {item.name}
+              </h3>
+              <p className="mt-4 flex-1 text-lg text-muted">{item.body}</p>
+              <span className="mt-8 inline-flex items-center gap-2 text-base font-bold text-rust">
                 {item.cta}
                 <span className="transition-transform group-hover:translate-x-1">
                   →
