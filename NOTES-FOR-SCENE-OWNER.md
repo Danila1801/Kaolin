@@ -4,6 +4,27 @@ From the loc + a11y/SEO pass on branch `hermes/loc-a11y`. These touch files I
 deliberately did **not** edit (they're yours). Nothing here is blocking; most of
 it is confirmation that your surfaces are already in good shape.
 
+## Em dashes still in code (copy owner cannot reach these)
+
+The site owner asked to remove every em/en dash. I cleared all of them from
+`messages/*.json` (all four locales are now dash-free). Three dashes still render
+on the page from **non-message sources**, which are `.tsx`/`.ts` files I'm not
+allowed to touch on the copy task. Please de-dash these to finish the job:
+
+- **`components/scene/opengraph-image.tsx`** (or wherever `export const alt`
+  lives): `alt = "kaolin — ai implementation studio"` renders into
+  `og:image:alt` and `twitter:image:alt`. Suggest `"kaolin, ai implementation
+  studio"` (matches the new `meta.title`).
+- **`app/[locale]/layout.tsx`** Organization JSON-LD `description`:
+  `"A father–son AI-implementation studio building websites..."` (en dash in
+  `father–son`). Suggest `"A father and son AI-implementation studio..."`.
+- **`components/LanguageSwitcher.tsx`** aria-labels: `"EN — English"`,
+  `"NL — Nederlands"`, `"RO — Română"`, `"RU — Русский"`. Suggest a comma or
+  just a space (`"EN English"` / `"EN, English"`).
+
+None of these are in the message files, so they were out of scope for the copy
+rewrite. Flagging so the "no dashes" rule holds site-wide.
+
 ## No action needed — verified clean
 
 - **`app/globals.css` focus ring** — you already ship a global
