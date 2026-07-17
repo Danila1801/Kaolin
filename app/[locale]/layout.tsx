@@ -116,6 +116,7 @@ export default async function LocaleLayout({
     notFound();
   }
   setRequestLocale(locale);
+  const nav = await getTranslations({ locale, namespace: "nav" });
 
   return (
     <html
@@ -127,9 +128,20 @@ export default async function LocaleLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
         />
+        {/* Skip link: first focusable element, visually hidden until focused.
+            Lets keyboard users jump past the sticky header + language switcher
+            straight to the page content (WCAG 2.4.1). */}
+        <a
+          href="#main-content"
+          className="sr-only rounded-full bg-ink px-5 py-2.5 text-cream focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50"
+        >
+          {nav("skipToContent")}
+        </a>
         <NextIntlClientProvider>
           <Header />
-          <main className="flex-1">{children}</main>
+          <main id="main-content" tabIndex={-1} className="flex-1">
+            {children}
+          </main>
           <Footer />
           <ChatErrorBoundary>
             <ChatWidget />
