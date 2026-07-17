@@ -36,13 +36,13 @@
   },
   "work": {
     "title": "zie het in het echt",
-    "intro": "sites die we hebben gebouwd, plus een demokliniek waar u een ai-assistent kunt proberen zoals we die aan uw site zouden toevoegen.",
+    "intro": "sites die we hebben gebouwd, plus een demokliniek met een ai-assistent zoals we die aan uw site zouden toevoegen.",
     "items": [
-      { "name": "Riverbend Physiotherapy", "tag": "live ai-assistent", "body": "een demo-kliniekwebsite met een intake-assistent. hij vraagt naar uw klacht, stelt een behandeling voor en legt een eerste bezoek uit. probeer het op de pagina.", "cta": "open de live demo", "href": "https://kaolin-demo-clinic.vercel.app" },
+      { "name": "Riverbend Physiotherapy", "tag": "live ai-assistent", "body": "een demo-kliniekwebsite met een intake-assistent. hij vraagt naar uw klacht, stelt een behandeling voor en legt een eerste bezoek uit.", "cta": "open de live demo", "href": "https://kaolin-demo-clinic.vercel.app" },
       { "name": "Portativ SRL", "body": "een viertalige website voor een elektro-installatiebedrijf. snel en makkelijk te navigeren.", "cta": "bekijk de site", "href": "https://portativ-srl.vercel.app" },
       { "name": "Nook", "body": "een rustig webproduct voor het werkende lichaam. we geven om ontwerp en gevoel, niet alleen om code.", "cta": "bekijk de site", "href": "https://nook-liard.vercel.app" }
     ],
-    "note": "de assistent op deze pagina is ook van ons. het is een live demo van wat we in uw site zouden bouwen."
+    "note": "de assistent op deze pagina is ook van ons. een live demo van wat we voor u zouden bouwen."
   },
   "process": {
     "title": "hoe we werken",

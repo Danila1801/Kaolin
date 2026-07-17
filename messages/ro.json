@@ -36,13 +36,13 @@
   },
   "work": {
     "title": "vezi cu ochii tăi",
-    "intro": "site-uri pe care le-am construit, plus o clinică demo unde poți încerca un asistent ai ca acela pe care l-am adăuga pe site-ul tău.",
+    "intro": "site-uri pe care le-am construit, plus o clinică demo cu un asistent ai ca acela pe care l-am adăuga pe site-ul tău.",
     "items": [
-      { "name": "Riverbend Physiotherapy", "tag": "asistent ai live", "body": "un site demo de clinică cu un asistent de preluare. te întreabă despre problema ta, îți sugerează un tratament și îți explică prima vizită. încearcă-l pe pagină.", "cta": "deschide demoul live", "href": "https://kaolin-demo-clinic.vercel.app" },
+      { "name": "Riverbend Physiotherapy", "tag": "asistent ai live", "body": "un site demo de clinică cu un asistent de preluare. te întreabă despre problema ta, îți sugerează un tratament și îți explică prima vizită.", "cta": "deschide demoul live", "href": "https://kaolin-demo-clinic.vercel.app" },
       { "name": "Portativ SRL", "body": "un site în patru limbi pentru un contractor de instalații electrice. rapid și ușor de navigat.", "cta": "vezi site-ul", "href": "https://portativ-srl.vercel.app" },
       { "name": "Nook", "body": "un produs web calm pentru corpul care muncește. ne pasă de design și de senzație, nu doar de cod.", "cta": "vezi site-ul", "href": "https://nook-liard.vercel.app" }
     ],
-    "note": "asistentul de pe această pagină e tot al nostru. e o demonstrație live a ceea ce am construi în site-ul tău."
+    "note": "asistentul de pe această pagină e tot al nostru. o demonstrație live a ceea ce am construi pentru tine."
   },
   "process": {
     "title": "cum lucrăm",

@@ -36,13 +36,13 @@
   },
   "work": {
     "title": "see it for real",
-    "intro": "sites we've built, plus a demo clinic where you can try an ai assistant like the one we'd add to your site.",
+    "intro": "sites we've built, plus a demo clinic with an ai assistant like we'd add to your site.",
     "items": [
-      { "name": "Riverbend Physiotherapy", "tag": "live ai assistant", "body": "a demo clinic site with an intake assistant. it asks about your problem, suggests a treatment, and explains a first visit. try it on the page.", "cta": "open the live demo", "href": "https://kaolin-demo-clinic.vercel.app" },
+      { "name": "Riverbend Physiotherapy", "tag": "live ai assistant", "body": "a demo clinic site with an intake assistant. it asks about your problem, suggests a treatment, and explains a first visit.", "cta": "open the live demo", "href": "https://kaolin-demo-clinic.vercel.app" },
       { "name": "Portativ SRL", "body": "a four-language website for an electrical-installations contractor. fast and easy to navigate.", "cta": "visit the site", "href": "https://portativ-srl.vercel.app" },
       { "name": "Nook", "body": "a calm web product for the working body. we care about design and feel, not just code.", "cta": "visit the site", "href": "https://nook-liard.vercel.app" }
     ],
-    "note": "the assistant on this page is ours too. it's a live demo of what we'd build into your site."
+    "note": "the assistant on this page is ours too. a live demo of what we'd build for you."
   },
   "process": {
     "title": "how we work",
