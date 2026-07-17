@@ -10,7 +10,7 @@ export default async function TrustStrip() {
   const t = await getTranslations("trust");
 
   return (
-    <div className="border-y border-ink/10">
+    <div>
       <Section id="trust" className="section-veil py-9 sm:py-11 lg:py-12">
         <Reveal className="grid gap-5 md:grid-cols-[minmax(0,1fr)_2.2fr] md:items-center">
           <span aria-hidden="true" className="flex gap-2 text-moss">
