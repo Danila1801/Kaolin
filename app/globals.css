@@ -261,6 +261,34 @@ body {
   color: var(--color-cream);
 }
 
+/* Soft top scrim so the wordmark and nav stay legible when page content scrolls
+   under the transparent bar. It fades to nothing by the bottom of the bar (no
+   hard edge), and follows the same day/night switch as the type: a light cream
+   wash by day, a dark wash at night. */
+.site-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgb(249 246 240 / 0.72) 0%,
+    rgb(249 246 240 / 0.34) 55%,
+    rgb(249 246 240 / 0) 100%
+  );
+  transition: background 400ms ease;
+}
+
+.site-header[data-night]::before {
+  background: linear-gradient(
+    180deg,
+    rgb(9 18 14 / 0.6) 0%,
+    rgb(9 18 14 / 0.28) 55%,
+    rgb(9 18 14 / 0) 100%
+  );
+}
+
 /* ---------- the dark act ---------- */
 
 /* Wrapper for the night act (process → proof). The WebGL scene watches
