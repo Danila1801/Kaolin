@@ -1,11 +1,11 @@
 {
   "meta": {
-    "title": "kaolin — ai implementation studio",
-    "description": "a father–son studio that builds websites, then makes them think — chatbots, document assistants, and automation. you talk to the two people who build it. amsterdam × chișinău."
+    "title": "kaolin, ai implementation studio",
+    "description": "a father and son studio. we build websites and add ai to them: chatbots, document assistants, and automation. you work with the two people who build it. amsterdam × chișinău."
   },
   "hero": {
-    "title": "AI that earns its place in your business.",
-    "subtitle": "We build websites, then we make them think — chatbots, document assistants, and automation, built by the two people you actually talk to."
+    "title": "We build websites and add AI to them.",
+    "subtitle": "Chatbots, document assistants, and automation. Built by the two people you talk to."
   },
   "nav": {
     "services": "what we do",
@@ -17,70 +17,71 @@
     "menu": "Menu",
     "openMenu": "Open menu",
     "closeMenu": "Close menu",
-    "language": "Language"
+    "language": "Language",
+    "skipToContent": "Skip to content"
   },
   "trust": {
-    "line": "a father–son studio. amsterdam × chișinău. you talk to the person who builds it."
+    "line": "a father and son studio. amsterdam × chișinău. you talk to the person who builds it."
   },
   "services": {
     "title": "what we do",
-    "intro": "a website gets you online. what we build on top of it makes the website work — answering questions, reading your documents, predicting what's next, and doing the repetitive parts for you.",
+    "intro": "a website gets you online. we add ai that answers questions, reads your documents, predicts what's next, and handles repetitive work.",
     "items": [
-      { "name": "websites", "body": "fast, multilingual, and built to last — the front door to everything else." },
-      { "name": "chatbots & llm integration", "body": "assistants that answer in your customer's language, grounded in what your business actually knows — not generic guesses." },
-      { "name": "document assistants", "body": "point one at your contracts, manuals, and reports, then just ask. every answer comes with its source." },
-      { "name": "ml & predictive analytics", "body": "forecasting, scoring, and classification on your own data — built only where the numbers earn their keep." },
-      { "name": "ai automation", "body": "the repetitive work between your tools, handled quietly in the background so your people don't have to." }
+      { "name": "websites", "body": "fast, multilingual websites, built to last." },
+      { "name": "chatbots & llm integration", "body": "assistants that answer in your customer's language, using what your business knows." },
+      { "name": "document assistants", "body": "ask questions about your contracts, manuals, and reports. every answer links to its source." },
+      { "name": "ml & predictive analytics", "body": "forecasting, scoring, and classification on your own data." },
+      { "name": "ai automation", "body": "we connect your tools and automate the repetitive tasks between them." }
     ]
   },
   "work": {
     "title": "see it for real",
-    "intro": "real work we've designed and built — and a demo clinic where you can talk to the kind of ai assistant we'd add to your own site.",
+    "intro": "sites we've built, plus a demo clinic with an ai assistant like we'd add to your site.",
     "items": [
-      { "name": "Riverbend Physiotherapy", "tag": "live ai assistant", "body": "a demo clinic site we built to show the ai in action — a friendly intake assistant that asks about your problem, suggests a treatment, and explains a first visit, right there on the page. go ahead and talk to it.", "cta": "open the live demo", "href": "https://kaolin-demo-clinic.vercel.app" },
-      { "name": "Portativ SRL", "body": "a four-language site for an electrical-installations contractor — clean, fast, and easy for customers to navigate.", "cta": "visit the site", "href": "https://portativ-srl.vercel.app" },
-      { "name": "Nook", "body": "a calm web product for the working body — proof we care as much about feel and restraint as we do about code.", "cta": "visit the site", "href": "https://nook-liard.vercel.app" }
+      { "name": "Riverbend Physiotherapy", "tag": "live ai assistant", "body": "a demo clinic site with an intake assistant. it asks about your problem, suggests a treatment, and explains a first visit.", "cta": "open the live demo", "href": "https://kaolin-demo-clinic.vercel.app" },
+      { "name": "Portativ SRL", "body": "a four-language website for an electrical-installations contractor. fast and easy to navigate.", "cta": "visit the site", "href": "https://portativ-srl.vercel.app" },
+      { "name": "Nook", "body": "a calm web product for the working body. we care about design and feel, not just code.", "cta": "visit the site", "href": "https://nook-liard.vercel.app" }
     ],
-    "note": "and the assistant on this page? that's ours too — a live demo of exactly what we'd build into your site."
+    "note": "the assistant on this page is ours too. a live demo of what we'd build for you."
   },
   "process": {
     "title": "how we work",
-    "intro": "no project managers, no salespeople, no handoffs. four steps — both of us, from first call to launch.",
+    "intro": "four steps, from the first call to launch. you work with both of us the whole way.",
     "items": [
-      { "step": "01", "name": "a free call", "body": "we listen to what you actually need, and tell you honestly whether ai belongs in it yet." },
-      { "step": "02", "name": "a scoped plan", "body": "a clear plan with a fixed shape and an honest price range — before anyone commits." },
-      { "step": "03", "name": "we build, in the open", "body": "you follow progress on a real link as it happens, not a slide deck at the end." },
-      { "step": "04", "name": "launch & stay", "body": "we ship it, watch it run, and stay reachable. you always know who built it." }
+      { "step": "01", "name": "a free call", "body": "we listen to what you need and tell you if ai is a good fit." },
+      { "step": "02", "name": "a scoped plan", "body": "a clear plan and an honest price range, before anyone commits." },
+      { "step": "03", "name": "we build, in the open", "body": "you follow progress on a real link, not a slide deck at the end." },
+      { "step": "04", "name": "launch & stay", "body": "we launch it, keep it running, and stay reachable. you always know who built it." }
     ]
   },
   "proof": {
     "title": "who we are",
-    "intro": "the whole point is that you talk to us directly — no layers in between.",
+    "intro": "you talk to us directly. no one in between.",
     "items": [
-      { "name": "Leonid", "role": "the software half", "body": "decades of hands-on software development — the kind of judgment that only comes from building real systems, year after year, and keeping them working." },
-      { "name": "Danila", "role": "the ai half", "body": "a third-year ai student in amsterdam, working day to day with the current generation of models — llms, rag, and automation — and how to make them behave in production." }
+      { "name": "Leonid", "role": "the software half", "body": "decades of hands-on software development, building and maintaining real systems." },
+      { "name": "Danila", "role": "the ai half", "body": "a third-year ai student in amsterdam, working daily with current ai models: llms, rag, and automation." }
     ]
   },
   "pricing": {
     "title": "pricing",
-    "intro": "honest starting points, not a menu. where a project lands depends on scope — which we work out together, on a call, for free.",
+    "intro": "we don't list fixed prices. every project is different. the first step is a free call, and after we understand what you need, we give you an honest price range.",
     "tiers": [
-      { "name": "website", "from": "from €1,500", "body": "a fast, multilingual site built to last. everything starts here.", "features": ["multilingual & mobile-first", "built for speed and seo", "yours to keep"] },
-      { "name": "website + ai assistant", "from": "from €4,500", "body": "a site with a live, cost-controlled assistant that answers your customers in their own language.", "features": ["everything in website", "a custom llm assistant", "rate-limited & budget-safe"] },
-      { "name": "custom ai", "from": "from €8,000", "body": "document assistants, predictive models, and automation — scoped to a real, measured use case.", "features": ["rag over your documents", "ml & predictive analytics", "automation across your tools"] }
+      { "name": "website", "from": "", "body": "a fast, multilingual site built to last. everything starts here.", "features": ["multilingual & mobile-first", "built for speed and seo", "yours to keep"] },
+      { "name": "website + ai assistant", "from": "", "body": "a website with a live assistant that answers your customers in their own language, with capped costs.", "features": ["everything in website", "a custom llm assistant", "rate-limited & budget-safe"] },
+      { "name": "custom ai", "from": "", "body": "document assistants, predictive models, and automation, built for a real use case.", "features": ["rag over your documents", "ml & predictive analytics", "automation across your tools"] }
     ],
-    "footnote": "every project scoped after a free call."
+    "footnote": "no fixed prices. we scope every project after a free call."
   },
   "contact": {
     "title": "contact",
-    "body": "tell us what you're trying to do. you'll hear back from one of the two people who'd actually build it — usually within a day.",
+    "body": "tell us what you need. one of the two people who would build it will reply, usually within a day.",
     "form": {
       "name": "your name",
       "email": "your email",
       "message": "what are you trying to do?",
       "send": "send message",
       "sending": "sending…",
-      "success": "thanks — we've got it. you'll hear back from one of us, usually within a day.",
+      "success": "thanks, we got it. one of us will reply, usually within a day.",
       "error": "something went wrong sending that. please email us directly at hello@kaolin.studio."
     },
     "or": "or email us directly at",
@@ -90,13 +91,13 @@
     "launcher": "ask kaolin",
     "hint": "try me",
     "title": "ask kaolin",
-    "intro": "hi — ask me anything about what we build, how we work, or what it costs. i'm a live demo of the kind of assistant we'd put on your site.",
+    "intro": "hi. ask me about what we build, how we work, or what it costs. i'm a live demo of the kind of assistant we'd put on your site.",
     "placeholder": "type your question…",
     "send": "send",
     "close": "close",
     "disclaimer": "a live demo · answers may be imperfect",
     "error": "something went wrong. please try again in a moment.",
-    "rateLimited": "you're going a little fast — give it a minute, then try again."
+    "rateLimited": "you're going a little fast. give it a minute, then try again."
   },
   "error": {
     "notFound": {
@@ -120,8 +121,8 @@
       "intro": "This policy explains what personal data kaolin.studio collects, why, and what rights you have under the GDPR (in the Netherlands, the AVG). We keep data collection to the minimum this site actually needs.",
       "sections": [
         { "h": "Who is responsible", "p": ["Kaolin is a two-person studio (Amsterdam and Chișinău) and is the data controller for this website. You can reach us at hello@kaolin.studio.", "Our Chamber of Commerce (KVK) number and registered address will be added here once the studio is formally registered."] },
-        { "h": "What we collect", "p": ["Contact form: when you write to us, we receive the name, email address, and message you submit. These are delivered through our forms provider, Formspree.", "AI assistant: the messages you type into the on-page assistant are sent to our AI provider to generate a reply. Please don't enter sensitive personal data — it's a demo, not a secure channel.", "Automatic data: to keep the assistant from being abused, your IP address is used briefly to enforce rate limits. We also use privacy-friendly, aggregated analytics that don't build a profile of you."] },
-        { "h": "Why we're allowed to (legal basis)", "p": ["We handle your contact details to respond to your enquiry and to take steps at your request before any agreement — that is our legitimate interest and, where relevant, pre-contractual necessity (Art. 6(1)(b) and (f) GDPR).", "Rate-limiting and basic security rest on our legitimate interest in protecting the site (Art. 6(1)(f)). Aggregated analytics rest on the same basis and set no tracking cookies."] },
+        { "h": "What we collect", "p": ["Contact form: when you write to us, we receive the name, email address, and message you submit. These are delivered through our forms provider, Formspree.", "AI assistant: the messages you type into the on-page assistant are sent to our AI provider to generate a reply. Please don't enter sensitive personal data. It's a demo, not a secure channel.", "Automatic data: to keep the assistant from being abused, your IP address is used briefly to enforce rate limits. We also use privacy-friendly, aggregated analytics that don't build a profile of you."] },
+        { "h": "Why we're allowed to (legal basis)", "p": ["We handle your contact details to respond to your enquiry and to take steps at your request before any agreement. That is our legitimate interest and, where relevant, pre-contractual necessity (Art. 6(1)(b) and (f) GDPR).", "Rate-limiting and basic security rest on our legitimate interest in protecting the site (Art. 6(1)(f)). Aggregated analytics rest on the same basis and set no tracking cookies."] },
         { "h": "Who else processes your data", "p": ["We rely on a few carefully chosen processors: Formspree (contact-form delivery), Vercel (hosting and cookieless analytics), Upstash (temporary rate-limit counters), and Groq (AI model inference for the assistant).", "Some of these providers are based outside the European Economic Area. Where that is the case, transfers are covered by appropriate safeguards such as the European Commission's Standard Contractual Clauses."] },
         { "h": "How long we keep it", "p": ["We keep contact messages only as long as needed to handle your request and any follow-up, then delete them. Assistant conversations are not stored by us for the long term, and rate-limit data expires automatically within a day."] },
         { "h": "Your rights", "p": ["Under the GDPR/AVG you can ask us to access, correct, delete, or restrict your data, object to processing, or receive it in a portable form. To exercise any of these, email hello@kaolin.studio and we will respond within the legal time limit.", "You also have the right to lodge a complaint with the Dutch Data Protection Authority (Autoriteit Persoonsgegevens) if you are unhappy with how we handle your data."] },
@@ -133,12 +134,12 @@
       "title": "terms of use",
       "intro": "These terms govern your use of kaolin.studio. By using the site you accept them. This is our marketing website; any actual project work is covered by a separate written agreement.",
       "sections": [
-        { "h": "About this site", "p": ["kaolin.studio is an informational website for Kaolin, a father–son AI-implementation studio. Nothing here is a binding offer; the scope, price, and terms of any project are agreed separately, in writing."] },
+        { "h": "About this site", "p": ["kaolin.studio is an informational website for Kaolin, a father and son AI-implementation studio. Nothing here is a binding offer; the scope, price, and terms of any project are agreed separately, in writing."] },
         { "h": "The AI assistant", "p": ["The on-page assistant is a live demo powered by a third-party language model. Its answers are generated automatically and can be incomplete or wrong. Treat them as illustrative, not as professional, legal, financial, or technical advice.", "Please don't submit confidential or sensitive personal information through the assistant, and don't rely on it for decisions without confirming with us directly."] },
         { "h": "Intellectual property", "p": ["The text, design, and code of this site belong to Kaolin unless stated otherwise. You may view it and share links to it, but not copy or reuse its content for your own commercial purposes without permission."] },
         { "h": "No warranties", "p": ["The site is provided \"as is\", without warranties of any kind. We work to keep it accurate and available, but we can't guarantee it will always be error-free or uninterrupted."] },
         { "h": "Liability", "p": ["To the extent permitted by law, Kaolin is not liable for any indirect or consequential loss arising from your use of this site or reliance on the assistant. Nothing in these terms limits liability that cannot be limited under Dutch law."] },
-        { "h": "External links", "p": ["Where we link to other sites — including the demos we've built — we are not responsible for their content or their own privacy practices."] },
+        { "h": "External links", "p": ["Where we link to other sites, including the demos we've built, we are not responsible for their content or their own privacy practices."] },
         { "h": "Governing law", "p": ["These terms are governed by Dutch law. Any disputes fall under the jurisdiction of the competent court in the Netherlands."] },
         { "h": "Contact", "p": ["Questions about these terms? Email hello@kaolin.studio. Our KVK number and registered address will be added here once the studio is formally registered."] }
       ]
@@ -150,16 +151,16 @@
         { "h": "Our approach to cookies", "p": ["We don't use advertising or cross-site tracking cookies, and we don't sell data. The site works without you having to accept a wall of trackers."] },
         { "h": "What is actually stored", "p": ["A functional preference: when you choose a language, that choice may be remembered (via a NEXT_LOCALE cookie) so the site opens in the right language next time. It is strictly functional and holds no personal profile.", "Analytics: we use Vercel's privacy-friendly analytics, which measure page views in aggregate, without cookies and without identifying individual visitors."] },
         { "h": "Managing storage", "p": ["You can clear or block cookies at any time in your browser settings. Blocking the language cookie only means the site won't remember your language preference between visits."] },
-        { "h": "How the AI assistant works", "p": ["The assistant is powered by a third-party large language model (served by Groq). When you send it a message, that message is transmitted to the provider to generate a reply, then streamed back to your screen.", "Like all such models, it can \"hallucinate\" — state something confidently that is inaccurate. It is a demonstration of what we build, not an authoritative source."] },
-        { "h": "What the assistant is not", "p": ["It does not give professional, medical, legal, or financial advice, and it can't make commitments on our behalf. For anything that matters, a real person at Kaolin will confirm it — you can always reach us at hello@kaolin.studio."] },
+        { "h": "How the AI assistant works", "p": ["The assistant is powered by a third-party large language model (served by Groq). When you send it a message, that message is transmitted to the provider to generate a reply, then streamed back to your screen.", "Like all such models, it can \"hallucinate\", stating something confidently that is inaccurate. It is a demonstration of what we build, not an authoritative source."] },
+        { "h": "What the assistant is not", "p": ["It does not give professional, medical, legal, or financial advice, and it can't make commitments on our behalf. For anything that matters, a real person at Kaolin will confirm it. You can always reach us at hello@kaolin.studio."] },
         { "h": "Your data in the assistant", "p": ["Only send information you're comfortable sharing. We don't use your conversations to train models, and we don't store them long-term. See our privacy policy for the full picture."] }
       ]
     }
   },
   "footer": {
-    "tagline": "websites that think. built by two people.",
+    "tagline": "websites with ai, built by two people.",
     "email": "hello@kaolin.studio",
-    "kvk": "KVK — registration in progress",
+    "kvk": "KVK registration in progress",
     "location": "Amsterdam × Chișinău",
     "rights": "© 2026 Kaolin. All rights reserved.",
     "legal": { "label": "Legal", "privacy": "privacy", "terms": "terms", "cookies": "cookies & ai" }

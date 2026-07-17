@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { routing } from "@/i18n/routing";
-import { SITE_URL } from "@/lib/site";
+import { SITE_URL, localeAlternates } from "@/lib/site";
 
 // Every indexable path, once per locale, each entry carrying its hreflang
 // alternates so search engines can group the four language versions together.
@@ -14,11 +14,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: now,
       changeFrequency: path === "" ? ("monthly" as const) : ("yearly" as const),
       priority: path === "" ? 1 : 0.3,
-      alternates: {
-        languages: Object.fromEntries(
-          routing.locales.map((l) => [l, `${SITE_URL}/${l}${path}`]),
-        ),
-      },
+      // Reuse the shared hreflang helper so the sitemap and the per-page
+      // metadata alternates stay identical — including the x-default entry.
+      alternates: { languages: localeAlternates(path) },
     })),
   );
 }

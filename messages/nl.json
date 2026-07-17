@@ -1,11 +1,11 @@
 {
   "meta": {
-    "title": "kaolin — ai-implementatiestudio",
-    "description": "een vader-zoonstudio die websites bouwt en ze vervolgens laat denken — chatbots, documentassistenten en automatisering. u spreekt met de twee mensen die het bouwen. amsterdam × chișinău."
+    "title": "kaolin, ai-implementatiestudio",
+    "description": "een vader-zoonstudio. we bouwen websites en voegen er ai aan toe: chatbots, documentassistenten en automatisering. u werkt met de twee mensen die het bouwen. amsterdam × chișinău."
   },
   "hero": {
-    "title": "AI die zijn plek in uw bedrijf verdient.",
-    "subtitle": "Wij bouwen websites en laten ze vervolgens denken — chatbots, documentassistenten en automatisering, gemaakt door de twee mensen die u écht spreekt."
+    "title": "We bouwen websites en voegen er AI aan toe.",
+    "subtitle": "Chatbots, documentassistenten en automatisering. Gebouwd door de twee mensen met wie u praat."
   },
   "nav": {
     "services": "wat we doen",
@@ -17,70 +17,71 @@
     "menu": "Menu",
     "openMenu": "Menu openen",
     "closeMenu": "Menu sluiten",
-    "language": "Taal"
+    "language": "Taal",
+    "skipToContent": "Naar de inhoud"
   },
   "trust": {
-    "line": "een vader-zoon studio. amsterdam × chișinău. u spreekt met wie het bouwt."
+    "line": "een vader-zoonstudio. amsterdam × chișinău. u praat met wie het bouwt."
   },
   "services": {
     "title": "wat we doen",
-    "intro": "een website brengt u online. wat wij daar bovenop bouwen laat de website écht werken — vragen beantwoorden, uw documenten lezen, voorspellen wat er komt, en het repetitieve werk uit handen nemen.",
+    "intro": "een website brengt u online. wij voegen ai toe die vragen beantwoordt, uw documenten leest, voorspelt wat er komt en repetitief werk afhandelt.",
     "items": [
-      { "name": "websites", "body": "snel, meertalig en gebouwd om te blijven — de voordeur naar al het andere." },
-      { "name": "chatbots & llm-integratie", "body": "assistenten die antwoorden in de taal van uw klant, gebaseerd op wat uw bedrijf echt weet — geen algemene gokjes." },
-      { "name": "documentassistenten", "body": "richt er een op uw contracten, handleidingen en rapporten, en stel gewoon uw vraag. elk antwoord komt met de bron." },
-      { "name": "ml & voorspellende analyse", "body": "voorspellen, scoren en classificeren op uw eigen data — alleen waar de cijfers het waard zijn." },
-      { "name": "ai-automatisering", "body": "het repetitieve werk tussen uw tools, rustig op de achtergrond afgehandeld zodat uw mensen dat niet hoeven." }
+      { "name": "websites", "body": "snelle, meertalige websites die lang meegaan." },
+      { "name": "chatbots & llm-integratie", "body": "assistenten die antwoorden in de taal van uw klant, op basis van wat uw bedrijf weet." },
+      { "name": "documentassistenten", "body": "stel vragen over uw contracten, handleidingen en rapporten. elk antwoord verwijst naar de bron." },
+      { "name": "ml & voorspellende analyse", "body": "voorspellen, scoren en classificeren op uw eigen data." },
+      { "name": "ai-automatisering", "body": "we koppelen uw tools en automatiseren het repetitieve werk ertussen." }
     ]
   },
   "work": {
     "title": "zie het in het echt",
-    "intro": "echt werk dat we hebben ontworpen en gebouwd — plus een demokliniek waar u kunt praten met het soort ai-assistent dat we aan uw eigen site zouden toevoegen.",
+    "intro": "sites die we hebben gebouwd, plus een demokliniek met een ai-assistent zoals we die aan uw site zouden toevoegen.",
     "items": [
-      { "name": "Riverbend Physiotherapy", "tag": "live ai-assistent", "body": "een demo-site voor een kliniek die we bouwden om de ai in actie te tonen — een vriendelijke intake-assistent die naar uw klacht vraagt, een behandeling voorstelt en uitlegt wat een eerste bezoek inhoudt, direct op de pagina. praat er gerust mee.", "cta": "open de live demo", "href": "https://kaolin-demo-clinic.vercel.app" },
-      { "name": "Portativ SRL", "body": "een viertalige site voor een elektro-installatiebedrijf — helder, snel en makkelijk te navigeren voor klanten.", "cta": "bekijk de site", "href": "https://portativ-srl.vercel.app" },
-      { "name": "Nook", "body": "een rustig webproduct voor het werkende lichaam — het bewijs dat we net zoveel om gevoel en rust geven als om code.", "cta": "bekijk de site", "href": "https://nook-liard.vercel.app" }
+      { "name": "Riverbend Physiotherapy", "tag": "live ai-assistent", "body": "een demo-kliniekwebsite met een intake-assistent. hij vraagt naar uw klacht, stelt een behandeling voor en legt een eerste bezoek uit.", "cta": "open de live demo", "href": "https://kaolin-demo-clinic.vercel.app" },
+      { "name": "Portativ SRL", "body": "een viertalige website voor een elektro-installatiebedrijf. snel en makkelijk te navigeren.", "cta": "bekijk de site", "href": "https://portativ-srl.vercel.app" },
+      { "name": "Nook", "body": "een rustig webproduct voor het werkende lichaam. we geven om ontwerp en gevoel, niet alleen om code.", "cta": "bekijk de site", "href": "https://nook-liard.vercel.app" }
     ],
-    "note": "en de assistent op deze pagina? die is ook van ons — een live demo van precies wat we in uw site zouden bouwen."
+    "note": "de assistent op deze pagina is ook van ons. een live demo van wat we voor u zouden bouwen."
   },
   "process": {
     "title": "hoe we werken",
-    "intro": "geen projectmanagers, geen verkopers, geen overdrachten. vier stappen — samen, van eerste gesprek tot lancering.",
+    "intro": "vier stappen, van het eerste gesprek tot de lancering. u werkt de hele weg met ons allebei.",
     "items": [
-      { "step": "01", "name": "een gratis gesprek", "body": "we luisteren naar wat u echt nodig heeft, en zeggen eerlijk of ai daar al thuishoort." },
-      { "step": "02", "name": "een afgebakend plan", "body": "een helder plan met een vaste vorm en een eerlijke prijsrange — voordat iemand zich vastlegt." },
-      { "step": "03", "name": "we bouwen, in het zicht", "body": "u volgt de voortgang op een echte link terwijl het gebeurt, geen presentatie achteraf." },
-      { "step": "04", "name": "lanceren & blijven", "body": "we zetten het live, houden het in de gaten en blijven bereikbaar. u weet altijd wie het gebouwd heeft." }
+      { "step": "01", "name": "een gratis gesprek", "body": "we luisteren naar wat u nodig heeft en zeggen of ai past." },
+      { "step": "02", "name": "een afgebakend plan", "body": "een helder plan en een eerlijke prijsrange, voordat iemand zich vastlegt." },
+      { "step": "03", "name": "we bouwen, in het zicht", "body": "u volgt de voortgang op een echte link, geen presentatie achteraf." },
+      { "step": "04", "name": "lanceren & blijven", "body": "we lanceren het, houden het draaiende en blijven bereikbaar. u weet altijd wie het gebouwd heeft." }
     ]
   },
   "proof": {
     "title": "wie we zijn",
-    "intro": "het hele punt is dat u rechtstreeks met ons praat — geen lagen ertussen.",
+    "intro": "u praat rechtstreeks met ons. niemand ertussen.",
     "items": [
-      { "name": "Leonid", "role": "de software-helft", "body": "decennia praktische softwareontwikkeling — het soort oordeel dat alleen komt van jarenlang echte systemen bouwen en werkend houden." },
-      { "name": "Danila", "role": "de ai-helft", "body": "een derdejaars ai-student in amsterdam, dagelijks bezig met de huidige generatie modellen — llm's, rag en automatisering — en hoe je ze in productie laat werken." }
+      { "name": "Leonid", "role": "de software-helft", "body": "tientallen jaren praktische softwareontwikkeling, echte systemen bouwen en onderhouden." },
+      { "name": "Danila", "role": "de ai-helft", "body": "een derdejaars ai-student in amsterdam, dagelijks bezig met actuele ai-modellen: llm's, rag en automatisering." }
     ]
   },
   "pricing": {
     "title": "prijzen",
-    "intro": "eerlijke startpunten, geen menu. waar een project uitkomt hangt af van de scope — die we samen bepalen, in een gesprek, gratis.",
+    "intro": "we noemen geen vaste prijzen. elk project is anders. de eerste stap is een gratis gesprek, en nadat we begrijpen wat u nodig heeft, geven we u een eerlijke prijsrange.",
     "tiers": [
-      { "name": "website", "from": "vanaf €1.500", "body": "een snelle, meertalige site gebouwd om te blijven. alles begint hier.", "features": ["meertalig & mobile-first", "gebouwd voor snelheid en seo", "van u, om te houden"] },
-      { "name": "website + ai-assistent", "from": "vanaf €4.500", "body": "een site met een live, kostengecontroleerde assistent die uw klanten in hun eigen taal te woord staat.", "features": ["alles uit website", "een eigen llm-assistent", "gelimiteerd & budgetveilig"] },
-      { "name": "custom ai", "from": "vanaf €8.000", "body": "documentassistenten, voorspellende modellen en automatisering — afgestemd op een echte, meetbare use case.", "features": ["rag over uw documenten", "ml & voorspellende analyse", "automatisering tussen uw tools"] }
+      { "name": "website", "from": "", "body": "een snelle, meertalige site die lang meegaat. alles begint hier.", "features": ["meertalig & mobile-first", "gebouwd voor snelheid en seo", "van u, om te houden"] },
+      { "name": "website + ai-assistent", "from": "", "body": "een website met een live assistent die uw klanten in hun eigen taal antwoordt, met een kostenplafond.", "features": ["alles uit website", "een eigen llm-assistent", "gelimiteerd & budgetveilig"] },
+      { "name": "custom ai", "from": "", "body": "documentassistenten, voorspellende modellen en automatisering, gebouwd voor een echte use case.", "features": ["rag over uw documenten", "ml & voorspellende analyse", "automatisering tussen uw tools"] }
     ],
-    "footnote": "elk project wordt na een gratis gesprek afgebakend."
+    "footnote": "geen vaste prijzen. we bakenen elk project af na een gratis gesprek."
   },
   "contact": {
     "title": "contact",
-    "body": "vertel ons wat u wilt bereiken. u krijgt antwoord van een van de twee mensen die het ook echt zouden bouwen — meestal binnen een dag.",
+    "body": "vertel ons wat u nodig heeft. een van de twee mensen die het zouden bouwen reageert, meestal binnen een dag.",
     "form": {
       "name": "uw naam",
       "email": "uw e-mailadres",
       "message": "wat wilt u bereiken?",
       "send": "verstuur bericht",
       "sending": "versturen…",
-      "success": "dank u — we hebben het ontvangen. u hoort meestal binnen een dag van een van ons.",
+      "success": "bedankt, we hebben het ontvangen. een van ons reageert, meestal binnen een dag.",
       "error": "er ging iets mis bij het versturen. mail ons gerust direct op hello@kaolin.studio."
     },
     "or": "of mail ons direct op",
@@ -90,13 +91,13 @@
     "launcher": "vraag kaolin",
     "hint": "probeer mij",
     "title": "vraag kaolin",
-    "intro": "hoi — vraag me alles over wat we bouwen, hoe we werken of wat het kost. ik ben een live demo van het soort assistent dat we op uw site zouden zetten.",
+    "intro": "hoi. vraag me over wat we bouwen, hoe we werken of wat het kost. ik ben een live demo van het soort assistent dat we op uw site zouden zetten.",
     "placeholder": "typ uw vraag…",
     "send": "stuur",
     "close": "sluiten",
     "disclaimer": "een live demo · antwoorden kunnen imperfect zijn",
     "error": "er ging iets mis. probeer het zo opnieuw.",
-    "rateLimited": "u gaat iets te snel — wacht even een minuut en probeer opnieuw."
+    "rateLimited": "u gaat iets te snel. wacht even een minuut en probeer opnieuw."
   },
   "error": {
     "notFound": {
@@ -120,8 +121,8 @@
       "intro": "Deze verklaring legt uit welke persoonsgegevens kaolin.studio verzamelt, waarom, en welke rechten u heeft onder de AVG (de Nederlandse uitvoering van de GDPR). We verzamelen niet meer gegevens dan deze site echt nodig heeft.",
       "sections": [
         { "h": "Wie is verantwoordelijk", "p": ["Kaolin is een studio van twee personen (Amsterdam en Chișinău) en is de verwerkingsverantwoordelijke voor deze website. U kunt ons bereiken op hello@kaolin.studio.", "Ons KVK-nummer en ons gevestigde adres worden hier toegevoegd zodra de studio formeel is ingeschreven."] },
-        { "h": "Wat we verzamelen", "p": ["Contactformulier: wanneer u ons schrijft, ontvangen we de naam, het e-mailadres en het bericht dat u invult. Deze worden bezorgd via onze formulierdienst Formspree.", "AI-assistent: de berichten die u in de assistent op de pagina typt, worden naar onze AI-provider gestuurd om een antwoord te genereren. Voer geen gevoelige persoonsgegevens in — het is een demo, geen beveiligd kanaal.", "Automatische gegevens: om misbruik van de assistent te voorkomen, wordt uw IP-adres kort gebruikt om limieten af te dwingen. We gebruiken ook privacyvriendelijke, geaggregeerde statistieken die geen profiel van u opbouwen."] },
-        { "h": "Waarom dat mag (grondslag)", "p": ["We verwerken uw contactgegevens om op uw vraag te reageren en om op uw verzoek stappen te zetten vóór een eventuele overeenkomst — dat is ons gerechtvaardigd belang en, waar van toepassing, precontractuele noodzaak (art. 6(1)(b) en (f) AVG).", "Limieten en basisbeveiliging berusten op ons gerechtvaardigd belang om de site te beschermen (art. 6(1)(f)). Geaggregeerde statistieken berusten op dezelfde grondslag en plaatsen geen trackingcookies."] },
+        { "h": "Wat we verzamelen", "p": ["Contactformulier: wanneer u ons schrijft, ontvangen we de naam, het e-mailadres en het bericht dat u invult. Deze worden bezorgd via onze formulierdienst Formspree.", "AI-assistent: de berichten die u in de assistent op de pagina typt, worden naar onze AI-provider gestuurd om een antwoord te genereren. Voer geen gevoelige persoonsgegevens in. Het is een demo, geen beveiligd kanaal.", "Automatische gegevens: om misbruik van de assistent te voorkomen, wordt uw IP-adres kort gebruikt om limieten af te dwingen. We gebruiken ook privacyvriendelijke, geaggregeerde statistieken die geen profiel van u opbouwen."] },
+        { "h": "Waarom dat mag (grondslag)", "p": ["We verwerken uw contactgegevens om op uw vraag te reageren en om op uw verzoek stappen te zetten vóór een eventuele overeenkomst. Dat is ons gerechtvaardigd belang en, waar van toepassing, precontractuele noodzaak (art. 6(1)(b) en (f) AVG).", "Limieten en basisbeveiliging berusten op ons gerechtvaardigd belang om de site te beschermen (art. 6(1)(f)). Geaggregeerde statistieken berusten op dezelfde grondslag en plaatsen geen trackingcookies."] },
         { "h": "Wie uw gegevens nog meer verwerkt", "p": ["We werken met een paar zorgvuldig gekozen verwerkers: Formspree (bezorging van het contactformulier), Vercel (hosting en cookieloze statistieken), Upstash (tijdelijke tellers voor limieten) en Groq (AI-model voor de assistent).", "Sommige van deze providers zijn buiten de Europese Economische Ruimte gevestigd. Waar dat zo is, worden doorgiftes gedekt door passende waarborgen zoals de modelcontractbepalingen van de Europese Commissie."] },
         { "h": "Hoe lang we het bewaren", "p": ["We bewaren contactberichten alleen zo lang als nodig is om uw verzoek en eventuele opvolging af te handelen, en verwijderen ze daarna. Gesprekken met de assistent worden door ons niet langdurig bewaard, en gegevens voor limieten verlopen automatisch binnen een dag."] },
         { "h": "Uw rechten", "p": ["Onder de AVG kunt u ons vragen om inzage, correctie, verwijdering of beperking van uw gegevens, bezwaar maken tegen verwerking, of ze in een overdraagbare vorm ontvangen. Mail hello@kaolin.studio om hiervan gebruik te maken; we reageren binnen de wettelijke termijn.", "U heeft ook het recht om een klacht in te dienen bij de Autoriteit Persoonsgegevens als u ontevreden bent over hoe wij met uw gegevens omgaan."] },
@@ -138,7 +139,7 @@
         { "h": "Intellectueel eigendom", "p": ["De tekst, het ontwerp en de code van deze site behoren toe aan Kaolin, tenzij anders vermeld. U mag de site bekijken en links delen, maar de inhoud niet kopiëren of hergebruiken voor eigen commerciële doeleinden zonder toestemming."] },
         { "h": "Geen garanties", "p": ["De site wordt geleverd \"zoals hij is\", zonder enige garantie. We doen ons best om hem juist en beschikbaar te houden, maar kunnen niet garanderen dat hij altijd foutloos of ononderbroken werkt."] },
         { "h": "Aansprakelijkheid", "p": ["Voor zover wettelijk toegestaan is Kaolin niet aansprakelijk voor indirecte of gevolgschade die voortvloeit uit uw gebruik van deze site of het vertrouwen op de assistent. Niets in deze voorwaarden beperkt aansprakelijkheid die onder Nederlands recht niet kan worden beperkt."] },
-        { "h": "Externe links", "p": ["Waar we naar andere sites linken — waaronder de demo's die we hebben gebouwd — zijn we niet verantwoordelijk voor hun inhoud of hun eigen privacybeleid."] },
+        { "h": "Externe links", "p": ["Waar we naar andere sites linken, waaronder de demo's die we hebben gebouwd, zijn we niet verantwoordelijk voor hun inhoud of hun eigen privacybeleid."] },
         { "h": "Toepasselijk recht", "p": ["Op deze voorwaarden is Nederlands recht van toepassing. Geschillen vallen onder de bevoegde rechter in Nederland."] },
         { "h": "Contact", "p": ["Vragen over deze voorwaarden? Mail hello@kaolin.studio. Ons KVK-nummer en gevestigde adres worden hier toegevoegd zodra de studio formeel is ingeschreven."] }
       ]
@@ -150,16 +151,16 @@
         { "h": "Onze aanpak van cookies", "p": ["We gebruiken geen advertentie- of cross-site trackingcookies, en we verkopen geen gegevens. De site werkt zonder dat u een muur van trackers hoeft te accepteren."] },
         { "h": "Wat er echt wordt opgeslagen", "p": ["Een functionele voorkeur: wanneer u een taal kiest, kan die keuze worden onthouden (via een NEXT_LOCALE-cookie) zodat de site de volgende keer in de juiste taal opent. Die is strikt functioneel en bevat geen persoonlijk profiel.", "Statistieken: we gebruiken de privacyvriendelijke statistieken van Vercel, die paginaweergaven geaggregeerd meten, zonder cookies en zonder individuele bezoekers te identificeren."] },
         { "h": "Opslag beheren", "p": ["U kunt cookies op elk moment wissen of blokkeren in uw browserinstellingen. Het blokkeren van de taalcookie betekent alleen dat de site uw taalvoorkeur tussen bezoeken niet onthoudt."] },
-        { "h": "Hoe de AI-assistent werkt", "p": ["De assistent wordt aangedreven door een groot taalmodel van een derde partij (via Groq). Wanneer u een bericht stuurt, wordt dat naar de provider verzonden om een antwoord te genereren, dat vervolgens naar uw scherm wordt gestreamd.", "Zoals alle van dat soort modellen kan hij \"hallucineren\" — iets met stellige toon beweren dat toch onjuist is. Het is een demonstratie van wat we bouwen, geen gezaghebbende bron."] },
-        { "h": "Wat de assistent niet is", "p": ["Hij geeft geen professioneel, medisch, juridisch of financieel advies, en kan namens ons geen toezeggingen doen. Voor alles wat ertoe doet, bevestigt een echte persoon bij Kaolin het — u kunt ons altijd bereiken op hello@kaolin.studio."] },
+        { "h": "Hoe de AI-assistent werkt", "p": ["De assistent wordt aangedreven door een groot taalmodel van een derde partij (via Groq). Wanneer u een bericht stuurt, wordt dat naar de provider verzonden om een antwoord te genereren, dat vervolgens naar uw scherm wordt gestreamd.", "Zoals alle van dat soort modellen kan hij \"hallucineren\", iets met stellige toon beweren dat toch onjuist is. Het is een demonstratie van wat we bouwen, geen gezaghebbende bron."] },
+        { "h": "Wat de assistent niet is", "p": ["Hij geeft geen professioneel, medisch, juridisch of financieel advies, en kan namens ons geen toezeggingen doen. Voor alles wat ertoe doet, bevestigt een echte persoon bij Kaolin het. U kunt ons altijd bereiken op hello@kaolin.studio."] },
         { "h": "Uw gegevens in de assistent", "p": ["Stuur alleen informatie die u met een gerust hart deelt. We gebruiken uw gesprekken niet om modellen te trainen, en bewaren ze niet langdurig. Zie onze privacyverklaring voor het volledige beeld."] }
       ]
     }
   },
   "footer": {
-    "tagline": "websites die denken. gemaakt door twee mensen.",
+    "tagline": "websites met ai, gebouwd door twee mensen.",
     "email": "hello@kaolin.studio",
-    "kvk": "KVK — registratie loopt",
+    "kvk": "KVK-inschrijving loopt",
     "location": "Amsterdam × Chișinău",
     "rights": "© 2026 Kaolin. Alle rechten voorbehouden.",
     "legal": { "label": "Juridisch", "privacy": "privacy", "terms": "voorwaarden", "cookies": "cookies & ai" }
