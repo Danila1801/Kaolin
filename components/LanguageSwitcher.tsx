@@ -21,16 +21,16 @@ const names: Record<(typeof routing.locales)[number], string> = {
 };
 
 // Three contexts: "light" on cream surfaces (mobile menu), "inverse" on the
-// ink footer, and "blend" inside the header's mix-blend-mode: difference
-// wrapper — white-based so it self-inverts cleanly against the field.
-type Variant = "light" | "inverse" | "blend";
+// ink footer, and "header" in the sticky bar — colourless so it inherits the
+// bar's ink↔cream type (.site-header) and stays legible over every sky phase.
+type Variant = "light" | "inverse" | "header";
 
 const styles: Record<Variant, { active: string; idle: string }> = {
   light: { active: "bg-ink text-cream", idle: "text-muted hover:text-ink" },
   inverse: { active: "bg-cream text-ink", idle: "text-cream/60 hover:text-cream" },
-  blend: {
-    active: "text-white underline decoration-1 underline-offset-4",
-    idle: "text-white/55 hover:text-white",
+  header: {
+    active: "underline decoration-1 underline-offset-4",
+    idle: "opacity-55 hover:opacity-100",
   },
 };
 

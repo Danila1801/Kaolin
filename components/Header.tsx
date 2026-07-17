@@ -2,13 +2,13 @@ import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import LanguageSwitcher from "./LanguageSwitcher";
 import MobileMenu from "./MobileMenu";
+import HeaderNightWatch from "./HeaderNightWatch";
 
 // Sticky top bar. It's a server component: the nav labels are translated at
-// request time. The bar itself is transparent; the wordmark and nav render in
-// white behind mix-blend-mode: difference, so they self-invert against the
-// field — near-black over the ivory daylight, near-white over the dark act.
-// The MobileMenu panel intentionally stays OUTSIDE any blended element (a
-// blended ancestor would invert the whole cream panel).
+// request time. The bar is transparent; its type inherits one colour from
+// .site-header — ink over the light sky phases, cream while the night act sits
+// behind it (HeaderNightWatch flips [data-night] in sync with the field). Every
+// child leaves its own colour unset so it follows that single switch.
 export default async function Header() {
   const t = await getTranslations("nav");
 
@@ -22,10 +22,11 @@ export default async function Header() {
 
   return (
     <header className="site-header sticky top-0 z-50">
+      <HeaderNightWatch />
       <div className="mx-auto flex w-full max-w-[1320px] items-center justify-between gap-6 px-6 py-4 sm:px-10 lg:px-12">
         <Link
           href="/"
-          className="blend-diff flex items-center gap-2 font-display text-[1.45rem] font-semibold lowercase tracking-[-0.06em] text-white"
+          className="flex items-center gap-2 font-display text-[1.45rem] font-semibold lowercase tracking-[-0.06em]"
         >
           {/* The wind-sprout mark — a grass blade unfurling into a spirit
               coil; currentColor so it self-inverts with the text. */}
@@ -42,20 +43,18 @@ export default async function Header() {
 
         {/* Desktop: inline nav + language switcher */}
         <div className="hidden items-center gap-7 md:flex">
-          <nav aria-label={t("primary")} className="blend-diff flex items-center gap-7">
+          <nav aria-label={t("primary")} className="flex items-center gap-7">
             {items.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
-                className="text-[0.82rem] font-medium text-white/70 transition-colors hover:text-white"
+                className="text-[0.82rem] font-medium opacity-70 transition-opacity hover:opacity-100"
               >
                 {item.label}
               </a>
             ))}
           </nav>
-          <div className="blend-diff">
-            <LanguageSwitcher variant="blend" />
-          </div>
+          <LanguageSwitcher variant="header" />
         </div>
 
         {/* Mobile: hamburger menu */}

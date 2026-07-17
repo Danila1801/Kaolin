@@ -239,14 +239,21 @@ body {
 
 /* ---------- header ---------- */
 
-/* Transparent bar; the wordmark/nav invert themselves against whatever the
-   field shows beneath (ivory day → near-white text over the dark act). */
+/* Transparent bar. Its type is ink across every light sky phase (morning,
+   sunset, twilight, sunrise) and switches to cream while the night act sits
+   behind it. HeaderNightWatch reads the same sky the field renders and toggles
+   [data-night], so the header can never disagree with the background.
+   (Replaces a mix-blend-mode: difference trick that was trapped inside the
+   header's own stacking context — the white wordmark never inverted, it just
+   vanished over the pale morning sky.) */
 .site-header {
   background: transparent;
+  color: var(--color-ink);
+  transition: color 400ms ease;
 }
 
-.blend-diff {
-  mix-blend-mode: difference;
+.site-header[data-night] {
+  color: var(--color-cream);
 }
 
 /* ---------- the dark act ---------- */
