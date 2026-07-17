@@ -33,7 +33,7 @@ export default async function Footer() {
             <p className="mt-4 max-w-[30ch] text-cream/80">{t("tagline")}</p>
           </div>
 
-          <div className="flex flex-col gap-2 text-sm text-cream/80">
+          <div className="flex flex-col gap-2 text-base text-cream/80">
             <a
               href={`mailto:${t("email")}`}
               className="w-fit text-cream hover:text-sand transition-colors"
@@ -51,7 +51,7 @@ export default async function Footer() {
           <p className="text-sm text-cream/70">{t("rights")}</p>
           <nav
             aria-label={t("legal.label")}
-            className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-cream/80"
+            className="flex flex-wrap gap-x-6 gap-y-2 text-base text-cream/80"
           >
             <Link href="/privacy" className="hover:text-sand transition-colors">
               {t("legal.privacy")}
