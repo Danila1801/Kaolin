@@ -19,6 +19,7 @@ import {
   SAND,
   SPAN,
   TRAVEL,
+  celestial,
   sampleSky,
   type Density,
 } from "./palette";
@@ -70,14 +71,20 @@ function createUniforms(grain: 0 | 1) {
     uForest: { value: new THREE.Vector3(...FOREST) },
     uSand: { value: new THREE.Vector3(...SAND) },
     uFog: { value: new THREE.Vector3(...FOG) },
-    // sky cycle (Stage 2)
-    uSkyTop: { value: new THREE.Vector3(0.87, 0.9, 0.92) },
-    uSkyHorizon: { value: new THREE.Vector3(0.97, 0.92, 0.78) },
-    uSunColor: { value: new THREE.Vector3(1.0, 0.96, 0.82) },
+    // sky cycle — sun + moon as two independent bodies on arcs, plus a starfield
+    uSkyTop: { value: new THREE.Vector3(0.93, 0.91, 0.86) },
+    uSkyHorizon: { value: new THREE.Vector3(0.98, 0.93, 0.79) },
     uSunPos: { value: new THREE.Vector2(0.72, 0.74) },
-    uSunRadius: { value: 0.13 },
-    uSunGlow: { value: 0.16 },
-    uMoon: { value: 0 },
+    uSunColor: { value: new THREE.Vector3(1.0, 0.96, 0.82) },
+    uSunRadius: { value: 0.105 },
+    uSunGlow: { value: 0.115 },
+    uSunVis: { value: 1 },
+    uMoonPos: { value: new THREE.Vector2(0.5, -1) },
+    uMoonRadius: { value: 0.075 },
+    uMoonGlow: { value: 0.1 },
+    uMoonVis: { value: 0 },
+    uMoonPhase: { value: 1.2 },
+    uStars: { value: 0 },
   };
 }
 type Uniforms = ReturnType<typeof createUniforms>;
@@ -99,17 +106,22 @@ function buildBackground(u: Uniforms) {
       uDark: u.uDark,
       uGrain: u.uGrain,
       uTime: u.uTime,
-      uBg: u.uBg,
       uSand: u.uSand,
       uForest: u.uForest,
       uFog: u.uFog,
       uSkyTop: u.uSkyTop,
       uSkyHorizon: u.uSkyHorizon,
-      uSunColor: u.uSunColor,
       uSunPos: u.uSunPos,
+      uSunColor: u.uSunColor,
       uSunRadius: u.uSunRadius,
       uSunGlow: u.uSunGlow,
-      uMoon: u.uMoon,
+      uSunVis: u.uSunVis,
+      uMoonPos: u.uMoonPos,
+      uMoonRadius: u.uMoonRadius,
+      uMoonGlow: u.uMoonGlow,
+      uMoonVis: u.uMoonVis,
+      uMoonPhase: u.uMoonPhase,
+      uStars: u.uStars,
     },
     depthTest: false,
     depthWrite: false,
@@ -385,18 +397,27 @@ export function createWorld({ density, grain, initialDprLevel }: WorldOptions) {
     u.uMouse.value.set(m.wx, m.wz, m.s);
     u.uDark.value = st.dark;
 
-    // Stage 2 — sky cycle. Scroll progress p drives a continuous day → sunset
-    // → night → sunrise sky; the sun becomes a moon at night. The dark act
-    // still owns night (uDark fades to 1 there) so the grass silhouettes and
-    // the deep sky agree; over the light phases we use the sampled sky alone.
+    // Sky cycle. Scroll progress p drives a continuous day → sunset → night →
+    // sunrise sky. The colours are keyframed (sampleSky); the sun and moon are
+    // two independent bodies on arcs (celestial): the sun sets west as the moon
+    // rises east, and a starfield fades in when the sky is dark. The dark act
+    // still owns night (uDark fades to 1 there) so grass silhouettes and the
+    // deep sky agree.
     const sky = sampleSky(p);
+    const cel = celestial(p);
     u.uSkyTop.value.set(sky.top[0], sky.top[1], sky.top[2]);
     u.uSkyHorizon.value.set(sky.horizon[0], sky.horizon[1], sky.horizon[2]);
-    u.uSunColor.value.set(sky.sunColor[0], sky.sunColor[1], sky.sunColor[2]);
-    u.uSunPos.value.set(sky.sun[0], sky.sun[1]);
-    u.uSunRadius.value = sky.sunRadius;
-    u.uSunGlow.value = sky.sunGlow;
-    u.uMoon.value = sky.moon;
+    u.uSunPos.value.set(cel.sunPos[0], cel.sunPos[1]);
+    u.uSunColor.value.set(cel.sunColor[0], cel.sunColor[1], cel.sunColor[2]);
+    u.uSunRadius.value = cel.sunRadius;
+    u.uSunGlow.value = cel.sunGlow;
+    u.uSunVis.value = cel.sunVis;
+    u.uMoonPos.value.set(cel.moonPos[0], cel.moonPos[1]);
+    u.uMoonRadius.value = cel.moonRadius;
+    u.uMoonGlow.value = cel.moonGlow;
+    u.uMoonVis.value = cel.moonVis;
+    u.uMoonPhase.value = cel.moonPhase;
+    u.uStars.value = cel.stars;
 
     // Background colour the blades fade into: the current sky horizon, blended
     // toward night by the dark act so silhouettes stay coherent.

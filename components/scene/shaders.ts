@@ -91,69 +91,105 @@ void main(){
 export const BG_VERT = /* glsl */ `
 precision highp float;
 in vec2 position;
-out vec2 vUv;
-void main(){
-  vUv = position * 0.5 + 0.5;          // 0..1 across the fullscreen triangle
-  gl_Position = vec4(position, 0.999, 1.0);
-}
+void main(){ gl_Position = vec4(position, 0.999, 1.0); }
 `;
 
+// Cinematic sky: gradient + a quiet starfield (dark phase only), a cinematic sun
+// (white-hot core, limb darkening, double corona, atmospheric reddening low),
+// and a moon with procedural craters + a curved dot-product phase terminator.
+// Sun and moon positions/visibility come from celestial() in palette.ts.
 export const BG_FRAG = /* glsl */ `
 precision highp float;
-
 uniform vec2 uRes;
 uniform float uDark, uGrain, uTime;
-uniform vec3 uBg, uSand, uForest, uFog;
-// sky cycle
-uniform vec3 uSkyTop, uSkyHorizon, uSunColor;
-uniform vec2 uSunPos;       // disc centre in uv (0 = bottom, 1 = top)
-uniform float uSunRadius;   // disc radius in uv
-uniform float uSunGlow;     // gaussian glow sigma
-uniform float uMoon;        // 0 = sun, 1 = moon
+uniform vec3 uSand, uForest, uFog;
+uniform vec3 uSkyTop, uSkyHorizon;
+uniform vec2 uSunPos; uniform vec3 uSunColor;
+uniform float uSunRadius, uSunGlow, uSunVis;
+uniform vec2 uMoonPos;
+uniform float uMoonRadius, uMoonGlow, uMoonVis, uMoonPhase;
+uniform float uStars;
 out vec4 frag;
-
 float hash12(vec2 p){vec3 p3=fract(vec3(p.xyx)*.1031);p3+=dot(p3,p3.yzx+33.33);return fract((p3.x+p3.y)*p3.z);}
 float vnoise(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);
  float a=hash12(i),b=hash12(i+vec2(1.,0.)),c=hash12(i+vec2(0.,1.)),d=hash12(i+vec2(1.,1.));
  return mix(mix(a,b,f.x),mix(c,d,f.x),f.y);}
-
 void main(){
   vec2 uv = gl_FragCoord.xy / uRes;
-  // Correct vertical aspect so the disc stays circular on non-square canvases.
   float aspect = uRes.x / max(uRes.y, 1.0);
   vec2 suv = vec2((uv.x - 0.5) * aspect + 0.5, uv.y);
-  vec2 ssun = vec2((uSunPos.x - 0.5) * aspect + 0.5, uSunPos.y);
-  float sd = distance(suv, ssun);
-
-  // vertical gradient sky (horizon colour at the bottom, top colour above)
   vec3 sky = mix(uSkyHorizon, uSkyTop, smoothstep(0.0, 1.0, uv.y));
 
-  // soft sun/moon glow (gaussian), then the disc itself
-  float glow = exp(-(sd * sd) / (2.0 * uSunGlow * uSunGlow));
-  float disc = 1.0 - smoothstep(uSunRadius * 0.92, uSunRadius, sd);
-  vec3 body = uSunColor;
-  // moon: cooler, with a faint clipped terminator (subtle crater shading)
-  body = mix(body, body * 0.9 + vec3(0.02), uMoon);
-  sky += glow * uSunColor * (0.55 + 0.45 * uMoon);
-  sky = mix(sky, body, disc * (1.0 - uMoon * 0.0));
-  // moon dark side — clip a soft shadow so it reads as a moon, not a bulb
-  float phase = mix(0.0, 0.55, uMoon);
-  float sh = smoothstep(uSunRadius * (1.0 - phase), uSunRadius * (1.0 + phase), sd);
-  sky = mix(sky, mix(body, uSkyTop * 0.6, 0.7), disc * uMoon * (1.0 - sh));
+  // ---- quiet starfield (only when the sky is dark) ----
+  if (uStars > 0.002) {
+    vec2 sg = suv * 30.0;
+    vec2 cell = floor(sg); vec2 f = fract(sg);
+    float h = hash12(cell);
+    vec2 spos = vec2(0.5) + (vec2(hash12(cell + 17.1), hash12(cell + 31.7)) - 0.5) * 0.7;
+    float d = length(f - spos);
+    float keep = step(0.76, h);                      // most cells stay empty
+    float bri = clamp((h - 0.76) / 0.24, 0.0, 1.0);  // varied brightness
+    float tw = 0.72 + 0.28 * sin(uTime * (0.5 + bri * 1.6) + h * 43.0); // slow twinkle
+    float star = smoothstep(0.09 + bri * 0.05, 0.0, d) * keep * (0.30 + 0.70 * bri) * tw;
+    star *= smoothstep(0.16, 0.42, uv.y);            // fade toward the horizon
+    sky += vec3(0.90, 0.94, 1.0) * star * uStars * 0.85;
+    // rare, slow shooting star (time-gated; frozen time = none)
+    float ep = floor(uTime / 23.0); float et = uTime - ep * 23.0; float life = 1.6;
+    if (et < life && uStars > 0.4 && hash12(vec2(ep, 5.1)) > 0.45) {
+      float ss = et / life;
+      vec2 a0 = vec2(0.12 + 0.6 * hash12(vec2(ep, 3.7)), 0.72 + 0.22 * hash12(vec2(ep, 8.2)));
+      vec2 dir = normalize(vec2(0.78, -0.30));
+      vec2 head = a0 + dir * ss * 0.34;
+      vec2 pa = suv - (head - dir * 0.09); vec2 ba = dir * 0.09;
+      float hseg = clamp(dot(pa, ba) / dot(ba, ba), 0.0, 1.0);
+      float dseg = length(pa - ba * hseg);
+      sky += vec3(0.92, 0.96, 1.0) * smoothstep(0.0030, 0.0, dseg)
+           * sin(3.14159 * ss) * mix(0.15, 1.0, hseg) * uStars * 0.8;
+    }
+  }
+
+  // ---- cinematic sun ----
+  vec2 sp = vec2((uSunPos.x - 0.5) * aspect + 0.5, uSunPos.y);
+  float sd = distance(suv, sp);
+  float g1 = exp(-(sd * sd) / (2.0 * uSunGlow * uSunGlow));         // tight corona
+  float gw = uSunGlow * 3.0;
+  float g2 = exp(-(sd * sd) / (2.0 * gw * gw));                     // wide atmospheric bloom
+  sky += uSunColor * (g1 * 0.75 + g2 * 0.30) * uSunVis;
+  float disc = 1.0 - smoothstep(uSunRadius * 0.82, uSunRadius, sd);
+  float core = 1.0 - smoothstep(0.0, uSunRadius, sd);               // limb darkening
+  vec3 sunBody = mix(uSunColor * 0.92, vec3(1.0, 0.99, 0.93), core * core * 0.75);
+  sky = mix(sky, sunBody, disc * uSunVis);
+
+  // ---- moon with craters + curved phase terminator ----
+  vec2 mp = vec2((uMoonPos.x - 0.5) * aspect + 0.5, uMoonPos.y);
+  float md = distance(suv, mp);
+  float mg = exp(-(md * md) / (2.0 * uMoonGlow * uMoonGlow));
+  sky += vec3(0.55, 0.66, 0.70) * mg * 0.55 * uMoonVis;             // cool halo
+  float mdisc = 1.0 - smoothstep(uMoonRadius * 0.93, uMoonRadius, md);
+  float mAmt = mdisc * uMoonVis;
+  if (mAmt > 0.003) {
+    vec2 q = (suv - mp) / uMoonRadius;                              // disc-local -1..1
+    float nz = sqrt(max(1.0 - dot(q, q), 0.0));
+    vec3 n = vec3(q, nz);
+    vec3 L = normalize(vec3(sin(uMoonPhase), 0.16, cos(uMoonPhase)));
+    float lit = smoothstep(-0.05, 0.24, dot(n, L));                 // curved terminator
+    vec2 cuv = q * 2.4 + vec2(4.7, 1.3);
+    float cr = vnoise(cuv * 2.1) * 0.6 + vnoise(cuv * 4.9) * 0.4;   // soft craters
+    float shade = (0.80 + 0.28 * cr) * (0.72 + 0.28 * nz);          // mottling + limb darkening
+    vec3 litSide = vec3(0.87, 0.90, 0.89) * shade;
+    vec3 darkSide = mix(vec3(0.075, 0.10, 0.11), vec3(0.14, 0.17, 0.18), cr); // earthshine hint
+    darkSide = mix(sky, darkSide, 0.92);
+    sky = mix(sky, mix(darkSide, litSide, lit), mAmt);
+  }
 
   vec3 c = sky;
-
-  // warm haze at the horizon, daylight only
   c += uSand * 0.05 * smoothstep(0.78, 0.40, uv.y) * (1.0 - uDark);
-  // low forest luminescence at night
   c += uForest * 0.14 * smoothstep(0.62, 0.02, uv.y) * uDark;
-  // drifting fog band, warm sage by day / faint forest-green at night
   float fbm = vnoise(vec2(uv.x*3.0 + uTime*0.030, uv.y*7.0 - uTime*0.011));
   fbm = fbm*0.62 + 0.38*vnoise(vec2(uv.x*7.5 - uTime*0.018, uv.y*14.0 + uTime*0.007));
   float band = smoothstep(0.28, 0.54, uv.y) * smoothstep(0.99, 0.62, uv.y);
   c = mix(c, uFog, band * fbm * 0.60 * (1.0 - uDark));
   c += uForest * band * fbm * 0.12 * uDark;
-
   float d = distance(uv, vec2(0.5, 0.44));
   c *= 1.0 - 0.09 * smoothstep(0.35, 0.95, d);
   c += (hash12(gl_FragCoord.xy) - 0.5) * 0.014 * uGrain;

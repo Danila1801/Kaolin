@@ -28,59 +28,52 @@ export function initialDprLevel(): number {
 export const DENSITY = { airy: 0.55, standard: 1.0, lush: 1.6 } as const;
 export type Density = keyof typeof DENSITY;
 
-// ── Sky cycle (Stage 2) ────────────────────────────────────────────────────
+// ── Sky cycle ───────────────────────────────────────────────────────────────
 // Scroll progress (0 = top/hero, 1 = bottom/contact) drives a continuous
-// day → sunset → night → sunrise sky. Every stop is a light-enough sky behind
-// the dark ink copy (morning / sunset / pre-dawn / sunrise) EXCEPT the night
-// stop, which pairs with the [data-scene-dark] act (light text on dark). This
-// keeps WCAG AA text through all four phases without hard scrims.
+// day → sunset → night → sunrise sky. The sky COLOURS are keyframed below (same
+// stops/timing as before — the contract with the page's day/night text, and
+// what HeaderNightWatch reads via sampleSky(p).top). The sun and moon are no
+// longer keyframed discs: they are two independent bodies on analytic
+// horizon-to-horizon arcs (see celestial()), so the sun sets west as the moon
+// rises east instead of one disc morphing in place.
 export interface SkyStop {
   p: number; // scroll progress at which this stop applies
   top: readonly [number, number, number]; // sky color at the top of the screen
   horizon: readonly [number, number, number]; // sky color at the horizon
-  sun: readonly [number, number]; // disc centre in uv (0 = bottom, 1 = top)
-  sunColor: readonly [number, number, number];
-  sunRadius: number; // disc radius in uv units
-  sunGlow: number; // gaussian glow sigma in uv units
-  moon: number; // 0 = sun, 1 = moon
 }
 
 export const SKY_STOPS: SkyStop[] = [
   // morning — soft warm ivory sky (no cool-blue cast), pale-gold horizon
-  { p: 0.0, top: [0.93, 0.91, 0.86], horizon: [0.98, 0.93, 0.79],
-    sun: [0.72, 0.74], sunColor: [1.0, 0.96, 0.82], sunRadius: 0.13, sunGlow: 0.16, moon: 0 },
-  // sunset — warm cream sky, low amber sun over services/work
-  { p: 0.38, top: [0.95, 0.86, 0.74], horizon: [0.99, 0.78, 0.55],
-    sun: [0.5, 0.42], sunColor: [1.0, 0.66, 0.36], sunRadius: 0.15, sunGlow: 0.18, moon: 0 },
-  // night — deep blue-green dusk; the sun becomes a cool moon (process/proof act)
-  { p: 0.56, top: [0.02, 0.05, 0.06], horizon: [0.05, 0.12, 0.12],
-    sun: [0.5, 0.8], sunColor: [0.82, 0.88, 0.86], sunRadius: 0.08, sunGlow: 0.1, moon: 1 },
-  { p: 0.72, top: [0.02, 0.05, 0.06], horizon: [0.05, 0.12, 0.12],
-    sun: [0.5, 0.8], sunColor: [0.82, 0.88, 0.86], sunRadius: 0.08, sunGlow: 0.1, moon: 1 },
+  { p: 0.0, top: [0.93, 0.91, 0.86], horizon: [0.98, 0.93, 0.79] },
+  // sunset — warm cream sky over services/work
+  { p: 0.38, top: [0.95, 0.86, 0.74], horizon: [0.99, 0.78, 0.55] },
+  // night — deep blue-green dusk (process/proof act)
+  { p: 0.56, top: [0.02, 0.05, 0.06], horizon: [0.05, 0.12, 0.12] },
+  { p: 0.72, top: [0.02, 0.05, 0.06], horizon: [0.05, 0.12, 0.12] },
   // pre-dawn — light dusky blue; dark ink copy still passes AA (pricing)
-  { p: 0.87, top: [0.8, 0.82, 0.88], horizon: [0.93, 0.82, 0.8],
-    sun: [0.5, 0.4], sunColor: [0.85, 0.75, 0.72], sunRadius: 0.06, sunGlow: 0.06, moon: 0 },
+  { p: 0.87, top: [0.8, 0.82, 0.88], horizon: [0.93, 0.82, 0.8] },
   // sunrise — hopeful warm dawn; "book an appointment" lands at daybreak (contact)
-  { p: 1.0, top: [0.95, 0.86, 0.72], horizon: [1.0, 0.88, 0.66],
-    sun: [0.42, 0.42], sunColor: [1.0, 0.74, 0.46], sunRadius: 0.14, sunGlow: 0.17, moon: 0 },
+  { p: 1.0, top: [0.95, 0.86, 0.72], horizon: [1.0, 0.88, 0.66] },
 ];
 
 export interface SampledSky {
   top: [number, number, number];
   horizon: [number, number, number];
-  sun: [number, number];
-  sunColor: [number, number, number];
-  sunRadius: number;
-  sunGlow: number;
-  moon: number;
 }
 
 const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
+const clamp = (v: number, a: number, b: number) => (v < a ? a : v > b ? b : v);
+const smooth = (a: number, b: number, x: number) => {
+  const t = clamp((x - a) / (b - a), 0, 1);
+  return t * t * (3 - 2 * t);
+};
+const lum = (c: readonly [number, number, number]) =>
+  0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2];
 
-// Interpolate the sky between the two stops that bracket scroll progress p.
+// Interpolate the sky colours between the two stops that bracket progress p.
 export function sampleSky(p: number): SampledSky {
   const stops = SKY_STOPS;
-  const pp = Math.min(Math.max(p, 0), 1);
+  const pp = clamp(p, 0, 1);
   let i = 0;
   while (i < stops.length - 1 && stops[i + 1].p <= pp) i++;
   const a = stops[i];
@@ -90,10 +83,68 @@ export function sampleSky(p: number): SampledSky {
   return {
     top: [lerp(a.top[0], b.top[0], t), lerp(a.top[1], b.top[1], t), lerp(a.top[2], b.top[2], t)],
     horizon: [lerp(a.horizon[0], b.horizon[0], t), lerp(a.horizon[1], b.horizon[1], t), lerp(a.horizon[2], b.horizon[2], t)],
-    sun: [lerp(a.sun[0], b.sun[0], t), lerp(a.sun[1], b.sun[1], t)],
-    sunColor: [lerp(a.sunColor[0], b.sunColor[0], t), lerp(a.sunColor[1], b.sunColor[1], t), lerp(a.sunColor[2], b.sunColor[2], t)],
-    sunRadius: lerp(a.sunRadius, b.sunRadius, t),
-    sunGlow: lerp(a.sunGlow, b.sunGlow, t),
-    moon: lerp(a.moon, b.moon, t),
   };
+}
+
+// ── The celestial model ─────────────────────────────────────────────────────
+// Each body follows an ellipse arc: x = 0.5 + cos(th)*RX, y = HOR + sin(th)*RY.
+// th rises from ~0 (east/right horizon) through π/2 (zenith) to π (west/left
+// horizon); visibility comes from altitude sin(th). The sun sets west as the
+// moon rises east, so they trade places at the horizon — no in-place morph.
+const HOR = 0.14, RX = 0.46, RY_SUN = 0.62, RY_MOON = 0.6;
+
+export interface Celestial {
+  sunPos: [number, number];
+  sunColor: [number, number, number];
+  sunRadius: number;
+  sunGlow: number;
+  sunVis: number;
+  moonPos: [number, number];
+  moonRadius: number;
+  moonGlow: number;
+  moonVis: number;
+  moonPhase: number;
+  stars: number;
+}
+
+export function celestial(p: number): Celestial {
+  // sun: day arc (already up at the top of the page), then a second dawn rise
+  // for the contact section
+  let th = 0;
+  let hasSun = true;
+  if (p <= 0.38) th = lerp(1.09, 2.78, p / 0.38); // morning -> low sunset
+  else if (p <= 0.58) th = lerp(2.78, Math.PI + 0.22, (p - 0.38) / 0.2); // sets below west
+  else if (p >= 0.86) th = lerp(-0.12, 0.34, (p - 0.86) / 0.14); // dawn rise, east
+  else hasSun = false;
+
+  let sunVis = 0;
+  let sunPos: [number, number] = [0.5, -1];
+  let sunColor: [number, number, number] = [1, 0.9, 0.7];
+  let sunRadius = 0.1;
+  let sunGlow = 0.12;
+  if (hasSun) {
+    const alt = Math.sin(th);
+    sunPos = [0.5 + Math.cos(th) * RX, HOR + alt * RY_SUN];
+    sunVis = smooth(-0.05, 0.1, alt);
+    const red = 1 - smooth(0.1, 0.62, Math.max(alt, 0)); // reddening near the horizon
+    sunColor = [1.0, lerp(0.97, 0.52, red), lerp(0.87, 0.24, red)];
+    sunRadius = 0.105 * (1 + 0.45 * red);
+    sunGlow = 0.115 * (1 + 0.9 * red);
+  }
+
+  // moon: owns the night span; rises east as the sun sets west
+  const mt = (p - 0.5) / 0.38;
+  let moonVis = 0;
+  let moonPos: [number, number] = [0.5, -1];
+  let moonPhase = 1.2;
+  if (mt > -0.02 && mt < 1.05) {
+    const mth = lerp(-0.1, Math.PI + 0.1, clamp(mt, 0, 1));
+    const malt = Math.sin(mth);
+    moonPos = [0.5 + Math.cos(mth) * RX, HOR + malt * RY_MOON];
+    moonVis = smooth(-0.04, 0.1, malt) * smooth(0.5, 0.25, lum(sampleSky(p).top));
+    moonPhase = lerp(2.0, 0.5, smooth(0.5, 0.88, p)); // crescent -> gibbous across the night
+  }
+
+  const stars = smooth(0.32, 0.1, lum(sampleSky(p).top)); // in only when the sky is dark
+  return { sunPos, sunColor, sunRadius, sunGlow, sunVis, moonPos, moonRadius: 0.075, moonGlow: 0.1, moonVis, moonPhase, stars };
 }
