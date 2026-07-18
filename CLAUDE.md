@@ -112,18 +112,103 @@ What was done and how:
   package-lock.json synced (it had gone stale after the TinaCMS commit and would
   break a clean install).
 
-## Next big tasks (owner's direction, do these next)
-1. Backend / admin system: a whole system for the dad to MONITOR the website and
-   COORDINATE the project around it (project management + site monitoring). Note:
-   the repo already has TinaCMS (commit d5b81c0) and a Payload CMS blueprint exists
-   in the strategy doc; reconcile before adding a second backend. Confirm scope with
-   the owner (what to monitor, who logs in, what "coordinate the project" means).
-2. A SECOND, "regular" website: a summarized, non-3D alternative to show clients as
-   an option. Same text and same colors/brand as the botanical site, but a normal
-   clean website (no cats, no WebGL field, no orange). It should also be a full redo
-   of the old ugly kaolin18.vercel.app. Build it fresh, reuse the copy + palette
-   tokens. The botanical (3D) site stays as the creative flagship; this is the safe,
-   summarized alternative.
+## Active work (July 18, 2026)
+
+### Backend / Admin system IN PROGRESS
+**Phase 0 DONE (deployed to main, July 18)**: Private login + dashboard shell.
+- `lib/dashboard-auth.ts`: dependency-free session. One shared password (env
+  DASHBOARD_PASSWORD), HMAC-signed httpOnly cookie (env DASHBOARD_SESSION_SECRET),
+  7-day expiry, constant-time compares. Swap for an auth library when the studio
+  needs per-person accounts.
+- `app/(dash)/` route group: public /login and password-gated /dashboard subtree.
+  Login form uses useActionState + server action. Dashboard shows Overview (roadmap
+  of what is live, what is coming next) and tabs (Leads, Chats, Traffic, Tasks) with
+  live items active and future items marked "soon". Links out to /admin (Tina).
+- `proxy.ts`: exclude /dashboard and /login from next-intl locale rewrite (like
+  /admin).
+- **Verified:** guest -> 307 to /login; valid signed cookie -> 200 Overview;
+  tampered cookie -> rejected. Production build passes.
+- **Vercel setup:** Two env vars required in Project Settings:
+  `DASHBOARD_PASSWORD` (the shared password) and `DASHBOARD_SESSION_SECRET`
+  (a random base64 signing key). These are already set on live production.
+- **URL:** https://yoursite.com/dashboard (once Vercel deploys).
+
+**Phase 1 NEXT (do this now):** Leads database + contact form integration.
+- Create a free Postgres database in the Vercel dashboard (Vercel Postgres).
+- Add an API route to save contact form submissions to the database (from
+  app/api/chat/contact or a new app/api/leads route).
+- Build a Leads table in the dashboard showing all contact messages with name,
+  email, message, date. Searchable, sortable, highest value first (recent).
+- Switch the contact form to save into the database instead of disappearing.
+- This is the first real "monitor the business" feature for the dad.
+
+### Second website (kaolin-classic) TASK 3 DONE (July 18)
+A separate Next.js 16 repo (Danila1801/kaolin_classic) built by a fresh Claude.
+Tasks 1, 2, 3 complete and live at https://kaolin-classic.vercel.app.
+
+**Task 1 DONE:** Scaffold + shell. Header (wordmark, nav, language switcher), footer,
+all four locales, emerald/cream palette, Bricolage/Montserrat fonts.
+
+**Task 2 DONE:** Full one-page site. All sections (hero, trust, services, work, process,
+team, pricing, contact) using copy reused verbatim from the botanical site's
+messages/*.json. Pricing: free-call framing, zero numbers. Contact form posts to
+the owner's Formspree inbox (https://formspree.io/f/mrenzedl).
+
+**Task 3 DONE:** Polish and launch. Lighthouse 95+ (mobile EN 98, RU 96, all locales
+pass). WCAG AA (Accessibility 100). SEO 100 (robots, sitemap with hreflang, OG
+image per locale, JSON-LD). Localized 404 page. No boxes, no em dashes, no slop.
+
+**Task 4 IN PROGRESS:** Legal pages + Formspree test. A fresh Claude is adding
+privacy/terms/cookies pages (trimmed from the botanical site to exclude chat/Groq
+features), wiring footer links, testing the contact form end-to-end, and re-running
+Lighthouse. Once done, the site is ready for the owner to point kaolin18.vercel.app
+to this repo in the Vercel dashboard.
+
+---
+
+## Backend admin mode (July 18, 2026)
+
+You own the backend/dashboard track. The second website is a separate repo, so the
+two tracks never collide. Your focus: Phase 1 (Leads database integration). Here is
+what you need to know.
+
+### Current state
+- Phase 0 (login + dashboard shell) is deployed to main.
+- Two env vars are set on Vercel: DASHBOARD_PASSWORD and DASHBOARD_SESSION_SECRET.
+- Dad can log in at https://yoursite.com/dashboard and sees an Overview roadmap.
+- Contact form messages are currently sent to Formspree and disappear from our view.
+
+### What Phase 1 needs
+1. **Database:** Create a free Postgres in the Vercel dashboard (Vercel Postgres).
+   This is the owner's step, not code, but flag it when you need the connection
+   string.
+2. **API route:** An endpoint that the contact form can POST to, which saves the
+   message to the database and returns success/error. Endpoint can be
+   app/api/leads or app/api/contact, your choice.
+3. **Leads table:** A React component showing all messages (name, email, message,
+   created_at) sorted newest first, searchable by name/email. Shows in
+   /dashboard/leads (future tab that is currently marked "soon").
+4. **Form switch:** Redirect the contact form (app/api/chat/route.ts or
+   components/sections/ContactForm.tsx) to post to your new API endpoint instead
+   of (or in addition to) Formspree.
+
+### Approach
+- Use a simple schema: leads table with (id, name, email, message, created_at).
+- Wrap the table queries in a DAL (data access layer) that checks the dashboard
+   session (use requireAuth from lib/dashboard-auth.ts).
+- Formspree can stay or go; your choice. If you keep it, the form POSTs to both
+   (database + Formspree). If you drop it, the form only POSTs to your API.
+- The Leads page should live at app/(dash)/dashboard/leads/page.tsx so it is
+   behind the password gate and uses the dashboard layout.
+
+### Quality bar
+Production build must pass, no console errors, /dashboard/leads must render with a
+real list of messages (test with a form submission or a manual database insert), and
+the Lighthouse score on /dashboard must stay >=95 (it is already 95 because the page
+is simple, so this should be easy). All four locales of the public site must still
+work perfectly (the dashboard is not localized; it is English-only for the admin).
+
+---
 
 ## Next.js agent rules
 @AGENTS.md
