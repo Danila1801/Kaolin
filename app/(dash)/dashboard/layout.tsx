@@ -7,7 +7,7 @@ import { logout } from "./actions";
 // build them (Leads is Phase 1, then Chats, Traffic, Tasks).
 const TABS: { href: string; label: string; live: boolean }[] = [
   { href: "/dashboard", label: "Overview", live: true },
-  { href: "/dashboard/leads", label: "Leads", live: false },
+  { href: "/dashboard/leads", label: "Leads", live: true },
   { href: "/dashboard/chats", label: "Chats", live: false },
   { href: "/dashboard/traffic", label: "Traffic", live: false },
   { href: "/dashboard/tasks", label: "Tasks", live: false },

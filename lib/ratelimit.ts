@@ -35,3 +35,15 @@ export const dailyLimiter = redis
       analytics: false,
     })
   : null;
+
+// Contact form guard, keyed by client IP. A real person sends one message; this
+// only bites bots trying to flood the leads table. Its own prefix so it never
+// shares a counter with the chat limiters above.
+export const leadsLimiter = redis
+  ? new Ratelimit({
+      redis,
+      limiter: Ratelimit.slidingWindow(5, "10 m"),
+      prefix: "kaolin:leads",
+      analytics: false,
+    })
+  : null;

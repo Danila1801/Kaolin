@@ -133,14 +133,34 @@ What was done and how:
   (a random base64 signing key). These are already set on live production.
 - **URL:** https://yoursite.com/dashboard (once Vercel deploys).
 
-**Phase 1 NEXT (do this now):** Leads database + contact form integration.
-- Create a free Postgres database in the Vercel dashboard (Vercel Postgres).
-- Add an API route to save contact form submissions to the database (from
-  app/api/chat/contact or a new app/api/leads route).
-- Build a Leads table in the dashboard showing all contact messages with name,
-  email, message, date. Searchable, sortable, highest value first (recent).
-- Switch the contact form to save into the database instead of disappearing.
-- This is the first real "monitor the business" feature for the dad.
+**Phase 1 CODE DONE (July 18, awaiting DB provisioning):** Leads database +
+contact form integration. All code is written, built, and committed on
+design/botanical. The ONLY thing left is the owner creating the database.
+- Driver: @neondatabase/serverless (Vercel Postgres is Neon-backed; HTTP driver
+  is serverless-safe, unlike a raw pg TCP client). Reads DATABASE_URL (or
+  POSTGRES_URL). Everything is resilient to a missing connection string: the
+  site builds and the Leads page shows a "connect a database" note until it exists.
+- lib/leads.ts: the DAL, the only file that talks to the leads DB. Lazily runs
+  CREATE TABLE IF NOT EXISTS on first use (no migration step). validateLead()
+  trims + caps + checks email. listLeads() calls requireAuth() first (read path
+  is password-gated); insertLead() is the public write path. `import "server-only"`;
+  the client table imports only the Lead TYPE (`import type`) so the DAL never
+  enters the browser bundle.
+- app/api/leads/route.ts: public POST. Honeypot (_gotcha) -> fake 200, no write.
+  Then leadsLimiter (5 / 10 min per IP, own Upstash prefix), validate, then TWO
+  independent sinks: insertLead (DB) AND forwardToFormspree (email). Succeeds if
+  either works, 502 only if both fail. Accepts FormData or JSON.
+- ContactForm.tsx now posts to /api/leads (was Formspree directly). Formspree KEPT
+  as the email-notification path (dad keeps his emails), just moved server-side.
+- app/(dash)/dashboard/leads/{page.tsx,LeadsTable.tsx}: server page + client search
+  table (filter by name/email, newest first, no boxes). Leads flipped to live in
+  the dashboard nav + Overview roadmap.
+- Verified: production build passes; locally (no DB) guest->307 /login, honeypot->
+  200 no-write, bad email/empty name->400. Did NOT fire a real submission (it would
+  email dad via Formspree). Full end-to-end is the owner's job once the DB exists.
+- OWNER STEP: Vercel dashboard -> project -> Storage -> Create Database -> Postgres
+  (free). Connect to project, redeploy. DATABASE_URL is injected automatically.
+- Phase 2 candidates: Chats tab (read visitor conversations), then Traffic, Tasks.
 
 ### Second website (kaolin-classic) TASK 3 DONE (July 18)
 A separate Next.js 16 repo (Danila1801/kaolin_classic) built by a fresh Claude.

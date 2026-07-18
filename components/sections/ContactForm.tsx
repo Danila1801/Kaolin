@@ -4,11 +4,12 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import Reveal from "@/components/Reveal";
 
-// Formspree endpoint — a form POST, no backend of our own. The key stays public
-// by design (it only accepts submissions; it can't read them), so there's no
-// secret to leak here. Spam is handled two ways: Formspree's own filtering, and
-// the honeypot field below.
-const FORMSPREE_ENDPOINT = "https://formspree.io/f/mrenzedl";
+// Our own endpoint now (was Formspree directly). It saves the message to our
+// database AND forwards it to Formspree for the email notification, so we gain a
+// searchable record without losing the email. Spam is handled by the honeypot
+// below plus a server-side rate limit. No secret leaks here — it's a same-origin
+// POST.
+const LEADS_ENDPOINT = "/api/leads";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -22,7 +23,7 @@ export default function ContactForm() {
     setStatus("submitting");
 
     try {
-      const res = await fetch(FORMSPREE_ENDPOINT, {
+      const res = await fetch(LEADS_ENDPOINT, {
         method: "POST",
         headers: { Accept: "application/json" },
         body: new FormData(form),
