@@ -18,6 +18,7 @@
  */
 
 import OpenAI from "openai";
+import { after } from "next/server";
 import { dailyLimiter, minuteLimiter, rateLimitConfigured } from "@/lib/ratelimit";
 import { retrieveGrounding, formatGrounding } from "@/lib/rag";
 import { appendTurn, estimateTokens, estimateTokensFromLength } from "@/lib/chats";
@@ -217,25 +218,30 @@ export async function POST(req: Request) {
         console.error("[chat] stream error:", err);
       } finally {
         controller.close();
-        // Persist AFTER closing: the visitor already has the full reply, so a
-        // slow database never adds to their perceived latency. Telemetry is
-        // strictly best-effort — a failure here is logged and nothing else,
+        // Persist via Next's after(), NOT a plain awaited call. On Vercel, once
+        // the response stream reaches EOF the platform can freeze the function
+        // invocation immediately; a bare `await` here has no guarantee of
+        // finishing; after() explicitly tells the platform "the response is
+        // done, but keep this invocation alive until this settles". Telemetry
+        // is still strictly best-effort: a failure is logged and nothing else,
         // it must never be able to affect a conversation the visitor already
-        // received.
+        // received (which by this point they already have in full).
         if (lastUser && acc) {
-          try {
-            await appendTurn({
-              chatId: conversationId,
-              locale: lang,
-              userContent: lastUser.content,
-              assistantContent: acc,
-              grounded,
-              promptTokens: estimateTokensFromLength(promptChars),
-              completionTokens: estimateTokens(acc),
-            });
-          } catch (err) {
-            console.error("[chat] failed to persist conversation:", err);
-          }
+          after(async () => {
+            try {
+              await appendTurn({
+                chatId: conversationId,
+                locale: lang,
+                userContent: lastUser.content,
+                assistantContent: acc,
+                grounded,
+                promptTokens: estimateTokensFromLength(promptChars),
+                completionTokens: estimateTokens(acc),
+              });
+            } catch (err) {
+              console.error("[chat] failed to persist conversation:", err);
+            }
+          });
         }
       }
     },
