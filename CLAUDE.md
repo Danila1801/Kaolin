@@ -207,25 +207,93 @@ the owner's Formspree inbox (https://formspree.io/f/mrenzedl).
 pass). WCAG AA (Accessibility 100). SEO 100 (robots, sitemap with hreflang, OG
 image per locale, JSON-LD). Localized 404 page. No boxes, no em dashes, no slop.
 
-**Task 4 IN PROGRESS:** Legal pages + Formspree test. A fresh Claude is adding
-privacy/terms/cookies pages (trimmed from the botanical site to exclude chat/Groq
-features), wiring footer links, testing the contact form end-to-end, and re-running
-Lighthouse. Once done, the site is ready for the owner to point kaolin18.vercel.app
-to this repo in the Vercel dashboard.
+**Task 4 DONE (verified July 20):** Legal pages landed. `app/[locale]/privacy`,
+`/terms`, `/cookies` exist with footer links, trimmed to exclude chat/Groq
+features. Two perf commits followed (dropped the Bricolage opsz axis and stopped
+preloading the body font, both to shrink LCP). Site is live at
+https://kaolin-classic.vercel.app.
+OPEN DECISION: which build owns kaolin18.vercel.app. Right now the BOTANICAL
+site serves it; kaolin_classic's old README claimed it would replace it. Pick one
+and redirect the other.
 
 ---
 
-## Backend admin mode (July 18, 2026)
+## THE PLAN (July 20, 2026): two parallel tracks
 
-You own the backend/dashboard track. The second website is a separate repo, so the
-two tracks never collide. Your focus: Phase 1 (Leads database integration). Here is
-what you need to know.
+Goal for this summer: keep Kaolin shipping AND produce the portfolio that lands
+an applied-AI / LLM-engineer internship in NL. Two Claude sessions run in
+parallel. The contract that keeps them safe is DISJOINT FILE OWNERSHIP.
+
+| | Track A (Opus, backend/LLM) | Track B (Sonnet, surface/content) |
+|---|---|---|
+| Owns in Kaolin | `lib/`, `app/api/`, `app/(dash)/` | `messages/`, `components/sections/`, `app/[locale]/`, `app/globals.css` |
+| Owns elsewhere | new `kaolin-rag` repo | Nook, PortativSRL, kaolin_classic |
+
+Neither track edits the other's paths. If a change is needed across the line,
+it goes through the owner, not a direct edit.
+
+### Decisions locked (July 20)
+- RAG corpus: **Kaolin's own studio docs** (READMEs, service/pricing copy, CLAUDE.md).
+- RAG home: **standalone repo `kaolin-rag` first**, then wire Kaolin's live
+  assistant to it. Standalone = the recruiter-visible artifact; wiring it in =
+  the "it runs in production" proof.
+- Embeddings: **NVIDIA NIM**, OpenAI-compatible at
+  `https://integrate.api.nvidia.com/v1`. Model `nvidia/nv-embedqa-e5-v5`,
+  verified **1024 dimensions**. These are ASYMMETRIC: pass
+  `input_type: "passage"` when ingesting and `"query"` when searching. Getting
+  that backwards silently degrades retrieval.
+- No rerankers exposed on that endpoint, so retrieval = vector search + MMR
+  diversification, not a cross-encoder.
+- Vector store: **pgvector in the same Neon Postgres** as leads. One free DB.
+- SECURITY: the NVIDIA key was pasted into a chat and is therefore burned.
+  It must be ROTATED. Never commit it; it lives only in gitignored `.env.local`
+  as `NVIDIA_API_KEY`.
+
+### Track A backlog (10 tasks, 4 batches)
+A1 ship what exists: (1) reconcile `design/botanical` with `origin/main` and
+merge Phase 1 to main, (2) verify leads on production, (3) DB provisioning steps
++ Vercel health check.
+A2 RAG core: (4) scaffold `kaolin-rag`, (5) ingestion + structure-aware chunking
+of studio docs, (6) NIM embeddings + pgvector store.
+A3 what makes it senior, not a tutorial: (7) retrieval + MMR + answers WITH
+citations, (8) eval harness (golden Q/A set, hit-rate@k, faithfulness, results
+committed to the README), (9) guardrails: refuse on low retrieval confidence,
+rate limit, per-request token/cost telemetry.
+A4 land it: (10) wire Kaolin's assistant to the RAG path, then the Chats tab in
+the dashboard and the RAG README/architecture diagram.
+
+### Track B backlog (10 tasks, 4 batches)
+B1 credibility (do first, cheapest internship wins): (1) PortativSRL
+`lib/company.ts` hardcodes `ratingValue: "4.6"` and `reviewCount: "9"` into
+JSON-LD. Verify those are real reviews or DELETE them; fake review markup is a
+Google penalty and an interview liability. (2) Nook `src/lib/i18n/nl.js` and
+`ro.js` are empty objects silently falling back to English: translate them, then
+drop the EN+RU caveat from its README. (3) Make OblastZero private or delete it
+(it is a bare Unity template, zero gameplay code).
+B2 depth: (4) case-study section for Kaolin/Nook/Portativ (problem, approach,
+result, honest), (5) cross-locale QA (RU Cyrillic, RO diacritics, no em dashes,
+no mobile overflow), (6) Lighthouse + WCAG AA re-audit on all four locales.
+B3 unify: (7) point kaolin_classic's contact form at its own `/api/leads` so
+leads stop scattering across Formspree inboxes, (8) settle which build owns
+kaolin18.vercel.app and redirect the other, (9) OG/social preview pass on both
+sites + the demo clinic.
+B4 story: (10) align GitHub profile, CV and LinkedIn into one narrative; add
+language proficiency levels, internship availability window, and a direct
+contact route to the profile README.
+
+## Backend admin mode (updated July 20, 2026)
+
+You own the backend/dashboard/LLM track.
 
 ### Current state
-- Phase 0 (login + dashboard shell) is deployed to main.
-- Two env vars are set on Vercel: DASHBOARD_PASSWORD and DASHBOARD_SESSION_SECRET.
-- Dad can log in at https://yoursite.com/dashboard and sees an Overview roadmap.
-- Contact form messages are currently sent to Formspree and disappear from our view.
+- Phase 0 (login + dashboard shell) is deployed and live.
+- Env vars set on Vercel: DASHBOARD_PASSWORD and DASHBOARD_SESSION_SECRET.
+- Dad can log in at https://kaolin18.vercel.app/dashboard and sees the Overview.
+- **Phase 1 (leads DB) is WRITTEN BUT NOT SHIPPED.** Commit 53cc883 sits on the
+  local `design/botanical` branch, unpushed. `origin/main` meanwhile has the
+  README rewrite (845b276) that `design/botanical` does not have, so the two have
+  diverged and must be reconciled before merging. Until that merge lands, the
+  live contact form still posts to Formspree only.
 
 ### What Phase 1 needs
 1. **Database:** Create a free Postgres in the Vercel dashboard (Vercel Postgres).
