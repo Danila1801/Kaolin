@@ -249,6 +249,31 @@ it goes through the owner, not a direct edit.
   It must be ROTATED. Never commit it; it lives only in gitignored `.env.local`
   as `NVIDIA_API_KEY`.
 
+### Track A progress (July 20)
+A1 DONE. Phase 1 merged to main and VERIFIED LIVE: /dashboard and
+/dashboard/leads 307 to /login, /api/leads honeypot returns 200 with no write,
+bad email returns 400, all four locales 200. Neon Postgres provisioned (project
+`basik_carabas`, eu-central-1), `leads` table auto-created by the DAL, pgvector
+0.8.0 enabled, `doc_chunks` table created with vector(1024).
+STILL UNVERIFIED: whether Vercel injected DATABASE_URL into production. A test
+row ("TEST ROW (safe to delete)") was inserted directly into the DB; if it shows
+at /dashboard/leads then production is wired. Programmatic login could not check
+this because /login uses a Next.js SERVER ACTION, which needs a Next-Action
+header curl cannot easily forge.
+
+A2 + A3.1 DONE. `kaolin-rag` exists at C:\Users\danil\projects\kaolin-rag
+(separate repo, not yet pushed to GitHub). 74 chunks from 7 studio documents.
+Verified: correct grounded answers with citations, off-topic questions refused,
+no fabricated prices.
+Two real bugs found and fixed, both worth remembering:
+ 1. nv-embedqa-e5-v5 REJECTS input over 512 tokens (400, not truncation). A
+    chars/4 token estimate underestimated dense Markdown by ~1.8x. Estimator is
+    now chars/3 plus a hard character ceiling and a recursive splitter.
+ 2. The refusal threshold was guessed at 0.62 and caused FALSE REFUSALS. It is
+    now MEASURED: in-corpus queries score 0.444-0.624 cosine distance, off-topic
+    0.738-0.824. 0.68 is the midpoint of that empty band. Re-measure if the
+    corpus changes materially.
+
 ### Track A backlog (10 tasks, 4 batches)
 A1 ship what exists: (1) reconcile `design/botanical` with `origin/main` and
 merge Phase 1 to main, (2) verify leads on production, (3) DB provisioning steps
