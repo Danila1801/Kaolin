@@ -20,6 +20,7 @@
 import OpenAI from "openai";
 import { dailyLimiter, minuteLimiter, rateLimitConfigured } from "@/lib/ratelimit";
 import { retrieveGrounding, formatGrounding } from "@/lib/rag";
+import { appendTurn, estimateTokens, estimateTokensFromLength } from "@/lib/chats";
 
 // The OpenAI SDK needs Node APIs — pin the runtime so Vercel never runs this on Edge.
 export const runtime = "nodejs";
@@ -106,11 +107,20 @@ export async function POST(req: Request) {
     return new Response(JSON.stringify({ error: "bad_request" }), { status: 400 });
   }
 
-  const { messages, locale } = (body ?? {}) as {
+  const { messages, locale, chatId } = (body ?? {}) as {
     messages?: unknown;
     locale?: unknown;
+    chatId?: unknown;
   };
   const lang = typeof locale === "string" ? locale : "en";
+  // The client generates this per widget session (crypto.randomUUID()) so
+  // every turn of one conversation lands in the same dashboard row. A missing
+  // or malformed id just means this turn won't be grouped with any other,
+  // never a reason to fail the request.
+  const conversationId =
+    typeof chatId === "string" && /^[A-Za-z0-9-]{8,64}$/.test(chatId)
+      ? chatId
+      : crypto.randomUUID();
 
   if (!Array.isArray(messages) || messages.length === 0) {
     return new Response(JSON.stringify({ error: "bad_request" }), { status: 400 });
@@ -153,11 +163,13 @@ export async function POST(req: Request) {
   // error, it just means this turn answers from the prompt alone, exactly as
   // the endpoint behaved before this existed.
   let grounding = "";
+  let grounded = false;
+  const lastUser = [...history].reverse().find((m) => m.role === "user");
   try {
-    const lastUser = [...history].reverse().find((m) => m.role === "user");
     if (lastUser) {
       const chunks = await retrieveGrounding(lastUser.content);
       grounding = formatGrounding(chunks);
+      grounded = chunks.length > 0;
     }
   } catch (err) {
     console.error("[chat] grounding retrieval failed, continuing without it:", err);
@@ -182,19 +194,49 @@ export async function POST(req: Request) {
     return new Response(JSON.stringify({ error: "upstream" }), { status: 502 });
   }
 
+  // For telemetry only: a rough size of what was actually sent to the model,
+  // used to estimate prompt tokens. Not exact, see lib/chats.ts on why an
+  // estimate is the right level of precision here.
+  const promptChars =
+    systemPrompt(lang, grounding).length + history.reduce((n, m) => n + m.content.length, 0);
+
   // Stream the reply back as plain text tokens; the client appends them live.
   const encoder = new TextEncoder();
   const stream = new ReadableStream<Uint8Array>({
     async start(controller) {
+      let acc = "";
       try {
         for await (const chunk of completion) {
           const text = chunk.choices[0]?.delta?.content ?? "";
-          if (text) controller.enqueue(encoder.encode(text));
+          if (text) {
+            acc += text;
+            controller.enqueue(encoder.encode(text));
+          }
         }
       } catch (err) {
         console.error("[chat] stream error:", err);
       } finally {
         controller.close();
+        // Persist AFTER closing: the visitor already has the full reply, so a
+        // slow database never adds to their perceived latency. Telemetry is
+        // strictly best-effort — a failure here is logged and nothing else,
+        // it must never be able to affect a conversation the visitor already
+        // received.
+        if (lastUser && acc) {
+          try {
+            await appendTurn({
+              chatId: conversationId,
+              locale: lang,
+              userContent: lastUser.content,
+              assistantContent: acc,
+              grounded,
+              promptTokens: estimateTokensFromLength(promptChars),
+              completionTokens: estimateTokens(acc),
+            });
+          } catch (err) {
+            console.error("[chat] failed to persist conversation:", err);
+          }
+        }
       }
     },
   });

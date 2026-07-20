@@ -16,6 +16,11 @@ export default function ChatWidget() {
 
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
+  // One id per widget session, so every turn of one conversation lands in the
+  // same row in the dashboard's Chats tab instead of scattering across many.
+  // Lazily generated (not on mount) so a visitor who never opens the widget
+  // never allocates one.
+  const [chatId, setChatId] = useState<string | null>(null);
   const [input, setInput] = useState("");
   const [status, setStatus] = useState<Status>("idle");
   // First-visit attention cue: a one-time "try me" bubble + pulse ring. Shown
@@ -118,6 +123,9 @@ export default function ChatWidget() {
     setInput("");
     setStatus("streaming");
 
+    const conversationId = chatId ?? crypto.randomUUID();
+    if (!chatId) setChatId(conversationId);
+
     // Placeholder assistant message we fill in as tokens arrive.
     const assistantId = crypto.randomUUID();
     setMessages((m) => [...m, { id: assistantId, role: "assistant", content: "" }]);
@@ -128,6 +136,7 @@ export default function ChatWidget() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           locale,
+          chatId: conversationId,
           messages: history.map(({ role, content }) => ({ role, content })),
         }),
       });

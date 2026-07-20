@@ -5,7 +5,7 @@ import { requireAuth } from "@/lib/dashboard-auth";
 const ROADMAP: { title: string; note: string; done: boolean }[] = [
   { title: "Private login", note: "Only the password gets in. You are looking at it.", done: true },
   { title: "Leads", note: "Every contact form message, saved and listed here.", done: true },
-  { title: "Chats", note: "Read the conversations visitors had with the bot.", done: false },
+  { title: "Chats", note: "Read the conversations visitors had with the bot.", done: true },
   { title: "Traffic", note: "Visitors, top pages, language, country.", done: false },
   { title: "Tasks", note: "A shared to do / doing / done board for you and dad.", done: false },
 ];

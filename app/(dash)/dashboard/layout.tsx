@@ -8,7 +8,7 @@ import { logout } from "./actions";
 const TABS: { href: string; label: string; live: boolean }[] = [
   { href: "/dashboard", label: "Overview", live: true },
   { href: "/dashboard/leads", label: "Leads", live: true },
-  { href: "/dashboard/chats", label: "Chats", live: false },
+  { href: "/dashboard/chats", label: "Chats", live: true },
   { href: "/dashboard/traffic", label: "Traffic", live: false },
   { href: "/dashboard/tasks", label: "Tasks", live: false },
 ];
