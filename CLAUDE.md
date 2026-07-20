@@ -298,6 +298,29 @@ candidate pool exactly where refusal needed it narrowest. Shipped disabled
 kaolin-rag README. This is the intended output of having a real eval harness:
 it caught a regression a single hand-checked example would have missed.
 
+A4.2 DONE AND VERIFIED LIVE. Dashboard Chats tab: lib/chats.ts (one row per
+conversation, JSONB message array grown by concatenation, keyed by a
+client-generated id from ChatWidget.tsx), app/(dash)/dashboard/chats/. Flipped
+live in nav + Overview.
+REAL BUG CAUGHT BY DIRECT DB VERIFICATION, not by the build or a local test:
+the first version awaited the DB write AFTER controller.close() inside the
+stream's finally block, assuming that kept the function invocation alive. It
+does not on Vercel: once the response stream reaches EOF the platform can
+freeze the invocation immediately, and a bare await after that point has no
+completion guarantee. Local testing never caught this because it called the
+DAL through plain Node, never exercising Vercel's freeze behavior. Caught by
+sending a real message to production then querying the chats table directly
+with DATABASE_URL (the dashboard's own read path couldn't be used to verify,
+since curl cannot forge the Next-Action header its server-action login needs).
+FIXED with next/server's `after()`, the documented API for "run this after the
+response, but guarantee the platform keeps the invocation alive for it".
+Confirmed the export existed in this Next 16.2.10 install before using it, not
+assumed. Re-verified end to end after the fix: row lands correctly.
+LESSON: "it works in a local script" and "it works on Vercel's serverless
+runtime" are different claims. Anything scheduled after a response is sent
+needs after() (or must be awaited before the response, trading latency for
+certainty), never a bare unawaited-by-the-platform promise.
+
 A4.1 DONE. The site's live chat (app/api/chat/route.ts) now grounds itself in
 kaolin-rag's document store. lib/rag.ts queries the SAME doc_chunks table
 directly (same Neon DB as kaolin-rag, no HTTP hop between projects), embeds the
