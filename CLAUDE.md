@@ -249,23 +249,29 @@ it goes through the owner, not a direct edit.
   It must be ROTATED. Never commit it; it lives only in gitignored `.env.local`
   as `NVIDIA_API_KEY`.
 
-### Track A progress (July 20)
-A1 DONE. Phase 1 merged to main and VERIFIED LIVE: /dashboard and
-/dashboard/leads 307 to /login, /api/leads honeypot returns 200 with no write,
-bad email returns 400, all four locales 200. Neon Postgres provisioned (project
-`basik_carabas`, eu-central-1), `leads` table auto-created by the DAL, pgvector
-0.8.0 enabled, `doc_chunks` table created with vector(1024).
-STILL UNVERIFIED: whether Vercel injected DATABASE_URL into production. A test
-row ("TEST ROW (safe to delete)") was inserted directly into the DB; if it shows
-at /dashboard/leads then production is wired. Programmatic login could not check
-this because /login uses a Next.js SERVER ACTION, which needs a Next-Action
-header curl cannot easily forge.
+### Track A progress (July 20, updated end of day)
+A1 DONE AND VERIFIED LIVE ON PRODUCTION. /dashboard and /dashboard/leads 307 to
+/login, /api/leads honeypot returns 200 with no write, bad email returns 400,
+all four locales 200. Neon Postgres confirmed wired in production (the owner
+saw the manually-inserted "TEST ROW (safe to delete)" render at
+/dashboard/leads, since deleted). pgvector 0.8.0 enabled, `doc_chunks` table
+live with vector(1024).
 
-A2 + A3.1 DONE. `kaolin-rag` exists at C:\Users\danil\projects\kaolin-rag
-(separate repo, not yet pushed to GitHub). 74 chunks from 7 studio documents.
-Verified: correct grounded answers with citations, off-topic questions refused,
-no fabricated prices.
-Two real bugs found and fixed, both worth remembering:
+A2 + A3 DONE. `kaolin-rag` is a separate public repo:
+github.com/Danila1801/kaolin-rag, local clone at
+C:\Users\danil\projects\kaolin-rag. 74 chunks from 7 studio documents.
+**Live demo: kaolin-rag.vercel.app** (needs DATABASE_URL, NVIDIA_API_KEY, and
+critically GROQ_API_KEY set in ITS OWN Vercel project, separate from Kaolin's).
+Verified end-to-end in production: grounded answers with citations (~1-4s with
+Groq), off-topic questions refused (~0.9s, skips generation entirely), the
+pricing trap answered without inventing a euro figure, malformed input 400s,
+rate limiting 429s correctly.
+
+Measured eval (npm run eval, 18 golden cases): retrieval hit@5 100%, MRR 0.964,
+routing accuracy 100%, grounding 94%, faithfulness 93%. Numbers and the full
+golden set are committed in the repo.
+
+Three real bugs found and fixed, all worth remembering:
  1. nv-embedqa-e5-v5 REJECTS input over 512 tokens (400, not truncation). A
     chars/4 token estimate underestimated dense Markdown by ~1.8x. Estimator is
     now chars/3 plus a hard character ceiling and a recursive splitter.
@@ -273,6 +279,38 @@ Two real bugs found and fixed, both worth remembering:
     now MEASURED: in-corpus queries score 0.444-0.624 cosine distance, off-topic
     0.738-0.824. 0.68 is the midpoint of that empty band. Re-measure if the
     corpus changes materially.
+ 3. The hosted demo 504-timed-out (FUNCTION_INVOCATION_TIMEOUT at 60s) on real
+    questions because generation defaulted to NVIDIA's free tier (15-50s per
+    answer). Fixed by adding a provider-fallback in src/llm.ts: Groq when
+    GROQ_API_KEY is set (2-4s), NVIDIA otherwise. Both projects (Kaolin's site
+    AND kaolin-rag) need GROQ_API_KEY set separately on Vercel; they are
+    different projects with different env vars even though they share one DB.
+
+TRIED AND REJECTED: HyDE (src/hyde.ts in kaolin-rag). Embedding a hypothetical
+answer and fusing it with the question via Reciprocal Rank Fusion moved one
+target chunk from rank 22 to rank 10 of 74, still outside topK=5, so it did not
+even fix the case it targeted. Worse, run across the full eval it dropped
+routing accuracy from 100% to 89%: two previously-refused off-topic questions
+started getting answered, because even an unrelated question's invented
+passage embeds close to SOMETHING in a small corpus, and fusion widened the
+candidate pool exactly where refusal needed it narrowest. Shipped disabled
+(config.hyde.enabled = false) and documented as a negative result in the
+kaolin-rag README. This is the intended output of having a real eval harness:
+it caught a regression a single hand-checked example would have missed.
+
+A4.1 DONE. The site's live chat (app/api/chat/route.ts) now grounds itself in
+kaolin-rag's document store. lib/rag.ts queries the SAME doc_chunks table
+directly (same Neon DB as kaolin-rag, no HTTP hop between projects), embeds the
+visitor's LAST message via NVIDIA (2.5s timeout, fails to [] not an error),
+and MMR-diversifies to top 4. Grounding is appended to the system prompt as
+reference material in the assistant's own conversational voice (no citation
+brackets, this is a chat widget not a QA tool) only when something clears the
+same measured 0.68 threshold; a bare "hi there!" correctly retrieves 0 chunks
+and costs nothing extra. Fully backward compatible: if NVIDIA_API_KEY or
+DATABASE_URL is absent, retrieval no-ops and the endpoint behaves exactly as
+before. STILL NEEDED: NVIDIA_API_KEY on Kaolin's OWN Vercel project (currently
+only set on kaolin-rag's project) for grounding to actually activate in
+production; DATABASE_URL is already there from Phase 1.
 
 ### Track A backlog (10 tasks, 4 batches)
 A1 ship what exists: (1) reconcile `design/botanical` with `origin/main` and
