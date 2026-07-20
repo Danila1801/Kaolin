@@ -162,6 +162,35 @@ design/botanical. The ONLY thing left is the owner creating the database.
   (free). Connect to project, redeploy. DATABASE_URL is injected automatically.
 - Phase 2 candidates: Chats tab (read visitor conversations), then Traffic, Tasks.
 
+### GitHub portfolio track (July 20, 2026) DONE
+The owner is applying for applied-AI / LLM-engineer internships in the
+Netherlands/EU. The whole public GitHub was cleaned up and positioned as
+"applied AI engineer who ships production apps", NOT an ML researcher.
+- DELETED by the owner: Conversational-Agent-Cookpanion (contained only a
+  README, zero code) and Text-Mining-for-Ai (study material only). Do not
+  reference them again.
+- 7 public repos remain: Kaolin, kaolin_classic, Nook, PortativSRL, yt_to_md,
+  kaolin-demo-clinic, OblastZero. Every one got a rewritten README with a fixed
+  structure (one-line description, what it is/why, verified tech stack, key
+  features, status, live link, how to run), plus a GitHub description, homepage,
+  and topics set via the REST API.
+- Profile README created at Danila1801/Danila1801. Bio and website replaced.
+- HARD RULE, carried from this work: never claim a capability the code does not
+  contain. Specifically, the Kaolin assistant is Groq `llama-3.3-70b-versatile`
+  with a hand-written system prompt. It is NOT Claude and it is NOT RAG (no
+  embeddings, no vector store, no retrieval anywhere in the repo). READMEs say
+  so accurately. If RAG is ever wanted on the CV, it has to be built first.
+- Encoding gotcha: kaolin_classic/README.md and yt_to_md/README.md were UTF-16
+  and rendered as garbage on GitHub. Both rewritten as UTF-8. Watch for this
+  when a Windows tool writes a file.
+- Nook localisation is EN + RU only; `nl.js` and `ro.js` are empty objects that
+  fall back to English. Do not describe Nook as a four-language app.
+- Tooling note: `gh` is NOT installed on this machine. Git pushes work through
+  Git Credential Manager. For GitHub API work, the token can be read with
+  `printf 'protocol=https\nhost=github.com\n\n' | git credential fill` (the
+  trailing BLANK LINE is required or it hangs). That token has repo + user
+  scope but NOT delete_repo.
+
 ### Second website (kaolin-classic) TASK 3 DONE (July 18)
 A separate Next.js 16 repo (Danila1801/kaolin_classic) built by a fresh Claude.
 Tasks 1, 2, 3 complete and live at https://kaolin-classic.vercel.app.
