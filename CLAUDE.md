@@ -331,9 +331,18 @@ brackets, this is a chat widget not a QA tool) only when something clears the
 same measured 0.68 threshold; a bare "hi there!" correctly retrieves 0 chunks
 and costs nothing extra. Fully backward compatible: if NVIDIA_API_KEY or
 DATABASE_URL is absent, retrieval no-ops and the endpoint behaves exactly as
-before. STILL NEEDED: NVIDIA_API_KEY on Kaolin's OWN Vercel project (currently
-only set on kaolin-rag's project) for grounding to actually activate in
-production; DATABASE_URL is already there from Phase 1.
+before. STILL NEEDED (re-confirmed July 21 by testing production directly):
+NVIDIA_API_KEY on Kaolin's OWN Vercel project (currently only set on
+kaolin-rag's project, a SEPARATE Vercel project even though both share one
+Neon DB). DATABASE_URL is already there from Phase 1.
+Verification method: asked the live chat "How many guided rituals does Nook
+have, exactly?", a fact that is in the corpus (project-nook.md: 45) but NOT in
+the hand-written system prompt. It correctly declined to guess rather than
+fabricate a number (the "never invent facts" rule holding), but did not know
+the answer either, confirming grounding has not activated. Re-run this same
+question after the key is added; a correct "45" confirms it is live.
+This is a pure config step, no code changes needed, see owner instructions for
+exact clicks.
 
 ### Track A backlog (10 tasks, 4 batches)
 A1 ship what exists: (1) reconcile `design/botanical` with `origin/main` and
