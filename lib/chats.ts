@@ -99,6 +99,17 @@ export function estimateTokensFromLength(chars: number): number {
   return Math.ceil(chars / 4);
 }
 
+// Storage bounds for the public write path. The chat route's per-IP limiter
+// slows writes down but does not cap what piles up, and the caller picks the
+// conversation ID, so without these one visitor could grow a single row (or
+// mint endless rows) forever. Past the caps the chat still works; we just
+// stop recording it.
+const MAX_STORED_TURNS = 50; // per conversation
+const MAX_STORED_CHARS = 4000; // per message, same as the route's MAX_CONTENT
+const MAX_STORED_CHATS = 5000; // newest rows kept
+const RETENTION_DAYS = 90;
+const PRUNE_EVERY = 20; // prune on ~1 in 20 writes, not every request
+
 // WRITE — public, called by the chat route after a reply finishes streaming.
 // Upserts: first turn creates the row, every later turn appends to it. Never
 // throws to the caller in a way that should break the live chat; the route
@@ -111,8 +122,8 @@ export async function appendTurn(turn: NewTurn): Promise<void> {
 
   const now = new Date().toISOString();
   const newMessages: ChatTurnMessage[] = [
-    { role: "user", content: turn.userContent, at: now },
-    { role: "assistant", content: turn.assistantContent, at: now },
+    { role: "user", content: turn.userContent.slice(0, MAX_STORED_CHARS), at: now },
+    { role: "assistant", content: turn.assistantContent.slice(0, MAX_STORED_CHARS), at: now },
   ];
   const total = turn.promptTokens + turn.completionTokens;
 
@@ -129,6 +140,20 @@ export async function appendTurn(turn: NewTurn): Promise<void> {
       completion_tokens = chats.completion_tokens + EXCLUDED.completion_tokens,
       total_tokens      = chats.total_tokens + EXCLUDED.total_tokens,
       updated_at        = now()
+    WHERE chats.turn_count < ${MAX_STORED_TURNS}
+  `;
+
+  if (Math.random() * PRUNE_EVERY < 1) await pruneChats(sql);
+}
+
+// Retention: drop stale conversations, then everything past the newest
+// MAX_STORED_CHATS. Both deletes ride the updated_at index.
+async function pruneChats(sql: NonNullable<ReturnType<typeof getSql>>): Promise<void> {
+  await sql`DELETE FROM chats WHERE updated_at < now() - make_interval(days => ${RETENTION_DAYS}::int)`;
+  await sql`
+    DELETE FROM chats WHERE id IN (
+      SELECT id FROM chats ORDER BY updated_at DESC OFFSET ${MAX_STORED_CHATS}::int
+    )
   `;
 }
 
